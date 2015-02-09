@@ -11,11 +11,15 @@ public class ViewerController implements ItemListener
 	{
 		this.vm = vm;
 		this.mv = mv;
-		mv.addItemListener(this);
 	}
 
 	public void actionPerformed(ActionEvent e)
 	{
 		// manage event
+	}
+
+	public void itemStateChanged(ItemEvent e)
+	{
+		// state changed
 	}
 }

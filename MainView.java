@@ -11,5 +11,8 @@ public class MainView implements Observer
 		this.vm = vm;
 	}
 
-	public void Update()
+	public void update(Observable o, Object arg)
+	{
+		// stuff to do when updated
+	}
 }
