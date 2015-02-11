@@ -1,12 +1,12 @@
 import javax.swing.*;
 import java.util.*;
 
-public class ImDpanel extends JPanel implements Observer
+public class ImageDataPanel extends JPanel implements Observer
 {
 	JTextField pathField;
 	JButton browseButton;
 
-	public ImDpanel()
+	public ImageDataPanel()
 	{
 		pathField = new JTextField("onche");
 		browseButton = new JButton("OK");

@@ -18,14 +18,16 @@ View: menuBar imageData repertory imageBrowser searchBar
 menuBar: $(VIEWDIR)MainMenu.java
 	$(JAVAC) $^
 
-imageData: 
+imageData: $(VIEWDIR)ImageDataPanel.java
+	$(JAVAC) $^
 
 repertory: $(VIEWDIR)RepertoryPanel.java
 	$(JAVAC) $^
 
-imageBrowser:
+imageBrowser: $(VIEWDIR)ImageBrowserPanel.java
+	$(JAVAC) $^
 
 searchBar:
 
 clean:
-	rm -f *.class $(VIEWDIR)*.class $(CONTROLDIR)*.class $(COMMONDIR)*.class $(MODELDIR)*.class
+	@rm -f *.class $(VIEWDIR)*.class $(CONTROLDIR)*.class $(COMMONDIR)*.class $(MODELDIR)*.class
