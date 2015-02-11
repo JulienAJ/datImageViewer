@@ -1,25 +1,78 @@
-import java.awt.*;
+import javax.swing.*;
+import java.util.*;
 
-public class MainMenu extends MenuBar
+public class MainMenu extends JMenuBar implements Observer
 {
+	JMenu repertoryMenu;
+	JMenu displayMenu;
+	JMenu languagesMenu;
+
+	ButtonGroup displayButtonGroup;
+	ButtonGroup languagesButtonGroup;
+
+	JMenuItem changeRepertoryItem;
+
+	JRadioButtonMenuItem bigDisplayItem;
+	JRadioButtonMenuItem mediumDisplayItem;
+	JRadioButtonMenuItem smallDisplayItem;
+
+	JRadioButtonMenuItem frenchItem;
+	JRadioButtonMenuItem englishItem;
+	JRadioButtonMenuItem russianItem;
+
 	public MainMenu()
 	{
-		//je fais un test git
-		Menu repertory = new Menu("Répertoire");
-		repertory.add(new MenuItem("Changer de répertoire"));
+		// Repertory
+		repertoryMenu = new JMenu("Répertoire");
 
-		Menu display = new Menu("Affichage");
-		display.add(new MenuItem("Grand"));
-		display.add(new MenuItem("Moyen"));
-		display.add(new MenuItem("Petit"));
+		changeRepertoryItem = new JMenuItem("Changer de répertoire");
 
-		Menu languages = new Menu("Langues");
-		languages.add(new MenuItem("Français"));
-		languages.add(new MenuItem("Anglais"));
-		languages.add(new MenuItem("Russe"));
+		repertoryMenu.add(changeRepertoryItem);
 
-		this.add(repertory);
-		this.add(display);
-		this.add(languages);
+		// Display
+		displayMenu = new JMenu("Affichage");
+
+		bigDisplayItem = new JRadioButtonMenuItem("Grand");
+		bigDisplayItem.setSelected(true);
+		mediumDisplayItem = new JRadioButtonMenuItem("Moyen");
+		mediumDisplayItem.setSelected(false);
+		smallDisplayItem = new JRadioButtonMenuItem("Petit");
+		smallDisplayItem.setSelected(false);
+
+		displayButtonGroup = new ButtonGroup();
+		displayButtonGroup.add(bigDisplayItem);
+		displayButtonGroup.add(mediumDisplayItem);
+		displayButtonGroup.add(smallDisplayItem);
+
+		displayMenu.add(bigDisplayItem);
+		displayMenu.add(mediumDisplayItem);
+		displayMenu.add(smallDisplayItem);
+
+		// Languages
+		languagesMenu = new JMenu("Langues");
+
+		frenchItem = new JRadioButtonMenuItem("Français");
+		frenchItem.setSelected(true);
+		englishItem = new JRadioButtonMenuItem("English");
+		englishItem.setSelected(false);
+		russianItem = new JRadioButtonMenuItem("русский");
+		russianItem.setSelected(false);
+
+		ButtonGroup languagesButtonGroup = new ButtonGroup();
+		languagesButtonGroup.add(frenchItem);
+		languagesButtonGroup.add(englishItem);
+		languagesButtonGroup.add(russianItem);
+
+		languagesMenu.add(frenchItem);
+		languagesMenu.add(englishItem);
+		languagesMenu.add(russianItem);
+
+		// Main Menu
+		this.add(repertoryMenu);
+		this.add(displayMenu);
+		this.add(languagesMenu);
 	}
+
+	public void update(Observable o, Object arg)
+	{}
 }
