@@ -284,7 +284,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         MainMenu.add(LanguageMenu);
 
-        setJMenuBar(MainMenu);
+        setJMenuBar(new MainMenu());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
