@@ -1,14 +1,23 @@
 import javax.swing.*;
+import java.util.*;
 
-public class RepertoryPanel extends JPanel
+public class RepertoryPanel extends JPanel implements Observer
 {
-	JTextField PathField;
-	JButton BrowseButton;
+	JTextField pathField;
+	JButton browseButton;
 
 	public RepertoryPanel()
 	{
-		PathField = new JTextField("./");
-		BrowseButton = new JButton("...");
-		setBorder(BorderFactory.createTitledBorder("Répertoire"));
+		pathField = new JTextField("./");
+		browseButton = new JButton("...");
+
+		this.setBorder(BorderFactory.createTitledBorder("Répertoire"));
+		this.add(pathField);
+		this.add(browseButton);
+	}
+
+	public void update(Observable o, Object obj)
+	{
+		// TO DO
 	}
 }
