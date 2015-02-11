@@ -7,11 +7,11 @@ public class Demo
 	{
 		JFrame window = new JFrame("datImageViewer");
 
-		window.setMenuBar(new MainMenu());
+		window.setJMenuBar(new MainMenu());
 		window.addWindowListener(new MyWindowListener());
 
 		window.setSize(1200, 800);
-		window.add(new JSplitPane(1, new JTree(), new JScrollPane()));
+		window.add(new JSplitPane(1, new RepertoryPanel(), new JScrollPane()));
 		window.setVisible(true);
 		
 		//window.add(new JLabel("Contenu"));
