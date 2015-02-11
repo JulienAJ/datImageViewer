@@ -27,6 +27,9 @@ repertory: $(VIEWDIR)RepertoryPanel.java
 imageBrowser: $(VIEWDIR)ImageBrowserPanel.java
 	$(JAVAC) $^
 
+demo: $(VIEWDIR)Demo.java $(VIEWDIR)RepertoryPanel.java $(VIEWDIR)MyWindowListener.java $(VIEWDIR)ImageDataPanel.java $(VIEWDIR)MainMenu.java
+	$(JAVAC) $^
+
 searchBar:
 
 clean:
