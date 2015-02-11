@@ -4,6 +4,7 @@ public class MainMenu extends MenuBar
 {
 	public MainMenu()
 	{
+		//je fais un test git
 		Menu repertory = new Menu("Répertoire");
 		repertory.add(new MenuItem("Changer de répertoire"));
 
