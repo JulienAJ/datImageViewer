@@ -9,13 +9,94 @@ public class Demo
 		JFrame window = new JFrame("datImageViewer");
 		window.setJMenuBar(new MainMenu());
 		window.setSize(1200, 800);
+		
+		//	<----------  Declaration du type de Layout  ---------->
+		
+		JPanel Main = new JPanel();
+		GridBagConstraints c = new GridBagConstraints();
+		Main.setPreferredSize(new Dimension(1200,775));
+		Main.setLayout(new GridBagLayout());
+		Main.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
+		/*
 		JPanel Main =new JPanel();
 		Main.setPreferredSize(new Dimension(1200,775));
 		Main.setLayout( new BoxLayout(Main, BoxLayout.X_AXIS) );
+		*/
 
-		window.add(Main);
-		window.addWindowListener(new MyWindowListener());
+
+		//	<----------  Ajout LeftPanel  ---------->
+		
+		JPanel LeftPanel = new JPanel();
+		LeftPanel.setLayout(new GridBagLayout());
+		//c.fill = GridBagConstraints.WEST;
+		c.weightx = 0.2;
+		c.gridx = 0;
+		c.gridy = 0;
+		c.gridwidth = 1;
+		c.gridheight= 2;
+		Main.add(LeftPanel, c);
+
+		// <----- RAZ ----->
+		c.gridwidth = 1;
+		c.gridheight = 1;
+
+		//	<----------  Ajout RepertoryPanel  ---------->
+
+ 		RepertoryPanel Rp = new RepertoryPanel();
+		//Rp.setMinimumSize(new Dimension(300,130));
+		//Rp.setMaximumSize(new Dimension(300,130));
+		//Rp.setPreferredSize(new Dimension(300,130));
+		Rp.setLayout(new GridBagLayout());
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.weightx = 1.0;
+		c.weighty = 1.0;
+		c.gridx = 0;
+		c.gridy = 0;
+		LeftPanel.add(Rp, c);
+
+		//	<----------  Ajout ImageDataPanel  ---------->
+		
+		JPanel IDP = new ImageDataPanel();
+		IDP.setLayout( new GridBagLayout());
+		c.fill = GridBagConstraints.BOTH;
+		c.weightx = 1.0;
+		c.weighty = 1.0;
+		c.gridx = 0;
+		c.gridy = 1;
+		c.ipady = 550;
+		c.ipadx = 50;
+		LeftPanel.add(IDP, c);
+
+		//	<----------  Ajout RightPanel  ---------->
+
+		JPanel RightPanel =new JPanel();
+		RightPanel.setLayout(new GridBagLayout());
+		c.fill = GridBagConstraints.EAST;
+		c.weightx = 0.8;
+		c.gridx = 1;
+		c.gridy = 0;
+		c.gridwidth = 1;
+		c.gridheight= 2;
+		Main.add(RightPanel, c);
+
+		// <----- RAZ ----->
+		c.gridwidth = 1;
+		c.gridheight = 1;
+
+		//	<----------  Ajout TopPanel  ---------->
+		/*JPanel TopP = new TopPanel();
+		TopP.setLayout( new GridBagLayout());
+		c.fill = GridBagConstraints.BOTH;
+		c.weightx = 1.0;
+		c.weighty = 1.0;
+		c.gridx = 1;
+		c.gridy = 0;
+		c.ipady = 550;
+		c.ipadx = 50;
+		RightPanel.add(TopP, c);*/
+		
+		/*
 
 		JPanel LeftPanel =new JPanel();
 		LeftPanel.setLayout( new BoxLayout(LeftPanel,BoxLayout.Y_AXIS) );
@@ -45,10 +126,14 @@ public class Demo
 
 		LeftPanel.add(Rp);
 		LeftPanel.add(IDP);
-
+		*/
 		window.setVisible(true);
 
 		//window.add(new JLabel("Contenu"));
 		//window.pack();
+
+		//	<----------  Ajout  ---------->
+		window.add(Main);
+		window.addWindowListener(new MyWindowListener());
 	}
 }
