@@ -6,13 +6,13 @@ CONTROLDIR=Controller/
 COMMONDIR=CommonTypes/
 CLASSDIR=bin/
 
-all : View Model Controller demo
+all : Controller Model View demo
 
 Model: $(MODELDIR)Model.java $(COMMONDIR)DisplaySize.java
-	$(JAVAC) $(CLASSDIR) $^
+	$(JAVAC) -d $(CLASSDIR) $^
 
 Controller: $(CONTROLDIR)Controller.java
-	$(JAVAC) $(CLASSDIR) $^
+	$(JAVAC) -d $(CLASSDIR) $^
 
 View: menuBar imageData repertory imageBrowser searchBar
 
@@ -37,4 +37,4 @@ runDemo:
 searchBar:
 
 clean:
-	@rm -f *.class $(VIEWDIR)*.class $(CONTROLDIR)*.class $(COMMONDIR)*.class $(MODELDIR)*.class
+	@rm -fr $(CLASSDIR)*
