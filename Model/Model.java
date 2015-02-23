@@ -1,3 +1,4 @@
+package Model;
 import java.util.*;
 import CommonTypes.*; 
 
@@ -50,7 +51,7 @@ public class Model extends Observable
 		notifyObservers("tags");
 	}
 
-	public String setName(String old, String newN)
+	public void setName(String old, String newN)
 	{
 		LinkedList<String> temp = imageList.get(old);
 		imageList.remove(old);

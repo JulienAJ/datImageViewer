@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.util.Observable;
+import java.util.Observer;
 import Model.Model;
 
 public class ImageBrowserPanel extends JScrollPane implements Observer
@@ -10,7 +12,7 @@ public class ImageBrowserPanel extends JScrollPane implements Observer
 		super();
 		this.m = m;
 		m.addObserver(this);
-		this->update(m, "setup");
+		this.update(m, "setup");
 	}
 
 	public void update(Observable o, Object arg)
