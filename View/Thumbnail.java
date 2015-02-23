@@ -1,11 +1,22 @@
 package View;
 import javax.swing.*;
+import CommonTypes.*;
+import java.io.*;
 
-public class Thumbnail extends Jpanel
+public class Thumbnail extends JPanel
 {
-	public Thumbnail(DisplaySize size, String path)
+	private java.awt.image.BufferedImage largeImg;
+	private ImageIcon icon;
+	private String name;
+	private String path;
+
+	public Thumbnail(String path, DisplaySize size)
 	{
-		int maxHeight, maxWidth;
+		super();
+		this.path = path;
+
+		int maxHeight = 0;
+		int maxWidth = 0;
 
 		if(size == DisplaySize.BIG)
 		{
@@ -24,7 +35,16 @@ public class Thumbnail extends Jpanel
 			maxWidth = 60;
 			maxHeight = 40;
 		}
-
-
+		
+		try
+		{
+			largeImg = javax.imageio.ImageIO.read(new File(path));
+			icon = new ImageIcon(largeImg.getScaledInstance(maxWidth, maxHeight, java.awt.Image.SCALE_FAST));
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		
 	}
 }

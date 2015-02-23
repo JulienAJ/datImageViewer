@@ -103,8 +103,9 @@ public class Demo
 		LeftPanel.setPreferredSize(new Dimension(300,775));
 		LeftPanel.setMaximumSize(new Dimension(300,775));
 
-		JPanel RightPanel =new JPanel();
-		RightPanel.setLayout( new BoxLayout(RightPanel,BoxLayout.Y_AXIS) );
+		//JPanel RightPanel =new JPanel();
+		ImageBrowserPanel RightPanel = new ImageBrowserPanel();
+		RightPanel.setLayout(new ScrollPaneLayout());
 		RightPanel.setPreferredSize(new Dimension(900,775));
 
 		Main.add(LeftPanel);

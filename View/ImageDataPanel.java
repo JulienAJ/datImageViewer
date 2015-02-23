@@ -9,6 +9,7 @@ public class ImageDataPanel extends JPanel implements Observer
 
 	public ImageDataPanel()
 	{
+		super();
 		pathField = new JTextField("onche");
 		browseButton = new JButton("OK");
 
