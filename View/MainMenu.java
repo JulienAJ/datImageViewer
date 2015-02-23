@@ -1,6 +1,8 @@
 package View;
 import javax.swing.*;
 import java.util.*;
+import Model.Model;
+import CommonTypes.*;
 
 public class MainMenu extends JMenuBar implements Observer
 {
@@ -23,6 +25,7 @@ public class MainMenu extends JMenuBar implements Observer
 
 	public MainMenu()
 	{
+		super();
 		// Repertory
 		repertoryMenu = new JMenu("Répertoire");
 
@@ -75,5 +78,52 @@ public class MainMenu extends JMenuBar implements Observer
 	}
 
 	public void update(Observable o, Object arg)
-	{}
+	{
+		String updated = (String)arg;
+		Model m = (Model)o;
+		if(updated.equals("language"))
+		{
+			String lang = m.getLanguage();
+			if(lang.equals("french"))
+			{
+				frenchItem.setSelected(true);
+				englishItem.setSelected(false);
+				russianItem.setSelected(false);
+			}
+			else if(lang.equals("english"))
+			{
+				frenchItem.setSelected(false);
+				englishItem.setSelected(true);
+				russianItem.setSelected(false);
+			}
+			else if(lang.equals("russian"))
+			{
+				frenchItem.setSelected(false);
+				englishItem.setSelected(false);
+				russianItem.setSelected(true);
+			}
+		}
+		else if(updated.equals("size"))
+		{
+			DisplaySize size = m.getSize();
+			if(size == DisplaySize.BIG)
+			{
+				bigDisplayItem.setSelected(true);
+				mediumDisplayItem.setSelected(false);
+				smallDisplayItem.setSelected(false);
+			}
+			else if(size == DisplaySize.MEDIUM)
+			{
+				bigDisplayItem.setSelected(false);
+				mediumDisplayItem.setSelected(true);
+				smallDisplayItem.setSelected(false);
+			}
+			else if(size == DisplaySize.SMALL)
+			{
+				bigDisplayItem.setSelected(false);
+				mediumDisplayItem.setSelected(false);
+				smallDisplayItem.setSelected(true);
+			}
+		}
+	}
 }
