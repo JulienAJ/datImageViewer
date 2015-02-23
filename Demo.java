@@ -1,6 +1,6 @@
-package View;
 import javax.swing.*;
 import java.awt.*;
+import View.*;
 
 public class Demo
 {
