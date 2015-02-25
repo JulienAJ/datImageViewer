@@ -29,7 +29,7 @@ public class Demo
 		
 		JPanel LeftPanel = new JPanel();
 		LeftPanel.setLayout(new GridBagLayout());
-		//c.fill = GridBagConstraints.WEST;
+		c.fill = GridBagConstraints.WEST;
 		c.weightx = 0.2;
 		c.gridx = 0;
 		c.gridy = 0;
@@ -94,7 +94,7 @@ public class Demo
 		//	<----------  Ajout TopBar  ---------->
 		JPanel TopB = new TopBar();
 		TopB.setLayout( new GridBagLayout());
-		c.fill = GridBagConstraints.EAST;
+		c.fill = GridBagConstraints.WEST;
 		c.weightx = 0.0;
 		c.weighty = 0.0;
 		c.gridx = 0;
