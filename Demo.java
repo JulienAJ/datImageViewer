@@ -49,8 +49,8 @@ public class Demo
 		//Rp.setPreferredSize(new Dimension(300,130));
 		Rp.setLayout(new GridBagLayout());
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx = 1.0;
-		c.weighty = 1.0;
+		c.weightx = 0.0;
+		c.weighty = 0.0;
 		c.gridx = 0;
 		c.gridy = 0;
 		LeftPanel.add(Rp, c);
@@ -60,8 +60,10 @@ public class Demo
 		JPanel IDP = new ImageDataPanel();
 		IDP.setLayout( new GridBagLayout());
 		c.fill = GridBagConstraints.BOTH;
-		c.weightx = 1.0;
-		c.weighty = 1.0;
+		c.weightx = 0.0;
+		c.weighty = 0.0;
+		c.gridwidth = 1;
+		c.gridheight = 4;
 		c.gridx = 0;
 		c.gridy = 1;
 		c.ipady = 550;
@@ -76,7 +78,7 @@ public class Demo
 		c.weightx = 0.8;
 		c.gridx = 1;
 		c.gridy = 0;
-		c.gridwidth = 1;
+		c.gridwidth = 4;
 		c.gridheight= 2;
 		Main.add(RightPanel, c);
 
@@ -85,8 +87,8 @@ public class Demo
 		c.gridheight = 1;
 
 		//	<----------  Ajout TopPanel  ---------->
-		/*JPanel TopP = new TopPanel();
-		TopP.setLayout( new GridBagLayout());
+		JPanel TopB = new TopBar();
+		TopB.setLayout( new GridBagLayout());
 		c.fill = GridBagConstraints.BOTH;
 		c.weightx = 1.0;
 		c.weighty = 1.0;
@@ -94,9 +96,9 @@ public class Demo
 		c.gridy = 0;
 		c.ipady = 550;
 		c.ipadx = 50;
-		RightPanel.add(TopP, c);*/
+		RightPanel.add(TopB, c);
 		
-		/*
+		/*	
 
 		JPanel LeftPanel =new JPanel();
 		LeftPanel.setLayout( new BoxLayout(LeftPanel,BoxLayout.Y_AXIS) );

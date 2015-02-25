@@ -17,11 +17,15 @@ public class TopBar extends JPanel implements Observer
 		super();
 		displayBox = new JComboBox();
 		searchField = new JTextField();
-		searchButton = new searchButton();
+		searchButton = new JButton("Rechercher");
+
+		this.add(displayBox);
+		this.add(searchField);
+		this.add(searchButton);
 	}
 
 	public void update(Observable o, Object arg)
 	{
-		// ON PEUT
+		// ON PEUT FUTER
 	}
 }
