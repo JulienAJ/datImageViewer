@@ -40,13 +40,12 @@ public class Demo
 		// <----- RAZ ----->
 		c.gridwidth = 1;
 		c.gridheight = 1;
+		c.ipady = 0;
+		c.ipadx = 0;
 
 		//	<----------  Ajout RepertoryPanel  ---------->
 
  		RepertoryPanel Rp = new RepertoryPanel();
-		//Rp.setMinimumSize(new Dimension(300,130));
-		//Rp.setMaximumSize(new Dimension(300,130));
-		//Rp.setPreferredSize(new Dimension(300,130));
 		Rp.setLayout(new GridBagLayout());
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx = 0.0;
@@ -70,6 +69,12 @@ public class Demo
 		c.ipadx = 50;
 		LeftPanel.add(IDP, c);
 
+		// <----- RAZ ----->
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.ipady = 0;
+		c.ipadx = 0;
+
 		//	<----------  Ajout RightPanel  ---------->
 
 		JPanel RightPanel =new JPanel();
@@ -86,17 +91,30 @@ public class Demo
 		c.gridwidth = 1;
 		c.gridheight = 1;
 
-		//	<----------  Ajout TopPanel  ---------->
+		//	<----------  Ajout TopBar  ---------->
 		JPanel TopB = new TopBar();
 		TopB.setLayout( new GridBagLayout());
+		c.fill = GridBagConstraints.EAST;
+		c.weightx = 0.0;
+		c.weighty = 0.0;
+		c.gridx = 0;
+		c.gridy = 0;
+		c.ipady = 0;
+		c.ipadx = 850;
+		RightPanel.add(TopB, c);
+
+		//	<----------  Ajout ImagePanel  ---------->
+		JPanel ImgP = new ImagePanel();
 		c.fill = GridBagConstraints.BOTH;
 		c.weightx = 1.0;
 		c.weighty = 1.0;
-		c.gridx = 1;
-		c.gridy = 0;
-		c.ipady = 550;
-		c.ipadx = 50;
-		RightPanel.add(TopB, c);
+		c.gridwidth = 1;
+		c.gridheight= 4;
+		c.gridx = 0;
+		c.gridy = 1;
+		c.ipady = 540;
+		c.ipadx = 850;
+		RightPanel.add(ImgP, c);
 		
 		/*	
 

@@ -19,6 +19,7 @@ public class TopBar extends JPanel implements Observer
 		searchField = new JTextField();
 		searchButton = new JButton("Rechercher");
 
+		this.setBorder(BorderFactory.createTitledBorder("Recherche"));
 		this.add(displayBox);
 		this.add(searchField);
 		this.add(searchButton);
