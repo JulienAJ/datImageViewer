@@ -93,7 +93,7 @@ public class Demo
 
 		//	<----------  Ajout TopBar  ---------->
 		JPanel TopB = new TopBar();
-		TopB.setLayout( new GridBagLayout());
+		//TopB.setLayout(new GridBagLayout());
 		c.fill = GridBagConstraints.WEST;
 		c.weightx = 0.0;
 		c.weighty = 0.0;
