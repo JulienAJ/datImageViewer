@@ -2,13 +2,14 @@ package Model;
 import java.util.*;
 import java.awt.image.*;
 import CommonTypes.*; 
+import java.io.File;
 
 public class Model extends Observable
 {
 	String language;
 	DisplaySize displaySize;
 	Map<String, LinkedList<String> > imageList;
-	String repertory;
+	File repertory;
 	String selected;
 	BufferedImage selectedImage;
 
@@ -17,7 +18,7 @@ public class Model extends Observable
 		language = null;
 		displaySize = DisplaySize.BIG;
 		imageList = null;
-		repertory = "/";
+		repertory = new File("/");
 		selected = null;
 		selectedImage = null;
 	}
@@ -68,12 +69,12 @@ public class Model extends Observable
 		notifyObservers(new ChangeClass(ChangeType.SELECTED));
 	}
 
-	public String getRepertory()
+	public File getRepertory()
 	{
 		return repertory;
 	}
 
-	public void setRepertory(String rep)
+	public void setRepertory(File rep)
 	{
 		this.repertory = rep;
 		notifyObservers(new ChangeClass(ChangeType.REPERTORY));
