@@ -24,6 +24,7 @@ public class ImageDataPanel extends JPanel implements Observer
 		tags = new JList<String>();
 		editTags = new JButton("Modifier");
 		noSelection = new JLabel("Aucune Image selectionnée");
+		this.setBorder(BorderFactory.createTitledBorder("Données"));
 
 		String selected = m.getSelected();
 		if(selected == null)

@@ -20,7 +20,7 @@ public class MainView extends JFrame
 
 		this.setJMenuBar(new MainMenu(m));
 		this.setSize(1200, 800);
-		this.setMinimumSize(new Dimension(900,600));
+		this.setMinimumSize(new Dimension(1000,640));
 		this.setVisible(true);
 		this.addWindowListener(new MyWindowListener());
 		
@@ -31,9 +31,6 @@ public class MainView extends JFrame
 		this.topBar = new TopBar();
 		this.imagePanel = new ImagePanel(m);
 
-		//this.mainPanel.setPreferredSize(new Dimension(1200,775));
-		//this.mainPanel.setLayout(new GridBagLayout());
-		//this.mainPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 	}
 
 	// RepertoryPanel
@@ -70,47 +67,51 @@ public class MainView extends JFrame
 		//RepertoryPanel
 		GridBagConstraints gbc = new GridBagConstraints();
 		
-		gbc.anchor = GridBagConstraints.NORTH;
+		gbc.anchor = GridBagConstraints.NORTHWEST;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.weightx = 1.0;
 		gbc.weighty = 1.0;
 		gbc.gridwidth = 1;
 		gbc.gridheight= 1;
+		gbc.ipadx = 100;
+		gbc.ipady = 20;
 		this.mainPanel.add(repertoryPanel,gbc);
 
 		//ImageDataPanel
-		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.anchor = GridBagConstraints.NORTHWEST;
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.weightx = 1.0;
 		gbc.weighty = 3.0;
 		gbc.gridwidth = 1;
 		gbc.gridheight= 3;
+		gbc.ipadx = 7;
+		gbc.ipady = 540;
 		this.mainPanel.add(imageDataPanel,gbc);
 
 		//TopBar
 		gbc.anchor = GridBagConstraints.NORTHEAST;
 		gbc.gridx = 1;
 		gbc.gridy = 0;
-		gbc.weightx = 4.0;
+		gbc.weightx = 5.0;
 		gbc.weighty = 1.0;
 		gbc.gridwidth = 4;
 		gbc.gridheight= 1;
-		//gbc.ipady = 0;
-		//gbc.ipadx = 850;
+		gbc.ipadx = 750;
+		gbc.ipady = 20;
 		this.mainPanel.add(topBar, gbc);
 
 		//ImagePanel
 		gbc.anchor = GridBagConstraints.EAST;
 		gbc.gridx = 1;
 		gbc.gridy = 1;
-		gbc.weightx = 4.0;
+		gbc.weightx = 5.0;
 		gbc.weighty = 3.0;
 		gbc.gridwidth = 4;
 		gbc.gridheight= 3;
-		//gbc.ipady = 540;
-		//gbc.ipadx = 850;
+		gbc.ipadx = 750;
+		gbc.ipady = 0;
 		this.mainPanel.add(imagePanel, gbc);
 
 		// MainPanel
