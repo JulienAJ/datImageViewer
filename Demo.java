@@ -1,11 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
 import View.*;
+import Model.Model;
 
 public class Demo
 {
 	public static void main(String[] args)
 	{
+		Model m = new Model();
 		JFrame window = new JFrame("datImageViewer");
 		window.setJMenuBar(new MainMenu());
 		window.setSize(1200, 800);
@@ -56,7 +58,7 @@ public class Demo
 
 		//	<----------  Ajout ImageDataPanel  ---------->
 		
-		JPanel IDP = new ImageDataPanel();
+		JPanel IDP = new ImageDataPanel(m);
 		IDP.setLayout( new GridBagLayout());
 		c.fill = GridBagConstraints.BOTH;
 		c.weightx = 0.0;
