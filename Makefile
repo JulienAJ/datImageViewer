@@ -56,7 +56,7 @@ runDemo:
 	$(JAVA) -classpath $(CLASSDIR) Demo
 
 runMain:
-	$(JAVA) -classpath $(CLASSDIR) MainView
+	$(JAVA) -classpath $(CLASSDIR) $(VIEWDIR)MainView
 
 searchBar:
 
