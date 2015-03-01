@@ -13,16 +13,32 @@ public class TopBar extends JPanel implements Observer
 	JTextField searchField;
 	JButton searchButton;
 
+	String displayBig;
+	String displayMedium;
+	String displaySmall;
+
 	public TopBar()
 	{
+		// SETUP
 		super();
 		displayBox = new JComboBox();
 		searchField = new JTextField(15);
 		searchButton = new JButton("Rechercher");
-
 		this.setBorder(BorderFactory.createTitledBorder("TRUC"));
 		this.setLayout(new GridBagLayout());
 
+		// DISPLAY MENU
+		displayBig = "Grand";
+		displayMedium = "Moyen";
+		displaySmall = "Petit";
+
+		displayBox.addItem(displayBig);
+		displayBox.addItem(displayMedium);
+		displayBox.addItem(displaySmall);
+
+		displayBox.setSelectedItem(displayBig);
+
+		// DISPLAY
 		GridBagConstraints gc = new GridBagConstraints();
 		gc.anchor = GridBagConstraints.WEST;
 		gc.weightx = 0.5;
@@ -43,6 +59,20 @@ public class TopBar extends JPanel implements Observer
 
 	public void update(Observable o, Object arg)
 	{
-		// ON PEUT FUTER
+		ChangeClass changes = (ChangeClass)arg;
+		Model m = (Model)o;
+
+		if(changes.getType() == ChangeType.DISPLAYSIZE)
+		{
+			DisplaySize newSize = m.getSize();
+			if(newSize == DisplaySize.BIG)
+				this.displayBox.setSelectedItem(displayBig);
+
+			else if(newSize == DisplaySize.MEDIUM)
+				this.displayBox.setSelectedItem(displayMedium);
+
+			else if(newSize == DisplaySize.SMALL)
+				this.displayBox.setSelectedItem(displaySmall);
+		}
 	}
 }

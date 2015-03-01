@@ -79,9 +79,9 @@ public class MainMenu extends JMenuBar implements Observer
 
 	public void update(Observable o, Object arg)
 	{
-		String updated = (String)arg;
+		ChangeClass changes = (ChangeClass)arg;
 		Model m = (Model)o;
-		if(updated.equals("language"))
+		if(changes.getType() == ChangeType.LANGUAGE)
 		{
 			String lang = m.getLanguage();
 			if(lang.equals("french"))
@@ -103,7 +103,7 @@ public class MainMenu extends JMenuBar implements Observer
 				russianItem.setSelected(true);
 			}
 		}
-		else if(updated.equals("size"))
+		if(changes.getType() == ChangeType.DISPLAYSIZE)
 		{
 			DisplaySize size = m.getSize();
 			if(size == DisplaySize.BIG)

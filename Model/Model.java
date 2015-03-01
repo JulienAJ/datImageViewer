@@ -25,7 +25,7 @@ public class Model extends Observable
 	public void setLanguage(String lang)
 	{
 		this.language = lang;
-		notifyObservers("language");
+		notifyObservers(new ChangeClass(ChangeType.LANGUAGE));
 	}
 
 	public DisplaySize getSize()
@@ -36,7 +36,7 @@ public class Model extends Observable
 	public void setSize(DisplaySize size)
 	{
 		this.displaySize = size;
-		notifyObservers("size");
+		notifyObservers(new ChangeClass(ChangeType.DISPLAYSIZE));
 	}
 
 	public LinkedList<String> getTags(String name)
@@ -48,7 +48,7 @@ public class Model extends Observable
 	{
 		imageList.remove(name);
 		imageList.put(name, tags);
-		notifyObservers("tags");
+		notifyObservers(new ChangeClass(ChangeType.IMAGETAGS, name));
 	}
 
 	public void setName(String old, String newN)
@@ -56,7 +56,8 @@ public class Model extends Observable
 		LinkedList<String> temp = imageList.get(old);
 		imageList.remove(old);
 		imageList.put(newN, temp);
-		notifyObservers("name");
+		// TO DO change actual image name in folder
+		notifyObservers(new ChangeClass(ChangeType.IMAGENAME, old));
 	}
 
 	public String getRepertory()
@@ -67,6 +68,6 @@ public class Model extends Observable
 	public void setRepertory(String rep)
 	{
 		this.repertory = rep;
-		notifyObservers("repertory");
+		notifyObservers(new ChangeClass(ChangeType.REPERTORY));
 	}
 }

@@ -1,6 +1,8 @@
 package View;
 import javax.swing.*;
 import java.util.*;
+import CommonTypes.*;
+import Model.Model;
 
 public class RepertoryPanel extends JPanel implements Observer
 {
@@ -19,6 +21,12 @@ public class RepertoryPanel extends JPanel implements Observer
 
 	public void update(Observable o, Object obj)
 	{
-		// TO DO
+		ChangeClass changes = (ChangeClass)obj;
+		Model m = (Model)o;
+
+		if(changes.getType() == ChangeType.REPERTORY)
+		{
+			pathField.setText(m.getRepertory());
+		}
 	}
 }
