@@ -2,6 +2,7 @@ package View;
 import javax.swing.*;
 import java.util.*;
 import Model.Model;
+import java.awt.event.*;
 import CommonTypes.*;
 
 public class MainMenu extends JMenuBar implements Observer
@@ -75,6 +76,29 @@ public class MainMenu extends JMenuBar implements Observer
 		this.add(repertoryMenu);
 		this.add(displayMenu);
 		this.add(languagesMenu);
+	}
+
+	public JMenuItem getChangeRepertoryItem(){ return this.changeRepertoryItem; }
+
+	public JRadioButtonMenuItem getBigDisplayItem(){ return this.bigDisplayItem; }
+	public JRadioButtonMenuItem getMediumDisplayItem(){ return this.mediumDisplayItem; }
+	public JRadioButtonMenuItem getSmallDisplayItem(){ return this.smallDisplayItem; }
+
+	public JRadioButtonMenuItem getFrenchItem(){ return this.frenchItem; }
+	public JRadioButtonMenuItem getEnglishItem(){ return this.englishItem; }
+	public JRadioButtonMenuItem getRussianItem(){ return this.russianItem; }
+
+	public void addListener(ActionListener l)
+	{
+		this.changeRepertoryItem.addActionListener(l);
+
+		this.bigDisplayItem.addActionListener(l);
+		this.mediumDisplayItem.addActionListener(l);
+		this.smallDisplayItem.addActionListener(l);
+
+		this.frenchItem.addActionListener(l);
+		this.englishItem.addActionListener(l);
+		this.russianItem.addActionListener(l);
 	}
 
 	public void update(Observable o, Object arg)
