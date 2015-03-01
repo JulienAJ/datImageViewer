@@ -6,6 +6,10 @@ import Model.Model;
 public class MainView extends JFrame
 {
 	Model m;
+	Jpanel repertoryPanel;
+	Jpanel topBar;
+	Jpanel imageDataPanel;
+	Jpanel imagePanel;
 
 	public MainView()
 	{
@@ -17,6 +21,16 @@ public class MainView extends JFrame
 		this.setMinimumSize(new Dimension(900,600));
 		this.setVisible(true);
 		this.addWindowListener(new MyWindowListener());
+		
+		repertoryPanel = new RepertoryPanel(m);
+		imageDataPanel = new ImageDataPanel(m);
+		topBar = new TopBar();
+		imagePanel = new ImagePanel();
+	}
+	
+	public void setup() // add and constraint
+	{
+		//this.add(rp,c);
 	}
 
 	public static void main(String[] args)
