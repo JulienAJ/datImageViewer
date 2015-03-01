@@ -70,31 +70,31 @@ public class MainView extends JFrame
 		//RepertoryPanel
 		GridBagConstraints gbc = new GridBagConstraints();
 		
-		gbc.fill = GridBagConstraints.WEST;
+		gbc.anchor = GridBagConstraints.NORTH;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		//gbc.weightx = 1.0;
-		//gbc.weighty = 1.0;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
 		gbc.gridwidth = 1;
 		gbc.gridheight= 1;
 		this.mainPanel.add(repertoryPanel,gbc);
 
 		//ImageDataPanel
-		gbc.anchor = GridBagConstraints.WEST;
+		gbc.anchor = GridBagConstraints.CENTER;
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		//gbc.weightx = 1.0;
-		//gbc.weighty = 3.0;
+		gbc.weightx = 1.0;
+		gbc.weighty = 3.0;
 		gbc.gridwidth = 1;
 		gbc.gridheight= 3;
 		this.mainPanel.add(imageDataPanel,gbc);
 
 		//TopBar
-		gbc.anchor = GridBagConstraints.EAST;
+		gbc.anchor = GridBagConstraints.NORTHEAST;
 		gbc.gridx = 1;
 		gbc.gridy = 0;
-		//gbc.weightx = 4.0;
-		//gbc.weighty = 1.0;
+		gbc.weightx = 4.0;
+		gbc.weighty = 1.0;
 		gbc.gridwidth = 4;
 		gbc.gridheight= 1;
 		//gbc.ipady = 0;
@@ -105,8 +105,8 @@ public class MainView extends JFrame
 		gbc.anchor = GridBagConstraints.EAST;
 		gbc.gridx = 1;
 		gbc.gridy = 1;
-		//gbc.weightx = 4.0;
-		//gbc.weighty = 3.0;
+		gbc.weightx = 4.0;
+		gbc.weighty = 3.0;
 		gbc.gridwidth = 4;
 		gbc.gridheight= 3;
 		//gbc.ipady = 540;
