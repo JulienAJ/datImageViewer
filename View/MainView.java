@@ -59,6 +59,23 @@ public class MainView extends JFrame
 		return this.topBar.getSearchButton();
 	}
 
+	//ImagePanel
+
+	public JButton getNext()
+	{
+		return this.imagePanel.getNext();
+	}
+
+	public JButton getPrevious()
+	{
+		return this.imagePanel.getPrevious();
+	}
+
+	public JButton getClose()
+	{
+		return this.imagePanel.getClose();
+	}
+	
 	// Add and Constraint
 
 	public void setup()
