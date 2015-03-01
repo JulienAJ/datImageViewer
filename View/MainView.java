@@ -6,14 +6,16 @@ import Model.Model;
 public MainView extends JFrame
 {
 	private:
-		Model m = new Model();
-		JFrame window = new JFrame("datImageViewer");
+		Model m;
+		JFrame window;
 
 	public ImageDataPanel(Model m)
 	{
+		window = new JFrame("datImageViewer");
 		window.setJMenuBar(new MainMenu());
 		window.setSize(1200, 800);
 		window.setMinimumSize(new Dimension(900,600));
+		m = new Model();
 	}
 
 }
