@@ -3,19 +3,23 @@ import java.awt.*;
 import View.*;
 import Model.Model;
 
-public MainView extends JFrame
+public class MainView extends JFrame
 {
-	private:
-		Model m;
-		JFrame window;
+	Model m;
 
-	public ImageDataPanel(Model m)
+	public MainView()
 	{
-		window = new JFrame("datImageViewer");
-		window.setJMenuBar(new MainMenu());
-		window.setSize(1200, 800);
-		window.setMinimumSize(new Dimension(900,600));
+		super("datImageViewer");
+		this.setJMenuBar(new MainMenu());
+		this.setSize(1200, 800);
+		this.setMinimumSize(new Dimension(900,600));
 		m = new Model();
+	}
+
+	public static void main(String[] args)
+	{
+		MainMenu m = new MainMenu();
+
 	}
 
 }
