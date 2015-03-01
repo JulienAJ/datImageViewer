@@ -65,26 +65,57 @@ public class MainView extends JFrame
 		// MainPanel
 		this.add(mainPanel);
 
-		GridBagConstraints gbc = new GridBagConstraints();
-
 		//RepertoryPanel
+		GridBagConstraints gbc = new GridBagConstraints();
 		
 		gbc.anchor = GridBagConstraints.WEST;
-		gbc.weightx = 0.2;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
 		gbc.gridwidth = 1;
 		gbc.gridheight= 1;
 		this.mainPanel.add(repertoryPanel,gbc);
 
 		//ImageDataPanel
+		gbc.anchor = GridBagConstraints.WEST;
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.weightx = 1.0;
+		gbc.weighty = 3.0;
+		gbc.gridwidth = 1;
+		gbc.gridheight= 3;
+		this.mainPanel.add(imageDataPanel,gbc);
+
+		//TopBar
+		gbc.anchor = GridBagConstraints.EAST;
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.weightx = 4.0;
+		gbc.weighty = 1.0;
+		gbc.gridwidth = 4;
+		gbc.gridheight= 1;
+		//gbc.ipady = 0;
+		//gbc.ipadx = 850;
+		this.mainPanel.add(topBar, gbc);
+
+		//ImagePanel
+		gbc.anchor = GridBagConstraints.EAST;
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		gbc.weightx = 4.0;
+		gbc.weighty = 3.0;
+		gbc.gridwidth = 4;
+		gbc.gridheight= 3;
+		//gbc.ipady = 540;
+		//gbc.ipadx = 850;
+		this.mainPanel.add(imagePanel, gbc);
 	}
 
 	public static void main(String[] args)
 	{
 		MainView m = new MainView();
 		m.setup();
-
 	}
 
 }
