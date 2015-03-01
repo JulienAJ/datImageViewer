@@ -11,6 +11,7 @@ public class Demo
 		JFrame window = new JFrame("datImageViewer");
 		window.setJMenuBar(new MainMenu());
 		window.setSize(1200, 800);
+		window.setMinimumSize(new Dimension(900,600));
 		
 		//	<----------  Declaration du type de Layout  ---------->
 		
