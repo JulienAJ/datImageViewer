@@ -6,10 +6,10 @@ import Model.Model;
 public class MainView extends JFrame
 {
 	Model m;
-	Jpanel repertoryPanel;
-	Jpanel topBar;
-	Jpanel imageDataPanel;
-	Jpanel imagePanel;
+	RepertoryPanel repertoryPanel;
+	TopBar topBar;
+	ImageDataPanel imageDataPanel;
+	ImagePanel imagePanel;
 
 	public MainView()
 	{
@@ -25,10 +25,38 @@ public class MainView extends JFrame
 		repertoryPanel = new RepertoryPanel(m);
 		imageDataPanel = new ImageDataPanel(m);
 		topBar = new TopBar();
-		imagePanel = new ImagePanel();
+		imagePanel = new ImagePanel(m);
+	}
+
+	// RepertoryPanel
+
+	public JButton getBrowseButton()
+	{
+		return this.repertoryPanel.getBrowseButton();
 	}
 	
-	public void setup() // add and constraint
+	//ImageDataPanel
+
+	public JButton getRenameButton()
+	{
+		return this.imageDataPanel.getRename();
+	}
+
+	public JButton getTagsButton()
+	{
+		return this.imageDataPanel.getTagsButton();
+	}
+
+	//TopBar
+
+	public JButton getSearchButton()
+	{
+		return this.topBar.getSearchButton();
+	}
+
+	// Add and Constraint
+
+	public void setup()
 	{
 		//this.add(rp,c);
 	}

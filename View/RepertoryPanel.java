@@ -4,6 +4,7 @@ import java.util.*;
 import CommonTypes.*;
 import Model.Model;
 import java.awt.event.*;
+import java.awt.*;
 
 public class RepertoryPanel extends JPanel implements Observer
 {
