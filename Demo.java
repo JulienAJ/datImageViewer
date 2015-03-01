@@ -7,9 +7,11 @@ public class Demo
 {
 	public static void main(String[] args)
 	{
-		Model m = new Model();
+		try
+		{
+			Model m = new Model();
 		JFrame window = new JFrame("datImageViewer");
-		window.setJMenuBar(new MainMenu());
+		window.setJMenuBar(new MainMenu(m));
 		window.setSize(1200, 800);
 		window.setMinimumSize(new Dimension(900,600));
 		
@@ -48,7 +50,7 @@ public class Demo
 
 		//	<----------  Ajout RepertoryPanel  ---------->
 
- 		RepertoryPanel Rp = new RepertoryPanel();
+ 		RepertoryPanel Rp = new RepertoryPanel(m);
 		Rp.setLayout(new GridBagLayout());
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx = 0.0;
@@ -107,7 +109,7 @@ public class Demo
 		RightPanel.add(TopB, c);
 
 		//	<----------  Ajout ImagePanel  ---------->
-		JPanel ImgP = new ImagePanel();
+		JPanel ImgP = new ImagePanel(m);
 		c.fill = GridBagConstraints.BOTH;
 		c.weightx = 1.0;
 		c.weighty = 1.0;
@@ -159,5 +161,10 @@ public class Demo
 		//	<----------  Ajout  ---------->
 		window.add(Main);
 		window.addWindowListener(new MyWindowListener());
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
 	}
 }

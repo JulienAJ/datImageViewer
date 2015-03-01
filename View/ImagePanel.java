@@ -5,6 +5,7 @@ import CommonTypes.*;
 import javax.swing.*;
 import java.util.Observer;
 import java.awt.image.*;
+import java.awt.event.*;
 import java.util.Observable;
 
 public class ImagePanel extends JPanel implements Observer
@@ -52,7 +53,7 @@ public class ImagePanel extends JPanel implements Observer
 			else
 			{
 				image = m.getSelectedImage();
-				name = m.getSelected();
+				name.setText(m.getSelected());
 				this.setVisible(true);
 			}
 		}
