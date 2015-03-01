@@ -24,12 +24,16 @@ public class MainView extends JFrame
 		this.setVisible(true);
 		this.addWindowListener(new MyWindowListener());
 		
-		mainPanel = new MainPanel();
-		m = new Model();
-		repertoryPanel = new RepertoryPanel(m);
-		imageDataPanel = new ImageDataPanel(m);
-		topBar = new TopBar();
-		imagePanel = new ImagePanel(m);
+		this.mainPanel = new MainPanel();
+		this.m = new Model();
+		this.repertoryPanel = new RepertoryPanel(m);
+		this.imageDataPanel = new ImageDataPanel(m);
+		this.topBar = new TopBar();
+		this.imagePanel = new ImagePanel(m);
+
+		//this.mainPanel.setPreferredSize(new Dimension(1200,775));
+		//this.mainPanel.setLayout(new GridBagLayout());
+		//this.mainPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 	}
 
 	// RepertoryPanel
@@ -62,17 +66,15 @@ public class MainView extends JFrame
 
 	public void setup()
 	{
-		// MainPanel
-		this.add(mainPanel);
 
 		//RepertoryPanel
 		GridBagConstraints gbc = new GridBagConstraints();
 		
-		gbc.anchor = GridBagConstraints.WEST;
+		gbc.fill = GridBagConstraints.WEST;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.weightx = 1.0;
-		gbc.weighty = 1.0;
+		//gbc.weightx = 1.0;
+		//gbc.weighty = 1.0;
 		gbc.gridwidth = 1;
 		gbc.gridheight= 1;
 		this.mainPanel.add(repertoryPanel,gbc);
@@ -81,8 +83,8 @@ public class MainView extends JFrame
 		gbc.anchor = GridBagConstraints.WEST;
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		gbc.weightx = 1.0;
-		gbc.weighty = 3.0;
+		//gbc.weightx = 1.0;
+		//gbc.weighty = 3.0;
 		gbc.gridwidth = 1;
 		gbc.gridheight= 3;
 		this.mainPanel.add(imageDataPanel,gbc);
@@ -91,8 +93,8 @@ public class MainView extends JFrame
 		gbc.anchor = GridBagConstraints.EAST;
 		gbc.gridx = 1;
 		gbc.gridy = 0;
-		gbc.weightx = 4.0;
-		gbc.weighty = 1.0;
+		//gbc.weightx = 4.0;
+		//gbc.weighty = 1.0;
 		gbc.gridwidth = 4;
 		gbc.gridheight= 1;
 		//gbc.ipady = 0;
@@ -103,13 +105,18 @@ public class MainView extends JFrame
 		gbc.anchor = GridBagConstraints.EAST;
 		gbc.gridx = 1;
 		gbc.gridy = 1;
-		gbc.weightx = 4.0;
-		gbc.weighty = 3.0;
+		//gbc.weightx = 4.0;
+		//gbc.weighty = 3.0;
 		gbc.gridwidth = 4;
 		gbc.gridheight= 3;
 		//gbc.ipady = 540;
 		//gbc.ipadx = 850;
 		this.mainPanel.add(imagePanel, gbc);
+
+		// MainPanel
+		this.add(mainPanel);
+		this.setSize(1201, 801);
+		this.setSize(1200, 800);
 	}
 
 	public static void main(String[] args)
