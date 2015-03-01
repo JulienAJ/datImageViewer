@@ -1,5 +1,6 @@
 package Model;
 import java.util.*;
+import java.awt.image.*;
 import CommonTypes.*; 
 
 public class Model extends Observable
@@ -9,6 +10,7 @@ public class Model extends Observable
 	Map<String, LinkedList<String> > imageList;
 	String repertory;
 	String selected;
+	BufferedImage selectedImage;
 
 	public Model()
 	{
@@ -17,6 +19,7 @@ public class Model extends Observable
 		imageList = null;
 		repertory = "/";
 		selected = null;
+		selectedImage = null;
 	}
 
 	public String getLanguage() { return this.language; }
@@ -58,7 +61,12 @@ public class Model extends Observable
 
 	public String getSelected() { return this.selected; }
 
-	public void setSelected(String name) { this.selected = name; }
+	public void setSelected(String name, BufferedImage img)
+	{
+		this.selected = name;
+		this.selectedImage = img;
+		notifyObservers(new ChangeClass(ChangeType.SELECTED));
+	}
 
 	public String getRepertory()
 	{
@@ -70,4 +78,6 @@ public class Model extends Observable
 		this.repertory = rep;
 		notifyObservers(new ChangeClass(ChangeType.REPERTORY));
 	}
+
+	public BufferedImage getSelectedImage() { return this.selectedImage; }
 }

@@ -49,6 +49,7 @@ public class ImageDataPanel extends JPanel implements Observer
 		this.add(rename);
 		this.add(tags);
 		this.add(editTags);
+		this.add(noSelection);
 	}
 
 	public JButton getRename() { return this.rename; }
