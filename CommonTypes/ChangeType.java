@@ -5,6 +5,7 @@ public enum ChangeType
 	LANGUAGE,
 	IMAGETAGS,
 	IMAGENAME,
+	SELECTED,
 	REPERTORY
 }
 

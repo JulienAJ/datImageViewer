@@ -8,6 +8,7 @@ public class Model extends Observable
 	DisplaySize displaySize;
 	Map<String, LinkedList<String> > imageList;
 	String repertory;
+	String selected;
 
 	public Model()
 	{
@@ -15,12 +16,10 @@ public class Model extends Observable
 		displaySize = DisplaySize.BIG;
 		imageList = null;
 		repertory = "/";
+		selected = null;
 	}
 
-	public String getLanguage()
-	{
-		return this.language;
-	}
+	public String getLanguage() { return this.language; }
 
 	public void setLanguage(String lang)
 	{
@@ -28,10 +27,7 @@ public class Model extends Observable
 		notifyObservers(new ChangeClass(ChangeType.LANGUAGE));
 	}
 
-	public DisplaySize getSize()
-	{
-		return this.displaySize;
-	}
+	public DisplaySize getSize() { return this.displaySize; }
 
 	public void setSize(DisplaySize size)
 	{
@@ -59,6 +55,10 @@ public class Model extends Observable
 		// TO DO change actual image name in folder
 		notifyObservers(new ChangeClass(ChangeType.IMAGENAME, old));
 	}
+
+	public String getSelected() { return this.selected; }
+
+	public void setSelected(String name) { this.selected = name; }
 
 	public String getRepertory()
 	{
