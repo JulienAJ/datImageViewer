@@ -11,26 +11,38 @@ public class ImageDataPanel extends JPanel implements Observer
 	JButton rename;
 	JList<String> tags;
 	JButton editTags;
+	JLabel noSelection;
 
 	public ImageDataPanel(Model m)
 	{
 		super();
+		// SET FIXED SIZE
 		imageName = new JTextField();
 		imageName.setEditable(false);
 
 		rename = new JButton("Renommer");
-
 		tags = new JList<String>();
 		editTags = new JButton("Modifier");
+		noSelection = new JLabel("Aucune Image selectionnée");
+
 		String selected = m.getSelected();
 		if(selected == null)
-			this.setVisible(false);
-
+		{
+			imageName.setVisible(false);
+			rename.setVisible(false);
+			tags.setVisible(false);
+			editTags.setVisible(false);
+			noSelection.setVisible(true);
+		}
 		else
 		{
 			imageName.setText(selected);
 			tags.setListData((String[])(m.getTags(selected).toArray())); 
-			this.setVisible(true);
+			imageName.setVisible(true);
+			rename.setVisible(true);
+			tags.setVisible(true);
+			editTags.setVisible(true);
+			noSelection.setVisible(false);
 		}
 
 		this.add(imageName);
@@ -58,13 +70,23 @@ public class ImageDataPanel extends JPanel implements Observer
 		{
 			String selected = m.getSelected();
 			if(selected == null)
-				this.setVisible(false);
+			{
+				imageName.setVisible(false);
+				rename.setVisible(false);
+				tags.setVisible(false);
+				editTags.setVisible(false);
+				noSelection.setVisible(true);
+			}
 
 			else
 			{
 				imageName.setText(selected);
 				tags.setListData((String[])(m.getTags(selected).toArray())); 
-				this.setVisible(true);
+				imageName.setVisible(true);
+				rename.setVisible(true);
+				tags.setVisible(true);
+				editTags.setVisible(true);
+				noSelection.setVisible(false);
 			}
 		}
 	}
