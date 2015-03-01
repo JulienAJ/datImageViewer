@@ -1,3 +1,5 @@
+package View;
+
 import javax.swing.*;
 import java.awt.*;
 import View.*;
@@ -6,6 +8,7 @@ import Model.Model;
 public class MainView extends JFrame
 {
 	Model m;
+	MainPanel mainPanel;
 	RepertoryPanel repertoryPanel;
 	TopBar topBar;
 	ImageDataPanel imageDataPanel;
@@ -14,7 +17,6 @@ public class MainView extends JFrame
 	public MainView()
 	{
 		super("datImageViewer");
-		m = new Model();
 
 		this.setJMenuBar(new MainMenu(m));
 		this.setSize(1200, 800);
@@ -22,6 +24,8 @@ public class MainView extends JFrame
 		this.setVisible(true);
 		this.addWindowListener(new MyWindowListener());
 		
+		mainPanel = new MainPanel();
+		m = new Model();
 		repertoryPanel = new RepertoryPanel(m);
 		imageDataPanel = new ImageDataPanel(m);
 		topBar = new TopBar();
@@ -58,12 +62,28 @@ public class MainView extends JFrame
 
 	public void setup()
 	{
-		//this.add(rp,c);
+		// MainPanel
+		this.add(mainPanel);
+
+		GridBagConstraints gbc = new GridBagConstraints();
+
+		//RepertoryPanel
+		
+		gbc.anchor = GridBagConstraints.WEST;
+		gbc.weightx = 0.2;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.gridheight= 1;
+		this.mainPanel.add(repertoryPanel,gbc);
+
+		//ImageDataPanel
 	}
 
 	public static void main(String[] args)
 	{
 		MainView m = new MainView();
+		m.setup();
 
 	}
 

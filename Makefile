@@ -17,7 +17,7 @@ Model: $(MODELDIR)Model.java $(COMMONDIR)DisplaySize.java
 Controller: $(CONTROLDIR)Controller.java
 	$(JAVAC) -d $(CLASSDIR) $^
 
-View: mainView menuBar imageData repertory imageBrowser topBar
+View: mainView menuBar imageData repertory imageBrowser topBar 
 
 mainView: $(VIEWDIR)MainView.java
 	$(JAVAC) -d $(CLASSDIR) $^
@@ -40,7 +40,7 @@ imageBrowser: $(VIEWDIR)ImageBrowserPanel.java
 demo: Demo.java $(VIEWDIR)RepertoryPanel.java $(VIEWDIR)MyWindowListener.java $(VIEWDIR)ImageDataPanel.java $(VIEWDIR)MainMenu.java $(VIEWDIR)TopBar.java
 	$(JAVAC) -d $(CLASSDIR) $^
 
-main: $(VIEWDIR)MainView.java $(MODELDIR)Model.java $(VIEWDIR)RepertoryPanel.java $(VIEWDIR)MyWindowListener.java $(VIEWDIR)ImageDataPanel.java $(VIEWDIR)MainMenu.java $(VIEWDIR)TopBar.java
+main: $(VIEWDIR)MainView.java $(MODELDIR)Model.java $(VIEWDIR)RepertoryPanel.java $(VIEWDIR)MyWindowListener.java $(VIEWDIR)ImageDataPanel.java $(VIEWDIR)MainMenu.java $(VIEWDIR)TopBar.java 
 	$(JAVAC) -d $(CLASSDIR) $^
 
 runDemo:
