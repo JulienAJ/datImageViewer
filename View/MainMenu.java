@@ -24,7 +24,7 @@ public class MainMenu extends JMenuBar implements Observer
 	JRadioButtonMenuItem englishItem;
 	JRadioButtonMenuItem russianItem;
 
-	public MainMenu()
+	public MainMenu(Model m)
 	{
 		super();
 		// Repertory

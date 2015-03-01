@@ -10,9 +10,9 @@ public class RepertoryPanel extends JPanel implements Observer
 	JTextField pathField;
 	JButton browseButton;
 
-	public RepertoryPanel()
+	public RepertoryPanel(Model m)
 	{
-		pathField = new JTextField("./");
+		pathField = new JTextField(m.getRepertory());
 		pathField.setEditable(false);
 		browseButton = new JButton("...");
 
