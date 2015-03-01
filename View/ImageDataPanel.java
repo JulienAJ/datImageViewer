@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
 import Model.Model;
-import COmmonTypes.*;
+import CommonTypes.*;
 
 public class ImageDataPanel extends JPanel implements Observer
 {
@@ -21,7 +21,7 @@ public class ImageDataPanel extends JPanel implements Observer
 		rename = new JButton("Renommer");
 
 		tags = new JList<String>();
-
+		editTags = new JButton("Modifier");
 		String selected = m.getSelected();
 		if(selected == null)
 			this.setVisible(false);
@@ -29,7 +29,7 @@ public class ImageDataPanel extends JPanel implements Observer
 		else
 		{
 			imageName.setText(selected);
-			tags.setListData(m.getTags(selected)); 
+			tags.setListData((String[])(m.getTags(selected).toArray())); 
 			this.setVisible(true);
 		}
 
@@ -63,7 +63,7 @@ public class ImageDataPanel extends JPanel implements Observer
 			else
 			{
 				imageName.setText(selected);
-				tags.setListData(m.getTags(selected)); 
+				tags.setListData((String[])(m.getTags(selected).toArray())); 
 				this.setVisible(true);
 			}
 		}
