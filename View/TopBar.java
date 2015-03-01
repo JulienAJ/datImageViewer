@@ -42,20 +42,24 @@ public class TopBar extends JPanel implements Observer
 		// DISPLAY
 		GridBagConstraints gc = new GridBagConstraints();
 		gc.anchor = GridBagConstraints.WEST;
-		gc.weightx = 0.5;
+		gc.weightx = 1.0;
 		gc.gridx = 0;
 		gc.gridy = 0;
 		this.add(displayBox, gc);
 
 		gc.anchor = GridBagConstraints.EAST;
-		//gc.weightx = 0.25;
+		gc.weightx = 2.0;
 		gc.gridx = 1;
 		gc.gridy = 0;
-		//gc.gridwidth = 1;
-		this.add(searchField, gc);
-		//gc.anchor = GridBagConstraints.WEST;
-		gc.gridx = GridBagConstraints.RELATIVE;
+		gc.gridwidth = 1;
 		this.add(searchButton, gc);
+		gc.anchor = GridBagConstraints.WEST;
+		gc.weightx = 1.0;
+		gc.gridx = 2;
+		gc.gridy = 0;
+		gc.gridwidth = 1;
+		//gc.gridx = GridBagConstraints.RELATIVE;
+		this.add(searchField, gc);
 	}
 
 	public JComboBox getDisplayBox() { return this.displayBox; }
