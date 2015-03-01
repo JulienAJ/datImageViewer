@@ -1,50 +1,64 @@
 package View;
-import javax.swing.*;
-import CommonTypes.*;
-import java.io.*;
 
-public class Thumbnail extends JPanel
+import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+public class Thumbnail
 {
-	private java.awt.image.BufferedImage largeImg;
-	private ImageIcon icon;
+	private BufferedImage original;
+	private ImageIcon image;
 	private String name;
 	private String path;
 
-	public Thumbnail(String path, DisplaySize size)
+	public Thumbnail(String path, int maxWidth, int maxHeight) throws Exception
 	{
-		super();
 		this.path = path;
+		Path p = Paths.get(path);
+		name = p.getFileName().toString();
 
-		int maxHeight = 0;
-		int maxWidth = 0;
+		original = ImageIO.read(new File(path));
+		if (original == null)
+			throw new Exception(path + ": this file seems to be damaged.");
 
-		if(size == DisplaySize.BIG)
-		{
-			maxWidth = 100;
-			maxHeight = 80;
-		}
+		int imgWidth = original.getWidth();
+		int imgHeight = original.getHeight();
 
-		else if(size == DisplaySize.MEDIUM)
-		{
-			maxWidth = 80;
-			maxHeight = 60;
-		}
+		double maxRatio = (double)maxWidth / maxHeight;
+		double imgRatio = (double)imgWidth / imgHeight;
+		double scale = (imgRatio > maxRatio) ?  (double)maxWidth / imgWidth : (double)maxHeight / imgHeight;
 
-		else if(size == DisplaySize.SMALL)
-		{
-			maxWidth = 60;
-			maxHeight = 40;
-		}
-		
-		try
-		{
-			largeImg = javax.imageio.ImageIO.read(new File(path));
-			icon = new ImageIcon(largeImg.getScaledInstance(maxWidth, maxHeight, java.awt.Image.SCALE_FAST));
-		}
-		catch(Exception e)
-		{
-			System.out.println(e);
-		}
-		
+		int newWidth = (int)(imgWidth * scale);
+		int newHeight = (int)(imgHeight * scale);
+
+		image = new ImageIcon(original.getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_FAST));
+	}
+
+	public String getName()
+	{
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public ImageIcon getImage()
+	{
+		return image;
+	}
+
+	public BufferedImage getOriginalImage()
+	{
+		return original;
 	}
 }
+
