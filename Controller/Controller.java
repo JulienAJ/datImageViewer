@@ -17,6 +17,39 @@ public class Controller implements ActionListener
 
 	public void actionPerformed(ActionEvent e)
 	{
-		// e.getSource
+		// Repertory Panel
+		if(e.getSource() == v.getBrowseButton())
+		{
+			v.displayChangeRepertory();
+		}		
+
+		// Image Data Panel
+		else if(e.getSource == v.getRenameButton())
+		{
+			v.displayRename();
+		}
+
+		else if(e.getSource == v.getTagsButton())
+		{
+			v.displayTagModif();
+		}
+
+		// Top Bar
+		else if(e.getSource == v.getSearchButton())
+		{
+			m.search();
+		}
+
+		else if(e.getSource == v.getNext())
+		{
+			m.nextImage();
+		}
+
+		else if(e.getSource == v.getPrevious())
+		{
+			m.previousImage();
+		}
+
+		//else if(e.getSource == v.getClose());
 	}
 }
