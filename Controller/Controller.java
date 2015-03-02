@@ -40,6 +40,8 @@ public class Controller implements ActionListener
 			m.search();
 		}
 
+		//ImagePanel
+
 		else if(e.getSource == v.getNext())
 		{
 			m.nextImage();

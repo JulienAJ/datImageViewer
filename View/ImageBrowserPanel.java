@@ -11,7 +11,7 @@ import Model.Model;
 import CommonTypes.*;
 import java.io.*;
 
-public class ImageBrowserPanel extends JScrollPane implements Observer
+public class ImageBrowserPanel extends JPanel implements Observer
 {
 	private Model m;
 

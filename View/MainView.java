@@ -32,8 +32,6 @@ public class MainView extends JFrame
 		this.imageDataPanel = new ImageDataPanel(m);
 		this.topBar = new TopBar();
 		this.imagePanel = new ImagePanel(m);
-		this.browseFrame = new BrowseFrame(m);
-		this.renameFrame = new BrowseFrame(m);
 	}
 
 	// RepertoryPanel
@@ -81,19 +79,19 @@ public class MainView extends JFrame
 	
 	//BrowseFrame
 
-	public File getPath()
+	/*public String getPath()
 	{ 
 		return this.browseFrame.getPath();
-	}
+	}*/
 
 	public JButton getValidate()
 	{
-		return this.browsePanel.getValidate();
+		return this.browseFrame.getValidate();
 	}
 	
 	public JButton getCancel()
 	{
-		return this.browsePanel.getCancel();
+		return this.browseFrame.getCancel();
 	}
 	
 	//RenameFrame
