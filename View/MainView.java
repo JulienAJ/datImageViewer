@@ -47,76 +47,68 @@ public class MainView extends JFrame
 	}
 
 	// MainMenu
-	
 	public JMenuItem getChangeRepertoryItem() { return mainMenu.getChangeRepertoryItem(); }
-
 	public JRadioButtonMenuItem getBigDisplayItem() { return mainMenu.getBigDisplayItem(); }
 	public JRadioButtonMenuItem getMediumDisplayItem() { return mainMenu.getMediumDisplayItem(); }
 	public JRadioButtonMenuItem getSmallDisplayItem() { return mainMenu.getSmallDisplayItem(); }
-
 	public JRadioButtonMenuItem getFrenchItem() { return mainMenu.getFrenchItem(); }
 	public JRadioButtonMenuItem getEnglishItem() { return mainMenu.getEnglishItem(); }
 	public JRadioButtonMenuItem getRussianItem() { return mainMenu.getRussianItem(); }
 
 	// RepertoryPanel
-
-	public JButton getBrowseButton()
-	{
-		return this.repertoryPanel.getBrowseButton();
-	}
+	public JButton getBrowseButton() { return this.repertoryPanel.getBrowseButton(); }
 	
 	//ImageDataPanel
-
-	public JButton getRenameButton()
-	{
-		return this.imageDataPanel.getRename();
-	}
-
-	public JButton getTagsButton()
-	{
-		return this.imageDataPanel.getTagsButton();
-	}
+	public JButton getRenameButton() { return this.imageDataPanel.getRename(); }
+	public JButton getTagsButton() { return this.imageDataPanel.getTagsButton(); }
 
 	//TopBar
-
-	public JButton getSearchButton()
-	{
-		return this.topBar.getSearchButton();
-	}
+	public JButton getSearchButton() { return this.topBar.getSearchButton(); }
 
 	//ImagePanel
-
-	public JButton getNext()
-	{
-		return this.imagePanel.getNext();
-	}
-
-	public JButton getPrevious()
-	{
-		return this.imagePanel.getPrevious();
-	}
-
-	public JButton getClose()
-	{
-		return this.imagePanel.getClose();
-	}
+	public JButton getNext() { return this.imagePanel.getNext(); }
+	public JButton getPrevious() { return this.imagePanel.getPrevious(); }
+	public JButton getClose() {	return this.imagePanel.getClose(); }
 	
 	//BrowseFrame
+	public JFileChooser getChooser()
+	{
+		if(browseFrame == null)
+			return null;
+
+		return this.browseFrame.chooser;
+	}
 
 	public File getPath()
-	{ 
+	{
+		if(browseFrame == null)
+			return null;
+
 		return this.browseFrame.getPath();
 	}
 
 	//RenameFrame
+	public String getNewNameRenameFrame()
+	{
+		if(renameFrame == null)
+			return null;
+
+		return renameFrame.getText();
+	}
 
 	public JButton getValidateRenameFrame()
 	{
+		if(renameFrame == null)
+			return null;
+
 		return this.renameFrame.getValidate();
 	}
 	
 	public JButton getCancelRenameFrame()
 	{
+		if(renameFrame == null)
+			return null;
+
 		return this.renameFrame.getCancel();
 	}
 	
