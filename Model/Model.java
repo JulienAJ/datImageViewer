@@ -17,13 +17,41 @@ public class Model extends Observable
 	{
 		language = null;
 		displaySize = DisplaySize.BIG;
-		imageList = null;
+		imageList = new HashMap();
 		repertory = new File("/");
 		selected = null;
 		selectedImage = null;
 	}
 
 	public String getLanguage() { return this.language; }
+
+	public void search(String searchKey)
+	{
+		Map<String, LinkedList<String> > results = new HashMap();
+		for(String key : imageList.keySet())
+		{
+			LinkedList<String> list = imageList.get(key);
+			int size = list.size();
+			for(int i = 0; i < size; ++i)
+			{
+				if(list.get(i).equals(searchKey))
+				{
+					results.put(key, list);
+					break;
+				}
+			}
+		}
+	}
+
+	public void nextImage()
+	{
+		// Change selected and notify
+	}
+	
+	public void previousImage()
+	{
+		// Change selected and notify
+	}
 
 	public void setLanguage(String lang)
 	{
