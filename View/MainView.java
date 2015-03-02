@@ -81,7 +81,7 @@ public class MainView extends JFrame
 		return this.browseFrame.chooser;
 	}
 
-	public File getPath()
+	public File getPathChooser()
 	{
 		if(browseFrame == null)
 			return null;
