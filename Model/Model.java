@@ -71,6 +71,25 @@ public class Model extends Observable
 		return imageList.get(name);
 	}
 
+	public String getTagsArea(String name)
+	{
+		if(imageList == null || imageList.get(name) == null)
+			return "";
+
+		String result = null;
+		LinkedList<String> tags = imageList.get(name);
+		int size = tags.size();
+		for(int i = 0; i < size; ++i)
+		{
+			if(result == null)
+				result = tags.get(i);
+			
+			else
+				result = result + ';' + (tags.get(i));
+		}
+		return result;
+	}
+
 	public void setTags(String name, LinkedList<String> tags)
 	{
 		imageList.remove(name);

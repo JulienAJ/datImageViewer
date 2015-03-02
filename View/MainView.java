@@ -16,6 +16,7 @@ public class MainView extends JFrame
 	ImagePanel imagePanel;
 	BrowseFrame browseFrame;
 	RenameFrame renameFrame;
+	TagsFrame tagsFrame;
 
 	public MainView()
 	{
