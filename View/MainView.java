@@ -33,6 +33,7 @@ public class MainView extends JFrame
 		this.imageDataPanel = new ImageDataPanel(m);
 		this.topBar = new TopBar();
 		this.imagePanel = new ImagePanel(m);
+		setup();
 	}
 
 	public void displayChangeRepertory()
@@ -170,8 +171,7 @@ public class MainView extends JFrame
 
 	public static void main(String[] args)
 	{
-		MainView m = new MainView();
-		m.setup();
+		new MainView();
 	}
 
 }
