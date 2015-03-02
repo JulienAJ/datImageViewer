@@ -93,7 +93,7 @@ public class MainView extends JFrame
 		if(renameFrame == null)
 			return null;
 
-		return renameFrame.getText();
+		return renameFrame.getNewName();
 	}
 
 	public JButton getValidateRenameFrame()
