@@ -6,6 +6,7 @@ public enum ChangeType
 	IMAGETAGS,
 	IMAGENAME,
 	SELECTED,
+	SEARCH,
 	REPERTORY
 }
 
