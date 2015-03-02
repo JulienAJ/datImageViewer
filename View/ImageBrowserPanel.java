@@ -22,16 +22,11 @@ public class ImageBrowserPanel extends JPanel implements Observer
 	private DefaultListModel iconListModel;
 	private JList<Thumbnail> iconList;
 
-	private JButton browse;
-	private JButton search;
-	private JTextField searchField;
-
 	private SwingWorker<Void, Thumbnail> loadImageWorker = null;
 
 	public ImageBrowserPanel(Model m)
 	{
 		super();
-
 		iconListModel = new DefaultListModel();
 		iconList = new JList<Thumbnail>(iconListModel);
 		iconList.setCellRenderer(new iconListCellRenderer());
@@ -44,17 +39,7 @@ public class ImageBrowserPanel extends JPanel implements Observer
 		scroll = new JScrollPane(iconList);
 		scroll.setPreferredSize(new Dimension(300, 300));
 
-		JPanel top = new JPanel();
-		top.setLayout(new BorderLayout());
-		top.add(browse, BorderLayout.LINE_START);
-		JPanel topRight = new JPanel();
-		topRight.setLayout(new FlowLayout());
-		topRight.add(searchField);
-		topRight.add(search);
-		top.add(topRight, BorderLayout.LINE_END);
-
 		setLayout(new BorderLayout());
-		add(top, BorderLayout.PAGE_START);
 		add(scroll, BorderLayout.CENTER);
 	}
 

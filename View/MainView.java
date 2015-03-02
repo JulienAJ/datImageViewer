@@ -16,6 +16,7 @@ public class MainView extends JFrame
 	ImagePanel imagePanel;
 	BrowseFrame browseFrame;
 	RenameFrame renameFrame;
+	ImageBrowserPanel imageBrowserPanel;
 
 	public MainView()
 	{
@@ -33,6 +34,7 @@ public class MainView extends JFrame
 		this.imageDataPanel = new ImageDataPanel(m);
 		this.topBar = new TopBar();
 		this.imagePanel = new ImagePanel(m);
+		this.imageBrowserPanel = new ImageBrowserPanel(m);
 		setup();
 	}
 
@@ -116,7 +118,7 @@ public class MainView extends JFrame
 
 	public void setup()
 	{
-		// TON PANEL DE MERDE
+		// mainPanel
 		JPanel mainPanel = new JPanel();
 		mainPanel.setPreferredSize(new Dimension(1200,775));
 		mainPanel.setLayout(new GridBagLayout());
@@ -171,6 +173,17 @@ public class MainView extends JFrame
 		gbc.ipadx = 890;
 		gbc.ipady = 0;
 		mainPanel.add(imagePanel, gbc);
+		//ImageBrowserPanel
+		gbc.anchor = GridBagConstraints.EAST;
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
+		gbc.gridwidth = 1;
+		gbc.gridheight= 1;
+		gbc.ipadx = 0;
+		gbc.ipady = 0;
+		imagePanel.add(imageBrowserPanel,gbc);
 
 		// MainPanel
 		this.add(mainPanel);
