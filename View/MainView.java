@@ -93,7 +93,7 @@ public class MainView extends JFrame
 		if(renameFrame == null)
 			return null;
 
-		return renameFrame.getText();
+		return renameFrame.getNewName();
 	}
 
 	public JButton getValidateRenameFrame()
@@ -132,7 +132,7 @@ public class MainView extends JFrame
 		gbc.weighty = 1.0;
 		gbc.gridwidth = 1;
 		gbc.gridheight= 1;
-		gbc.ipadx = 100;
+		gbc.ipadx = 140;
 		gbc.ipady = 20;
 		mainPanel.add(repertoryPanel,gbc);
 
@@ -144,7 +144,7 @@ public class MainView extends JFrame
 		gbc.weighty = 3.0;
 		gbc.gridwidth = 1;
 		gbc.gridheight= 3;
-		gbc.ipadx = 7;
+		gbc.ipadx = 47;
 		gbc.ipady = 540;
 		mainPanel.add(imageDataPanel,gbc);
 
@@ -156,7 +156,7 @@ public class MainView extends JFrame
 		gbc.weighty = 1.0;
 		gbc.gridwidth = 4;
 		gbc.gridheight= 1;
-		gbc.ipadx = 750;
+		gbc.ipadx = 890;
 		gbc.ipady = 20;
 		mainPanel.add(topBar, gbc);
 
@@ -168,7 +168,7 @@ public class MainView extends JFrame
 		gbc.weighty = 3.0;
 		gbc.gridwidth = 4;
 		gbc.gridheight= 3;
-		gbc.ipadx = 750;
+		gbc.ipadx = 890;
 		gbc.ipady = 0;
 		mainPanel.add(imagePanel, gbc);
 

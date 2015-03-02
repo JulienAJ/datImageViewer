@@ -1,5 +1,6 @@
 package View;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import Model.Model;
@@ -25,6 +26,7 @@ public class ImageDataPanel extends JPanel implements Observer
 		editTags = new JButton("Modifier");
 		noSelection = new JLabel("Aucune Image selectionnée");
 		this.setBorder(BorderFactory.createTitledBorder("Données"));
+		this.setLayout(new GridBagLayout());
 
 		String selected = m.getSelected();
 		if(selected == null)
@@ -46,11 +48,24 @@ public class ImageDataPanel extends JPanel implements Observer
 			noSelection.setVisible(false);
 		}
 
-		this.add(imageName);
-		this.add(rename);
-		this.add(tags);
-		this.add(editTags);
-		this.add(noSelection);
+		GridBagConstraints gc = new GridBagConstraints();
+		gc.anchor = GridBagConstraints.CENTER;
+		gc.weightx = 1.0;
+		gc.gridx = 0;
+		gc.gridy = 0;
+		this.add(imageName, gc);
+		gc.gridx = 0;
+		gc.gridy = 1;
+		this.add(rename, gc);
+		gc.gridx = 0;
+		gc.gridy = 2;
+		this.add(tags, gc);
+		gc.gridx = 0;
+		gc.gridy = 3;
+		this.add(editTags, gc);
+		gc.gridx = 0;
+		gc.gridy = 2;
+		this.add(noSelection, gc);
 	}
 
 	public JButton getRename() { return this.rename; }
