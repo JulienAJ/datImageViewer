@@ -36,7 +36,9 @@ public class BrowseFrame extends JFrame implements Observer
 		gc.gridy = 0;
 		gc.fill = GridBagConstraints.BOTH;
 		gc.anchor = GridBagConstraints.NORTH;
-		this.add(tree, gc);
+		JScrollPane scroll = new JScrollPane(tree);
+		//scroll.add(tree);
+		this.add(scroll, gc);
 
 		gc.weightx = 1;
 		gc.gridwidth = 1;
