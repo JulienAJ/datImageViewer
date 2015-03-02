@@ -9,7 +9,7 @@ import Model.Model;
 public class MainView extends JFrame
 {
 	Model m;
-	MainPanel mainPanel;
+	MainMenu mainMenu;
 	RepertoryPanel repertoryPanel;
 	TopBar topBar;
 	ImageDataPanel imageDataPanel;
@@ -21,14 +21,14 @@ public class MainView extends JFrame
 	{
 		super("datImageViewer");
 
-		this.setJMenuBar(new MainMenu(m));
+		this.m = new Model();
+		mainMenu = new MainMenu(m);
+		this.setJMenuBar(mainMenu);
 		this.setSize(1200, 800);
 		this.setMinimumSize(new Dimension(1000,640));
 		this.setVisible(true);
 		this.addWindowListener(new MyWindowListener());
 		
-		this.mainPanel = new MainPanel();
-		this.m = new Model();
 		this.repertoryPanel = new RepertoryPanel(m);
 		this.imageDataPanel = new ImageDataPanel(m);
 		this.topBar = new TopBar();
@@ -45,6 +45,18 @@ public class MainView extends JFrame
 	{
 		//RenameFrame
 	}
+
+	// MainMenu
+	
+	public JMenuItem getChangeRepertoryItem() { return mainMenu.getChangeRepertoryItem(); }
+
+	public JRadioButtonMenuItem getBigDisplayItem() { return mainMenu.getBigDisplayItem(); }
+	public JRadioButtonMenuItem getMediumDisplayItem() { return mainMenu.getMediumDisplayItem(); }
+	public JRadioButtonMenuItem getSmallDisplayItem() { return mainMenu.getSmallDisplayItem(); }
+
+	public JRadioButtonMenuItem getFrenchItem() { return mainMenu.getFrenchItem(); }
+	public JRadioButtonMenuItem getEnglishItem() { return mainMenu.getEnglishItem(); }
+	public JRadioButtonMenuItem getRussianItem() { return mainMenu.getRussianItem(); }
 
 	// RepertoryPanel
 
@@ -112,6 +124,11 @@ public class MainView extends JFrame
 
 	public void setup()
 	{
+		// TON PANEL DE MERDE
+		JPanel mainPanel = new JPanel();
+		mainPanel.setPreferredSize(new Dimension(1200,775));
+		mainPanel.setLayout(new GridBagLayout());
+		mainPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
 		//RepertoryPanel
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -125,7 +142,7 @@ public class MainView extends JFrame
 		gbc.gridheight= 1;
 		gbc.ipadx = 100;
 		gbc.ipady = 20;
-		this.mainPanel.add(repertoryPanel,gbc);
+		mainPanel.add(repertoryPanel,gbc);
 
 		//ImageDataPanel
 		gbc.anchor = GridBagConstraints.NORTHWEST;
@@ -137,7 +154,7 @@ public class MainView extends JFrame
 		gbc.gridheight= 3;
 		gbc.ipadx = 7;
 		gbc.ipady = 540;
-		this.mainPanel.add(imageDataPanel,gbc);
+		mainPanel.add(imageDataPanel,gbc);
 
 		//TopBar
 		gbc.anchor = GridBagConstraints.NORTHEAST;
@@ -149,7 +166,7 @@ public class MainView extends JFrame
 		gbc.gridheight= 1;
 		gbc.ipadx = 750;
 		gbc.ipady = 20;
-		this.mainPanel.add(topBar, gbc);
+		mainPanel.add(topBar, gbc);
 
 		//ImagePanel
 		gbc.anchor = GridBagConstraints.EAST;
@@ -161,7 +178,7 @@ public class MainView extends JFrame
 		gbc.gridheight= 3;
 		gbc.ipadx = 750;
 		gbc.ipady = 0;
-		this.mainPanel.add(imagePanel, gbc);
+		mainPanel.add(imagePanel, gbc);
 
 		// MainPanel
 		this.add(mainPanel);

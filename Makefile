@@ -22,9 +22,6 @@ View: mainView menuBar imageData repertory imageBrowser topBar browseFrame renam
 mainView: $(VIEWDIR)MainView.java
 	$(JAVAC) -d $(CLASSDIR) $^
 
-mainPanel: $(VIEWDIR)MainPanel.java
-	$(JAVAC) -d $(CLASSDIR) $^
-
 menuBar: $(VIEWDIR)MainMenu.java
 	$(JAVAC) -d $(CLASSDIR) $^
 
@@ -46,7 +43,7 @@ browseFrame: $(VIEWDIR)BrowseFrame.java
 renameFrame: $(VIEWDIR)RenameFrame.java
 	$(JAVAC) -d $(CLASSDIR) $^
 
-main: $(VIEWDIR)MainView.java $(MODELDIR)Model.java $(VIEWDIR)RepertoryPanel.java $(VIEWDIR)MyWindowListener.java $(VIEWDIR)ImageDataPanel.java $(VIEWDIR)MainMenu.java $(VIEWDIR)TopBar.java $(VIEWDIR)MainPanel.java
+main: $(VIEWDIR)MainView.java $(MODELDIR)Model.java $(VIEWDIR)RepertoryPanel.java $(VIEWDIR)MyWindowListener.java $(VIEWDIR)ImageDataPanel.java $(VIEWDIR)MainMenu.java $(VIEWDIR)TopBar.java
 	$(JAVAC) -d $(CLASSDIR) $^
 
 runMain:
