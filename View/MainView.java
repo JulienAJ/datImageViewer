@@ -2,6 +2,7 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import View.*;
 import Model.Model;
 
@@ -32,6 +33,16 @@ public class MainView extends JFrame
 		this.imageDataPanel = new ImageDataPanel(m);
 		this.topBar = new TopBar();
 		this.imagePanel = new ImagePanel(m);
+	}
+
+	public void displayChangeRepertory()
+	{
+		// BrowseFrame
+	}
+
+	public void displayRename()
+	{
+		//RenameFrame
 	}
 
 	// RepertoryPanel
@@ -79,21 +90,11 @@ public class MainView extends JFrame
 	
 	//BrowseFrame
 
-	/*public String getPath()
+	public File getPath()
 	{ 
 		return this.browseFrame.getPath();
-	}*/
+	}
 
-	public JButton getValidate()
-	{
-		return this.browseFrame.getValidate();
-	}
-	
-	public JButton getCancel()
-	{
-		return this.browseFrame.getCancel();
-	}
-	
 	//RenameFrame
 
 	public JButton getValidateRenameFrame()
