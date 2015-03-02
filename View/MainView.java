@@ -141,7 +141,7 @@ public class MainView extends JFrame
 		gbc.anchor = GridBagConstraints.NORTHEAST;
 		gbc.gridx = 1;
 		gbc.gridy = 0;
-		gbc.weightx = 5.0;
+		gbc.weightx = 4.0;
 		gbc.weighty = 1.0;
 		gbc.gridwidth = 4;
 		gbc.gridheight= 1;
@@ -153,7 +153,7 @@ public class MainView extends JFrame
 		gbc.anchor = GridBagConstraints.EAST;
 		gbc.gridx = 1;
 		gbc.gridy = 1;
-		gbc.weightx = 5.0;
+		gbc.weightx = 4.0;
 		gbc.weighty = 3.0;
 		gbc.gridwidth = 4;
 		gbc.gridheight= 3;

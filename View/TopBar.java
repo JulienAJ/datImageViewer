@@ -48,16 +48,16 @@ public class TopBar extends JPanel implements Observer
 		this.add(displayBox, gc);
 
 		gc.anchor = GridBagConstraints.EAST;
-		gc.weightx = 1.0;
+		gc.weightx = 3.0;
 		gc.gridx = 1;
 		gc.gridy = 0;
-		gc.gridwidth = 1;
+		gc.gridwidth = 3;
 		this.add(searchField, gc);
-		gc.anchor = GridBagConstraints.WEST;
-		gc.weightx = 1.0;
+		gc.anchor = GridBagConstraints.CENTER;
+		gc.weightx = 2.0;
 		gc.gridx = 2;
 		gc.gridy = 0;
-		gc.gridwidth = 1;
+		gc.gridwidth = 2;
 		//gc.gridx = GridBagConstraints.RELATIVE;
 		this.add(searchButton, gc);
 	}
