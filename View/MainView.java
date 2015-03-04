@@ -85,6 +85,7 @@ public class MainView extends JFrame
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		gbc.anchor = GridBagConstraints.NORTHWEST;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.weightx = 1.0;
@@ -97,6 +98,7 @@ public class MainView extends JFrame
 
 		//ImageDataPanel
 		gbc.anchor = GridBagConstraints.NORTHWEST;
+		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.weightx = 1.0;
