@@ -6,7 +6,7 @@ CONTROLDIR=Controller/
 COMMONDIR=CommonTypes/
 CLASSDIR=bin/
 
-all : Controller Model View Common demo main
+all : Controller Model View Common main
 
 Common: $(COMMONDIR)DisplaySize.java $(COMMONDIR)ChangeClass.java $(COMMONDIR)ChangeType.java
 	$(JAVAC) -d $(CLASSDIR) $^
@@ -20,9 +20,6 @@ Controller: $(CONTROLDIR)Controller.java
 View: mainView menuBar imageData repertory imageBrowser topBar browseFrame renameFrame
 
 mainView: $(VIEWDIR)MainView.java
-	$(JAVAC) -d $(CLASSDIR) $^
-
-mainPanel: $(VIEWDIR)MainPanel.java
 	$(JAVAC) -d $(CLASSDIR) $^
 
 menuBar: $(VIEWDIR)MainMenu.java
@@ -46,14 +43,8 @@ browseFrame: $(VIEWDIR)BrowseFrame.java
 renameFrame: $(VIEWDIR)RenameFrame.java
 	$(JAVAC) -d $(CLASSDIR) $^
 
-demo: Demo.java $(VIEWDIR)RepertoryPanel.java $(VIEWDIR)MyWindowListener.java $(VIEWDIR)ImageDataPanel.java $(VIEWDIR)MainMenu.java $(VIEWDIR)TopBar.java
+main: $(VIEWDIR)MainView.java $(MODELDIR)Model.java $(VIEWDIR)RepertoryPanel.java $(VIEWDIR)MyWindowListener.java $(VIEWDIR)ImageDataPanel.java $(VIEWDIR)MainMenu.java $(VIEWDIR)TopBar.java
 	$(JAVAC) -d $(CLASSDIR) $^
-
-main: $(VIEWDIR)MainView.java $(MODELDIR)Model.java $(VIEWDIR)RepertoryPanel.java $(VIEWDIR)MyWindowListener.java $(VIEWDIR)ImageDataPanel.java $(VIEWDIR)MainMenu.java $(VIEWDIR)TopBar.java $(VIEWDIR)MainPanel.java
-	$(JAVAC) -d $(CLASSDIR) $^
-
-runDemo:
-	$(JAVA) -classpath $(CLASSDIR) Demo
 
 runMain:
 	$(JAVA) -classpath $(CLASSDIR) $(VIEWDIR)MainView
