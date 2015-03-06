@@ -19,11 +19,11 @@ public class MainView extends JFrame
 	TagsFrame tagsFrame;
 	ImageBrowserPanel imageBrowserPanel;
 
-	public MainView()
+	public MainView(Model m)
 	{
 		super("datImageViewer");
 
-		this.m = new Model();
+		this.m = m;
 		mainMenu = new MainMenu(m);
 		this.setJMenuBar(mainMenu);
 		this.setSize(1200, 800);
@@ -67,6 +67,8 @@ public class MainView extends JFrame
 
 	//TopBar
 	public JButton getSearchButton() { return this.topBar.getSearchButton(); }
+
+	public String getSearchKey() { return this.topBar.getSearchKey(); }
 
 	//ImagePanel
 	public JButton getNext() { return this.imagePanel.getNext(); }
@@ -114,6 +116,12 @@ public class MainView extends JFrame
 
 		return this.renameFrame.getCancel();
 	}
+
+	// TO DO
+	
+	public void displayTagFrame() {}
+	public void hideRenameFrame() {}
+	public void closeImagePanel() {}
 	
 	// Add and Constraint
 
@@ -194,9 +202,9 @@ public class MainView extends JFrame
 		this.setSize(1200, 800);
 	}
 
-	public static void main(String[] args)
+	/*public static void main(String[] args)
 	{
 		new MainView();
-	}
+	}*/
 
 }

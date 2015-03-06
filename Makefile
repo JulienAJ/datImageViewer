@@ -5,51 +5,28 @@ VIEWDIR=View/
 CONTROLDIR=Controller/
 COMMONDIR=CommonTypes/
 CLASSDIR=bin/
+SQLITEJAR=sqlite-jdbc-3.8.7.jar
+NAME=DatImageViewer
 
-all : Controller Model View Common main
+all : Controller Model View Common $(NAME)
+
+$(NAME): $(NAME).java
+	$(JAVAC) -d $(CLASSDIR) $^
 
 Common: $(COMMONDIR)DisplaySize.java $(COMMONDIR)ChangeClass.java $(COMMONDIR)ChangeType.java
 	$(JAVAC) -d $(CLASSDIR) $^
 
-Model: $(MODELDIR)Model.java $(COMMONDIR)DisplaySize.java
+Model: $(MODELDIR)Model.java $(MODELDIR)DatabaseHandler.java
 	$(JAVAC) -d $(CLASSDIR) $^
 
 Controller: $(CONTROLDIR)Controller.java
 	$(JAVAC) -d $(CLASSDIR) $^
 
-View: mainView menuBar imageData repertory imageBrowser topBar browseFrame renameFrame
-
-mainView: $(VIEWDIR)MainView.java
+View: $(VIEWDIR)MainView.java $(VIEWDIR)MainMenu.java $(VIEWDIR)ImageDataPanel.java $(VIEWDIR)RepertoryPanel.java $(VIEWDIR)ImageBrowserPanel.java $(VIEWDIR)ImagePanel.java $(VIEWDIR)TopBar.java $(VIEWDIR)BrowseFrame.java $(VIEWDIR)RenameFrame.java $(VIEWDIR)MyWindowListener.java $(VIEWDIR)TagsFrame.java $(VIEWDIR)Thumbnail.java
 	$(JAVAC) -d $(CLASSDIR) $^
 
-menuBar: $(VIEWDIR)MainMenu.java
-	$(JAVAC) -d $(CLASSDIR) $^
-
-topBar: $(VIEWDIR)TopBar.java
-	$(JAVAC) -d $(CLASSDIR) $^
-
-imageData: $(VIEWDIR)ImageDataPanel.java
-	$(JAVAC) -d $(CLASSDIR) $^
-
-repertory: $(VIEWDIR)RepertoryPanel.java
-	$(JAVAC) -d $(CLASSDIR) $^
-
-imageBrowser: $(VIEWDIR)ImageBrowserPanel.java
-	$(JAVAC) -d $(CLASSDIR) $^
-
-browseFrame: $(VIEWDIR)BrowseFrame.java
-	$(JAVAC) -d $(CLASSDIR) $^
-
-renameFrame: $(VIEWDIR)RenameFrame.java
-	$(JAVAC) -d $(CLASSDIR) $^
-
-main: $(VIEWDIR)MainView.java $(MODELDIR)Model.java $(VIEWDIR)RepertoryPanel.java $(VIEWDIR)MyWindowListener.java $(VIEWDIR)ImageDataPanel.java $(VIEWDIR)MainMenu.java $(VIEWDIR)TopBar.java
-	$(JAVAC) -d $(CLASSDIR) $^
-
-runMain:
-	$(JAVA) -classpath $(CLASSDIR) $(VIEWDIR)MainView
-
-searchBar:
+run:
+	$(JAVA) -classpath $(SQLITEJAR):$(CLASSDIR) $(NAME)
 
 clean:
 	@rm -fr $(CLASSDIR)*

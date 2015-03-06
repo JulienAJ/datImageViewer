@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Model;
+import CommonTypes.*;
 import View.*;
 import java.awt.event.*;
 
@@ -44,36 +45,36 @@ public class Controller implements ActionListener
 			v.displayChangeRepertory();
 
 		// Image Data Panel
-		else if(e.getSource == v.getRenameButton())
+		else if(e.getSource() == v.getRenameButton())
 			v.displayRename();
 
-		else if(e.getSource == v.getTagsButton())
-			v.displayTagModif();
+		else if(e.getSource() == v.getTagsButton())
+			v.displayTagFrame();
 
 		// Top Bar
-		else if(e.getSource == v.getSearchButton())
-			m.search();
+		else if(e.getSource() == v.getSearchButton())
+			m.search(v.getSearchKey());
 
 		// Image Panel
-		else if(e.getSource == v.getNext())
+		else if(e.getSource() == v.getNext())
 			m.nextImage();
 
-		else if(e.getSource == v.getPrevious())
+		else if(e.getSource() == v.getPrevious())
 			m.previousImage();
 
-		else if(e.getSource == v.getClose())
-			m.closeImagePanel();
+		else if(e.getSource() == v.getClose())
+			v.closeImagePanel();
 
 		// Browse Frame
-		else if (e.getSource == v.getChooser())
+		else if (e.getSource() == v.getChooser())
 			m.setRepertory(v.getPathChooser());
 
 		// Rename Frame
 
-		else if(e.getSource == m.getValidateRenameFrame())
-			m.setName(m.getSelected, v.getNewNameRenameFrame());
+		else if(e.getSource() == v.getValidateRenameFrame())
+			m.setName(m.getSelected(), v.getNewNameRenameFrame());
 
-		else if(e.getSource == m.getCancelRenameFrame())
+		else if(e.getSource() == v.getCancelRenameFrame())
 			v.hideRenameFrame();
 	}
 }
