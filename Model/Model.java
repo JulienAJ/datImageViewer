@@ -30,7 +30,8 @@ public class Model extends Observable
 		repertory = new File("/");
 		setImageList();
 		results = null;
-		selected = null;
+		//selected = null;
+		selected = "img.jpg";
 		selectedImage = null;
 	}
 
