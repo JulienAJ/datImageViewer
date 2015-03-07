@@ -16,9 +16,8 @@ public class RepertoryPanel extends JPanel implements Observer
 	public RepertoryPanel(Model m)
 	{
 		this.setLayout(new GridBagLayout());
-		// GET REPERTORY
 		pathField = new JTextField(5);
-		pathField.setText("./");
+		pathField.setText(m.getRepertory().getAbsolutePath());
 		pathField.setEditable(false);
 		browseButton = new JButton("...");
 
@@ -37,6 +36,7 @@ public class RepertoryPanel extends JPanel implements Observer
 		this.browseButton.addActionListener(l);
 	}
 
+	@Override
 	public void update(Observable o, Object obj)
 	{
 		ChangeClass changes = (ChangeClass)obj;
@@ -44,7 +44,7 @@ public class RepertoryPanel extends JPanel implements Observer
 
 		if(changes.getType() == ChangeType.REPERTORY)
 		{
-			//pathField.setText(m.getRepertory());
+			pathField.setText(m.getRepertory().getAbsolutePath());
 		}
 	}
 }

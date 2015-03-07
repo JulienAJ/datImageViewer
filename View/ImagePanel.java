@@ -45,6 +45,7 @@ public class ImagePanel extends JPanel implements Observer
 		this.close.addActionListener(l);
 	}
 
+	@Override
 	public void update(Observable o, Object arg)
 	{
 		Model m = (Model)o;

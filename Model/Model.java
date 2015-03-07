@@ -104,7 +104,7 @@ public class Model extends Observable
 		}
 	}
 
-	private boolean isImage(File f)
+	public static boolean isImage(File f)
 	{
 		String fpath = f.getAbsolutePath();
 		int dot = fpath.lastIndexOf('.');
@@ -251,6 +251,7 @@ public class Model extends Observable
 		}
 		catch(IOException e)
 		{
+			System.out.println("LOAD IMAGE MODEL");
 			System.err.println(e.getMessage());
 		}
 	}

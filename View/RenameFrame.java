@@ -68,6 +68,7 @@ public class RenameFrame extends JFrame implements Observer
 	
 	public JButton getCancel() { return this.cancel; }
 
+	@Override
 	public void update(Observable o, Object arg)
 	{
 		Model m = (Model)o;

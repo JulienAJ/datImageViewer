@@ -83,6 +83,7 @@ public class ImageDataPanel extends JPanel implements Observer
 		this.editTags.addActionListener(l);
 	}
 
+	@Override
 	public void update(Observable o, Object obj)
 	{
 		Model m = (Model)o;

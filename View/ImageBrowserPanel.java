@@ -17,7 +17,7 @@ public class ImageBrowserPanel extends JPanel implements Observer
 
 	private Model m;
 
-	private String path;
+	private File path;
 
 	private JScrollPane scroll;
 
@@ -36,6 +36,7 @@ public class ImageBrowserPanel extends JPanel implements Observer
 		iconList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		iconList.setVisibleRowCount(-1);
 
+		this.path = m.getRepertory();
 		createImages();
 
 		scroll = new JScrollPane(iconList);
@@ -47,8 +48,17 @@ public class ImageBrowserPanel extends JPanel implements Observer
 		m.addObserver(this);
 	}
 
+	@Override
 	public void update(Observable o, Object arg)
 	{
+		Model m = (Model)o;
+		ChangeClass changes = (ChangeClass)arg;
+
+		if(changes.getType() == ChangeType.REPERTORY)
+		{
+			this.path = m.getRepertory();
+			createImages();
+		}
 	}
 
 	public void createImages()
@@ -106,7 +116,7 @@ public class ImageBrowserPanel extends JPanel implements Observer
 
 			loadImageWorker = this;
 
-			File folder = new File(path);
+			File folder = path;
 			files = folder.listFiles();
 		}
 
@@ -132,20 +142,25 @@ public class ImageBrowserPanel extends JPanel implements Observer
 			if (files == null)
 				return null;
 
-			for (File f : files) {
+			for (File f : files)
+			{
 				if (isCancelled())
 					return null;
 
-				//if(model.Image.isImage(f.getName())) {
-					try {
+				if(Model.isImage(f))
+				{
+					try
+					{
 						Thumbnail t = new Thumbnail(f.getAbsolutePath(), 100, 100);
 						publish(t);
 					}
-					catch (Exception e) {
+					catch(Exception e)
+					{
 						System.err.println(e);
+						System.out.println("DO IN BACKGROUND");
 						// publish damaged image icon?
 					}
-				//}
+				}
 			}
 
 			return null;

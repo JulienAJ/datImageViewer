@@ -105,6 +105,7 @@ public class MainMenu extends JMenuBar implements Observer
 		this.russianItem.addActionListener(l);
 	}
 
+	@Override
 	public void update(Observable o, Object arg)
 	{
 		ChangeClass changes = (ChangeClass)arg;
