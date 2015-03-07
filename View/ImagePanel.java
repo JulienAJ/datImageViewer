@@ -13,6 +13,7 @@ public class ImagePanel extends JPanel implements Observer
 	private static final long serialVersionUID = 5810558813893534136L;
 
 	private BufferedImage image;
+	private JLabel imageLabel;
 	private JButton next;
 	private JButton previous;
 	private JButton close;
@@ -23,11 +24,14 @@ public class ImagePanel extends JPanel implements Observer
 		super();
 		this.setBorder(BorderFactory.createTitledBorder("Images"));
 		image = m.getSelectedImage();
+		imageLabel = new JLabel(new ImageIcon(image));
 		previous = new JButton("<");
 		next = new JButton(">");
 		close = new JButton("X");
 		name = new JLabel();
 		this.setVisible(false);
+
+		this.add(imageLabel);
 
 		m.addObserver(this);
 	}
@@ -58,6 +62,7 @@ public class ImagePanel extends JPanel implements Observer
 			else
 			{
 				image = m.getSelectedImage();
+				imageLabel = new JLabel(new ImageIcon(image));
 				name.setText(m.getSelected());
 				this.setVisible(true);
 			}

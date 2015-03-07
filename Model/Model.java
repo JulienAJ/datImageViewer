@@ -33,6 +33,7 @@ public class Model extends Observable
 		//selected = null;
 		selected = "img.jpg";
 		selectedImage = null;
+		loadImage();
 	}
 
 	// Language
