@@ -1,42 +1,70 @@
 package Model;
-import java.util.*;
-import java.awt.image.*;
-import CommonTypes.*;
+
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.util.LinkedList;
+import java.util.Locale;
+import java.util.Observable;
+import java.util.Observer;
+import javax.imageio.ImageIO;
+import CommonTypes.*;
 
 public class Model extends Observable
 {
-	String language;
+	Locale language;
 	DisplaySize displaySize;
 	File repertory;
-	Map<String, LinkedList<String> > imageList;
-	Map<String, LinkedList<String> > results;
+	Map<String, List<String> > imageList;
+	Map<String, List<String> > results;
 	String selected;
 	BufferedImage selectedImage;
 
 	public Model()
 	{
-		//get locale
-		language = "fr";
+		language = Locale.FRENCH;
 		displaySize = DisplaySize.BIG;
 		repertory = new File("/");
-		imageList = new HashMap();
+		setImageList();
+		results = null;
 		selected = null;
 		selectedImage = null;
 	}
 
 	// Language
-	public String getLanguage() { return this.language; }
+	public String getLanguage()
+	{
+		if(this.language == Locale.FRENCH)
+			return "fr";
+		if(this.language == Locale.ENGLISH)
+			return "en";
+		if(this.language == Locale.CHINESE)
+			return "ru";
+
+		return "fr";
+	}
 
 	public void setLanguage(String lang)
 	{
-		this.language = lang;
+		if(lang.equals("fr"))
+			this.language = Locale.FRENCH;
+		if(lang.equals("en"))
+			this.language = Locale.ENGLISH;
+		if(lang.equals("ru"))
+			this.language = Locale.CHINESE;
+
 		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.LANGUAGE));
 	}
 
 	// Size
-	public DisplaySize getSize() { return this.displaySize; }
+	public DisplaySize getSize()
+	{
+		return this.displaySize;
+	}
 
 	public void setSize(DisplaySize size)
 	{
@@ -54,23 +82,56 @@ public class Model extends Observable
 	public void setRepertory(File rep)
 	{
 		this.repertory = rep;
+		setImageList();
 		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.REPERTORY));
+	}
+
+	// Image List
+	private void setImageList()
+	{
+		File[] files = repertory.listFiles();
+		for(File file : files)
+		{
+			if(isImage(file))
+			{
+				String imagePath = file.getAbsolutePath();
+				List<String> tags = DatabaseHandler.getTags(imagePath);
+				imageList.put(imagePath, tags);
+			}
+		}
+	}
+
+	private boolean isImage(File f)
+	{
+		String fpath = f.getAbsolutePath();
+		int dot = fpath.lastIndexOf('.');
+		String extension = fpath.substring(dot + 1).toLowerCase();
+		if(extension.equals("jpg") || extension.equals("jpeg")
+				|| extension.equals("gif") || extension.equals("bmp")
+				|| extension.equals("png"))
+		{
+			return true;
+		}
+		return false;
 	}
 
 	// Name
 	public void setName(String old, String newN)
 	{
-		LinkedList<String> temp = imageList.get(old);
+		List<String> temp = imageList.get(old);
 		imageList.remove(old);
 		imageList.put(newN, temp);
-		// TO DO change actual image name in folder
+		String repertoryPath = repertory.getAbsolutePath() + "/";
+		File file = new File(repertoryPath + old);
+		file.renameTo(new File(repertoryPath + newN));
+		DatabaseHandler.changePath(repertoryPath + old, repertoryPath + newN);
 		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.IMAGENAME, old));
 	}
 
 	// Tags
-	public LinkedList<String> getTags(String name)
+	public List<String> getTags(String name)
 	{
 		return imageList.get(name);
 	}
@@ -80,37 +141,41 @@ public class Model extends Observable
 		if(imageList == null || imageList.get(name) == null)
 			return "";
 
-		String result = null;
-		LinkedList<String> tags = imageList.get(name);
-		int size = tags.size();
-		for(int i = 0; i < size; ++i)
-		{
-			if(result == null)
-				result = tags.get(i);
-			
-			else
-				result = result + ';' + (tags.get(i));
-		}
-		return result;
+		return listToString(imageList.get(name));
 	}
 
-	public void setTags(String name, LinkedList<String> tags)
+	public void setTags(String name, List<String> tags)
 	{
 		imageList.remove(name);
 		imageList.put(name, tags);
+		DatabaseHandler.setTags(this.repertory.getAbsolutePath() + "/"  + name, tags);
 		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.IMAGETAGS, name));
 	}
 
 	// Selected
-	public String getSelected() { return this.selected; }
+	public String getSelected()
+	{
+		return this.selected;
+	}
 
-	public BufferedImage getSelectedImage() { return this.selectedImage; }
+	public BufferedImage getSelectedImage()
+	{
+		return this.selectedImage;
+	}
 
 	public void setSelected(String name, BufferedImage img)
 	{
 		this.selected = name;
 		this.selectedImage = img;
+		setChanged();
+		notifyObservers(new ChangeClass(ChangeType.SELECTED));
+	}
+
+	public void setSelected(String name)
+	{
+		this.selected = name;
+		loadImage();
 		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.SELECTED));
 	}
@@ -121,7 +186,7 @@ public class Model extends Observable
 		results = new HashMap();
 		for(String key : imageList.keySet())
 		{
-			LinkedList<String> list = imageList.get(key);
+			List<String> list = imageList.get(key);
 			int size = list.size();
 			for(int i = 0; i < size; ++i)
 			{
@@ -138,11 +203,68 @@ public class Model extends Observable
 
 	public void nextImage()
 	{
-		// Change selected and notify + setChanged
+		String[] keys = (String[])(imageList.keySet().toArray());
+		int size = keys.length;
+		for(int i = 0; i < size; ++i)
+		{
+			if(keys[i].equals(this.selected))
+			{
+				if(i == (size - 1))
+					selected = keys[0];
+				else
+					selected = keys[i + 1];
+				break;
+			}
+		}
+		loadImage();
+		setChanged();
+		notifyObservers(new ChangeClass(ChangeType.SEARCH));
 	}
-	
+
 	public void previousImage()
 	{
-		// Change selected and notify + setChanged
+		String[] keys = (String[])(imageList.keySet().toArray());
+		int size = keys.length;
+		for(int i = 0; i < size; ++i)
+		{
+			if(keys[i].equals(this.selected))
+			{
+				if(i == 0)
+					selected = keys[size - 1];
+				else
+					selected = keys[i - 1];
+				break;
+			}
+		}
+		loadImage();
+		setChanged();
+		notifyObservers(new ChangeClass(ChangeType.SEARCH));
+	}
+
+	private void loadImage()
+	{
+		try
+		{
+			selectedImage = ImageIO.read(new File(this.repertory.getAbsolutePath() + '/' + this.selected));
+		}
+		catch(IOException e)
+		{
+			System.err.println(e.getMessage());
+		}
+	}
+
+	public String listToString(List<String> list)
+	{
+		String result = null;
+		int size = list.size();
+		for(int i = 0; i < size; ++i)
+		{
+			if(result == null)
+				result = list.get(i);
+
+			else
+				result = result + ';' + (list.get(i));
+		}
+		return result;
 	}
 }
