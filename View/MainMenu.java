@@ -76,6 +76,8 @@ public class MainMenu extends JMenuBar implements Observer
 		this.add(repertoryMenu);
 		this.add(displayMenu);
 		this.add(languagesMenu);
+
+		m.addObserver(this);
 	}
 
 	public JMenuItem getChangeRepertoryItem(){ return this.changeRepertoryItem; }

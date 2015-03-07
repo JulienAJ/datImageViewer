@@ -26,6 +26,8 @@ public class ImagePanel extends JPanel implements Observer
 		close = new JButton("X");
 		name = new JLabel();
 		this.setVisible(false);
+
+		m.addObserver(this);
 	}
 
 	public JButton getNext() { return this.next; }

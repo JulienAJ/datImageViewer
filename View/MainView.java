@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import View.*;
+import CommonTypes.*;
 import Model.Model;
+import java.awt.event.ActionListener;
 
 public class MainView extends JFrame
 {
@@ -33,7 +35,7 @@ public class MainView extends JFrame
 		
 		this.repertoryPanel = new RepertoryPanel(m);
 		this.imageDataPanel = new ImageDataPanel(m);
-		this.topBar = new TopBar();
+		this.topBar = new TopBar(m);
 		this.imagePanel = new ImagePanel(m);
 		this.imageBrowserPanel = new ImageBrowserPanel(m);
 		setup();
@@ -67,6 +69,8 @@ public class MainView extends JFrame
 
 	//TopBar
 	public JButton getSearchButton() { return this.topBar.getSearchButton(); }
+	public JComboBox getDisplayBox() { return this.topBar.getDisplayBox(); }
+	public DisplaySize getSelectedSize() { return this.topBar.getSelectedSize(); }
 
 	public String getSearchKey() { return this.topBar.getSearchKey(); }
 
@@ -122,6 +126,25 @@ public class MainView extends JFrame
 	public void displayTagFrame() {}
 	public void hideRenameFrame() {}
 	public void closeImagePanel() {}
+
+	public void addListener(ActionListener l)
+	{
+		if(browseFrame != null)
+			browseFrame.addListener(l);
+
+		if(renameFrame != null)
+			renameFrame.addListener(l);
+
+		if(tagsFrame != null)
+			tagsFrame.addListener(l);
+
+		imagePanel.addListener(l);
+		mainMenu.addListener(l);
+		repertoryPanel.addListener(l);
+		imageDataPanel.addListener(l);
+		topBar.addListener(l);
+		// TO DO ADD LISTENER TO IMG BROWSER PANEL
+	}
 	
 	// Add and Constraint
 

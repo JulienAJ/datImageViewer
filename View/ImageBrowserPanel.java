@@ -41,6 +41,8 @@ public class ImageBrowserPanel extends JPanel implements Observer
 
 		setLayout(new BorderLayout());
 		add(scroll, BorderLayout.CENTER);
+
+		m.addObserver(this);
 	}
 
 	public void update(Observable o, Object arg)

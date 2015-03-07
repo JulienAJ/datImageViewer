@@ -66,6 +66,9 @@ public class ImageDataPanel extends JPanel implements Observer
 		gc.gridx = 0;
 		gc.gridy = 2;
 		this.add(noSelection, gc);
+
+
+		m.addObserver(this);
 	}
 
 	public JButton getRename() { return this.rename; }

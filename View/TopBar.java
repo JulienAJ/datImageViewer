@@ -18,7 +18,7 @@ public class TopBar extends JPanel implements Observer
 	String displayMedium;
 	String displaySmall;
 
-	public TopBar()
+	public TopBar(Model m)
 	{
 		// SETUP
 		super();
@@ -71,11 +71,23 @@ public class TopBar extends JPanel implements Observer
 		gc.gridy = 0;
 		gc.gridwidth = 3;
 		this.add(searchPanel, gc);
+
+		m.addObserver(this);
 	}
 
 	public JComboBox getDisplayBox() { return this.displayBox; }
 
-	public String getSelectedLanguage() { return (String)this.displayBox.getSelectedItem(); }
+	public DisplaySize getSelectedSize()
+	{
+		String selected = (String)this.displayBox.getSelectedItem();
+		if(selected.equals(displayBig))
+			return DisplaySize.BIG;
+		else if(selected.equals(displayMedium))
+			return DisplaySize.MEDIUM;
+		else if(selected.equals(displaySmall))
+			return DisplaySize.SMALL;
+		return DisplaySize.BIG;
+	}
 
 	public String getSearchKey() { return this.searchField.getText(); }
 

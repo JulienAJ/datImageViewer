@@ -31,6 +31,7 @@ public class Model extends Observable
 	public void setLanguage(String lang)
 	{
 		this.language = lang;
+		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.LANGUAGE));
 	}
 
@@ -40,6 +41,7 @@ public class Model extends Observable
 	public void setSize(DisplaySize size)
 	{
 		this.displaySize = size;
+		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.DISPLAYSIZE));
 	}
 
@@ -52,6 +54,7 @@ public class Model extends Observable
 	public void setRepertory(File rep)
 	{
 		this.repertory = rep;
+		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.REPERTORY));
 	}
 
@@ -62,6 +65,7 @@ public class Model extends Observable
 		imageList.remove(old);
 		imageList.put(newN, temp);
 		// TO DO change actual image name in folder
+		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.IMAGENAME, old));
 	}
 
@@ -94,6 +98,7 @@ public class Model extends Observable
 	{
 		imageList.remove(name);
 		imageList.put(name, tags);
+		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.IMAGETAGS, name));
 	}
 
@@ -106,6 +111,7 @@ public class Model extends Observable
 	{
 		this.selected = name;
 		this.selectedImage = img;
+		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.SELECTED));
 	}
 
@@ -126,16 +132,17 @@ public class Model extends Observable
 				}
 			}
 		}
+		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.SEARCH));
 	}
 
 	public void nextImage()
 	{
-		// Change selected and notify
+		// Change selected and notify + setChanged
 	}
 	
 	public void previousImage()
 	{
-		// Change selected and notify
+		// Change selected and notify + setChanged
 	}
 }

@@ -14,6 +14,7 @@ public class Controller implements ActionListener
 	{
 		this.m = m;
 		this.v = v;
+		v.addListener(this);
 	}
 
 	public void actionPerformed(ActionEvent e)
@@ -54,6 +55,9 @@ public class Controller implements ActionListener
 		// Top Bar
 		else if(e.getSource() == v.getSearchButton())
 			m.search(v.getSearchKey());
+
+		else if(e.getSource() == v.getDisplayBox())
+			m.setSize(v.getSelectedSize());
 
 		// Image Panel
 		else if(e.getSource() == v.getNext())

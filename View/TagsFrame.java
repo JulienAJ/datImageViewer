@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Dimension;
 import java.util.Observer;
 import java.util.Observable;
+import java.awt.event.ActionListener;
 
 public class TagsFrame extends JFrame implements Observer
 {
@@ -45,8 +46,15 @@ public class TagsFrame extends JFrame implements Observer
 		//this.setSize(new Dimension(300, 300));
 
 		this.pack();
+
+		m.addObserver(this);
 	}
 
+	public void addListener(ActionListener l)
+	{
+		this.validate.addActionListener(l);
+		this.cancel.addActionListener(l);
+	}
 	//public void show() { this.setVisible(true); }
 
 	//public void hide() { this.setVisible(false); }
