@@ -13,13 +13,15 @@ import java.io.*;
 
 public class ImageBrowserPanel extends JPanel implements Observer
 {
+	private static final long serialVersionUID = -7122515010903319043L;
+
 	private Model m;
 
 	private String path;
 
 	private JScrollPane scroll;
 
-	private DefaultListModel iconListModel;
+	private DefaultListModel<Thumbnail> iconListModel;
 	private JList<Thumbnail> iconList;
 
 	private SwingWorker<Void, Thumbnail> loadImageWorker = null;
@@ -27,7 +29,7 @@ public class ImageBrowserPanel extends JPanel implements Observer
 	public ImageBrowserPanel(Model m)
 	{
 		super();
-		iconListModel = new DefaultListModel();
+		iconListModel = new DefaultListModel<Thumbnail>();
 		iconList = new JList<Thumbnail>(iconListModel);
 		iconList.setCellRenderer(new iconListCellRenderer());
 		iconList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
@@ -59,6 +61,8 @@ public class ImageBrowserPanel extends JPanel implements Observer
 
 	private class iconListCellRenderer extends JLabel implements ListCellRenderer<Thumbnail>
 	{
+		private static final long serialVersionUID = -3419410645297544425L;
+
 		public iconListCellRenderer()
 		{
 			setOpaque(true);

@@ -10,7 +10,9 @@ import java.util.Observable;
 
 public class TopBar extends JPanel implements Observer
 {
-	JComboBox displayBox;
+	private static final long serialVersionUID = -8063842433285660804L;
+
+	JComboBox<String> displayBox;
 	JTextField searchField;
 	JButton searchButton;
 
@@ -22,7 +24,7 @@ public class TopBar extends JPanel implements Observer
 	{
 		// SETUP
 		super();
-		displayBox = new JComboBox();
+		displayBox = new JComboBox<String>();
 		searchField = new JTextField(15);
 		searchButton = new JButton("Rechercher");
 		this.setBorder(BorderFactory.createTitledBorder("TRUC"));
@@ -75,7 +77,7 @@ public class TopBar extends JPanel implements Observer
 		m.addObserver(this);
 	}
 
-	public JComboBox getDisplayBox() { return this.displayBox; }
+	public JComboBox<String> getDisplayBox() { return this.displayBox; }
 
 	public DisplaySize getSelectedSize()
 	{

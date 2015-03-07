@@ -8,6 +8,8 @@ import java.awt.*;
 
 public class RepertoryPanel extends JPanel implements Observer
 {
+	private static final long serialVersionUID = 5333598550833277804L;
+
 	JTextField pathField;
 	JButton browseButton;
 

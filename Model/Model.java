@@ -90,6 +90,8 @@ public class Model extends Observable
 	// Image List
 	private void setImageList()
 	{
+		if(imageList == null)
+			imageList = new HashMap<String, List<String> >();
 		File[] files = repertory.listFiles();
 		for(File file : files)
 		{
@@ -183,7 +185,7 @@ public class Model extends Observable
 	// Actions
 	public void search(String searchKey)
 	{
-		results = new HashMap();
+		results = new HashMap<String, List<String> >();
 		for(String key : imageList.keySet())
 		{
 			List<String> list = imageList.get(key);

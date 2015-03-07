@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 
 public class TagsFrame extends JFrame implements Observer
 {
+	private static final long serialVersionUID = 5328223983428042194L;
+
 	private JTextArea tags;
 	private JButton validate;
 	private JButton cancel;

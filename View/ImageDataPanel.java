@@ -8,6 +8,8 @@ import CommonTypes.*;
 
 public class ImageDataPanel extends JPanel implements Observer
 {
+	private static final long serialVersionUID = -5739904207491916450L;
+
 	JTextField imageName;
 	JButton rename;
 	JList<String> tags;

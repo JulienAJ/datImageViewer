@@ -12,6 +12,8 @@ import java.util.*;
 
 public class BrowseFrame extends JFrame
 {
+	private static final long serialVersionUID = 7843261298736912299L;
+
 	JFileChooser chooser;
 	File path;
 

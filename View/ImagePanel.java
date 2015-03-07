@@ -10,6 +10,8 @@ import java.util.Observable;
 
 public class ImagePanel extends JPanel implements Observer
 {
+	private static final long serialVersionUID = 5810558813893534136L;
+
 	private BufferedImage image;
 	private JButton next;
 	private JButton previous;

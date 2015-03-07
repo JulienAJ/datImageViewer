@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 
 public class RenameFrame extends JFrame implements Observer
 {
+	private static final long serialVersionUID = -4831372489287294041L;
+
 	private JTextField name;
 	private JButton validate;
 	private JButton cancel;
@@ -56,9 +58,9 @@ public class RenameFrame extends JFrame implements Observer
 		this.cancel.addActionListener(l);
 	}
 
-	public void show() { this.setVisible(true); }
+	//public void show() { this.setVisible(true); }
 
-	public void hide() { this.setVisible(false); }
+	//public void hide() { this.setVisible(false); }
 
 	public String getNewName() { return this.name.getText(); }
 

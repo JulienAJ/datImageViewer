@@ -7,6 +7,8 @@ import CommonTypes.*;
 
 public class MainMenu extends JMenuBar implements Observer
 {
+	private static final long serialVersionUID = -4846840192135882562L;
+
 	JMenu repertoryMenu;
 	JMenu displayMenu;
 	JMenu languagesMenu;

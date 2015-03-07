@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 
 public class MainView extends JFrame
 {
+	private static final long serialVersionUID = -2484854926097045983L;
+
 	Model m;
 	MainMenu mainMenu;
 	RepertoryPanel repertoryPanel;
@@ -69,7 +71,7 @@ public class MainView extends JFrame
 
 	//TopBar
 	public JButton getSearchButton() { return this.topBar.getSearchButton(); }
-	public JComboBox getDisplayBox() { return this.topBar.getDisplayBox(); }
+	public JComboBox<String> getDisplayBox() { return this.topBar.getDisplayBox(); }
 	public DisplaySize getSelectedSize() { return this.topBar.getSelectedSize(); }
 
 	public String getSearchKey() { return this.topBar.getSearchKey(); }
