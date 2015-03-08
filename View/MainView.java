@@ -219,7 +219,7 @@ public class MainView extends JFrame
 		gbc.gridheight= 1;
 		gbc.ipadx = 0;
 		gbc.ipady = 0;
-		imagePanel.add(imageBrowserPanel,gbc);
+		mainPanel.add(imageBrowserPanel, gbc);
 
 		// MainPanel
 		this.add(mainPanel);

@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.util.Observer;
 import java.awt.image.*;
 import java.awt.event.*;
+import java.awt.BorderLayout;
 import java.util.Observable;
 
 public class ImagePanel extends JPanel implements Observer
@@ -23,15 +24,21 @@ public class ImagePanel extends JPanel implements Observer
 	{
 		super();
 		this.setBorder(BorderFactory.createTitledBorder("Images"));
+		this.setLayout(new BorderLayout());
 		image = m.getSelectedImage();
 		imageLabel = new JLabel(new ImageIcon(image));
 		previous = new JButton("<");
 		next = new JButton(">");
 		close = new JButton("X");
 		name = new JLabel();
-		this.setVisible(false);
+		name.setText(m.getSelected());
+		//this.setVisible(false);
 
-		this.add(imageLabel);
+		this.add(imageLabel, BorderLayout.CENTER);
+		this.add(name, BorderLayout.SOUTH);
+		this.add(previous, BorderLayout.WEST);
+		this.add(next, BorderLayout.EAST);
+		this.add(close, BorderLayout.NORTH);
 
 		m.addObserver(this);
 	}
