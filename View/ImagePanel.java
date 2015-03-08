@@ -4,6 +4,7 @@ import Model.Model;
 import CommonTypes.*;
 import javax.swing.*;
 import java.util.Observer;
+import java.awt.*;
 import java.awt.image.*;
 import java.awt.event.*;
 import java.awt.BorderLayout;
@@ -25,6 +26,7 @@ public class ImagePanel extends JPanel implements Observer
 		super();
 		this.setBorder(BorderFactory.createTitledBorder("Images"));
 		this.setLayout(new BorderLayout());
+		//this.setLayout(new GridBagLayout());
 		image = m.getSelectedImage();
 		imageLabel = new JLabel(new ImageIcon(image));
 		previous = new JButton("<");
@@ -33,14 +35,52 @@ public class ImagePanel extends JPanel implements Observer
 		name = new JLabel();
 		name.setText(m.getSelected());
 		//this.setVisible(false);
+		/*GridBagConstraints gbc = new GridBagConstraints();
+		
+		gbc.gridx = 1;
+		gbc.gridy = 2;
+		this.add(name, gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		this.add(previous, gbc);
 
-		this.add(imageLabel, BorderLayout.CENTER);
+		gbc.gridx = 2;
+		gbc.gridy = 1;
+		this.add(next, gbc);
+		
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		this.add(close, gbc);
+		
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		gbc.fill = GridBagConstraints.BOTH;
+		this.add(imageLabel, gbc);
+	*/	
 		this.add(name, BorderLayout.SOUTH);
 		this.add(previous, BorderLayout.WEST);
 		this.add(next, BorderLayout.EAST);
 		this.add(close, BorderLayout.NORTH);
-
+		//this.add(imageLabel, BorderLayout.CENTER);
+		
 		m.addObserver(this);
+	}
+
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		if(image != null)
+		{
+			int x, y, width, height, maxWidth, maxHeight;
+			maxWidth = getWidth();
+			maxHeight = getHeight();
+			width = image.getWidth();
+			height = image.getHeight();
+			 x = maxWidth / 4; // On place l'image au milieu
+			 y = 45;
+			 g.drawImage(image, x, y, 500, 400, this);
+		}
 	}
 
 	public JButton getNext() { return this.next; }

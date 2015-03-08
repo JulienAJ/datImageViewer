@@ -34,7 +34,7 @@ public class MainView extends JFrame
 		this.setMinimumSize(new Dimension(1000,640));
 		this.setVisible(true);
 		this.addWindowListener(new MyWindowListener());
-		
+
 		this.repertoryPanel = new RepertoryPanel(m);
 		this.imageDataPanel = new ImageDataPanel(m);
 		this.topBar = new TopBar(m);
@@ -170,7 +170,7 @@ public class MainView extends JFrame
 		gbc.gridwidth = 1;
 		gbc.gridheight= 1;
 		gbc.ipadx = 140;
-		gbc.ipady = 20;
+		gbc.ipady = 25;
 		mainPanel.add(repertoryPanel,gbc);
 
 		//ImageDataPanel
@@ -199,28 +199,33 @@ public class MainView extends JFrame
 		mainPanel.add(topBar, gbc);
 
 		//ImagePanel
-		gbc.anchor = GridBagConstraints.EAST;
+		gbc.anchor = GridBagConstraints.NORTH;
 		gbc.fill = GridBagConstraints.BOTH;
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		gbc.weightx = 4.0;
-		gbc.weighty = 3.0;
-		gbc.gridwidth = 4;
-		gbc.gridheight= 3;
-		gbc.ipadx = 890;
-		gbc.ipady = 0;
-		mainPanel.add(imagePanel, gbc);
-		//ImageBrowserPanel
-		gbc.anchor = GridBagConstraints.EAST;
-		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 1;
 		gbc.gridy = 1;
 		gbc.weightx = 1.0;
 		gbc.weighty = 1.0;
+		//gbc.weightx = 4.0;
+		//gbc.weighty = 3.0;
 		gbc.gridwidth = 1;
 		gbc.gridheight= 1;
+		//gbc.gridwidth = 4;
+		//gbc.gridheight= 3;
 		gbc.ipadx = 0;
-		gbc.ipady = 0;
+		gbc.ipady = 150;
+		mainPanel.add(imagePanel, gbc);
+
+		//ImageBrowserPanel
+		gbc.anchor = GridBagConstraints.SOUTH;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.gridx = 1;
+		gbc.gridy = 2;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
+		gbc.gridwidth = 1;
+		gbc.gridheight= 1;
+		gbc.ipadx = 890;
+		gbc.ipady = 150;
 		mainPanel.add(imageBrowserPanel, gbc);
 
 		// MainPanel
