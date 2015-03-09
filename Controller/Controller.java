@@ -4,6 +4,7 @@ import Model.Model;
 import CommonTypes.*;
 import View.*;
 import java.awt.event.*;
+import javax.swing.*;
 
 public class Controller implements ActionListener
 {
@@ -44,10 +45,20 @@ public class Controller implements ActionListener
 		// Repertory Panel
 		else if(e.getSource() == v.getBrowseButton())
 			v.displayChangeRepertory();
-
+			
 		// Image Data Panel
 		else if(e.getSource() == v.getRenameButton())
-			v.displayRename();
+		{
+			String old = m.getSelected();
+			m.setName(old, (String)JOptionPane.showInputDialog(
+					v,
+					"Choose a new name\n",
+					"Rename",
+					JOptionPane.PLAIN_MESSAGE,
+					null,
+					null,
+					old));
+		}
 
 		else if(e.getSource() == v.getTagsButton())
 			v.displayTagFrame();

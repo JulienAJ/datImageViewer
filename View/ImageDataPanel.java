@@ -94,8 +94,9 @@ public class ImageDataPanel extends JPanel implements Observer
 		Model m = (Model)o;
 		ChangeClass changes = (ChangeClass)obj;
 
-		if(changes.getType() == ChangeType.SELECTED)
+		if(changes.getType() == ChangeType.SELECTED || changes.getType() == ChangeType.IMAGENAME)
 		{
+			// HANDLE TAGS CHANGE
 			String selected = m.getSelected();
 			if(selected == null)
 			{
@@ -109,7 +110,7 @@ public class ImageDataPanel extends JPanel implements Observer
 			else
 			{
 				imageName.setText(selected);
-				tags.setListData((String[])(m.getTags(selected).toArray())); 
+				//tags.setListData((String[])(m.getTags(selected).toArray())); 
 				imageName.setVisible(true);
 				rename.setVisible(true);
 				tags.setVisible(true);
