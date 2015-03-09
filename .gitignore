@@ -1,4 +1,5 @@
 *.class
+tags.db
 ExplorerView.java
 Test.java
 TreeView.java
