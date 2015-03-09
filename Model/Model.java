@@ -222,7 +222,7 @@ public class Model extends Observable
 		}
 		loadImage();
 		setChanged();
-		notifyObservers(new ChangeClass(ChangeType.SEARCH));
+		notifyObservers(new ChangeClass(ChangeType.SELECTED));
 	}
 
 	public void previousImage()
@@ -242,7 +242,7 @@ public class Model extends Observable
 		}
 		loadImage();
 		setChanged();
-		notifyObservers(new ChangeClass(ChangeType.SEARCH));
+		notifyObservers(new ChangeClass(ChangeType.SELECTED));
 	}
 
 	private void loadImage()
