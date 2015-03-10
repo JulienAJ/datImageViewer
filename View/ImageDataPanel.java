@@ -13,6 +13,8 @@ public class ImageDataPanel extends JPanel implements Observer
 	JTextField imageName;
 	JButton rename;
 	JList<String> tags;
+	DefaultListModel<String> tagsModel;
+	JScrollPane tagPane;
 	JButton editTags;
 	JLabel noSelection;
 
@@ -24,6 +26,7 @@ public class ImageDataPanel extends JPanel implements Observer
 
 		rename = new JButton("Renommer");
 		tags = new JList<String>();
+		setupList(m);
 		tags.setVisibleRowCount(10);
 		tags.setFixedCellHeight(15);
 		tags.setFixedCellWidth(100);
@@ -88,6 +91,20 @@ public class ImageDataPanel extends JPanel implements Observer
 		this.editTags.addActionListener(l);
 	}
 
+	private void setupList(Model m)
+	{
+		tagsModel = new DefaultListModel<String>();
+		java.util.List<String> list = m.getTags(m.getRepertoryPath() + m.getSelected());
+		if(tags == null)
+			tags = new JList<String>();
+
+		if(list != null)
+			for(String str : list)
+				tagsModel.addElement(str);
+
+		tags.setModel(tagsModel);
+	}
+
 	@Override
 	public void update(Observable o, Object obj)
 	{
@@ -98,6 +115,7 @@ public class ImageDataPanel extends JPanel implements Observer
 		{
 			// HANDLE TAGS CHANGE
 			String selected = m.getSelected();
+			setupList(m);
 			if(selected == null)
 			{
 				imageName.setVisible(false);

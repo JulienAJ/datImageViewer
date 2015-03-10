@@ -3,6 +3,7 @@ package Model;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
@@ -82,6 +83,11 @@ public class Model extends Observable
 		return repertory;
 	}
 
+	public String getRepertoryPath()
+	{
+		return repertory.getAbsolutePath() + '/';
+	}
+
 	public void setRepertory(File rep)
 	{
 		this.repertory = rep;
@@ -101,7 +107,8 @@ public class Model extends Observable
 			if(isImage(file))
 			{
 				String imagePath = file.getAbsolutePath();
-				List<String> tags = DatabaseHandler.getTags(imagePath);
+				String tagsString = DatabaseHandler.getTags(imagePath);
+				List<String> tags = stringToList(tagsString);
 				imageList.put(imagePath, tags);
 			}
 		}
@@ -154,7 +161,7 @@ public class Model extends Observable
 	{
 		imageList.remove(name);
 		imageList.put(name, tags);
-		DatabaseHandler.setTags(this.repertory.getAbsolutePath() + "/"  + name, tags);
+		DatabaseHandler.setTags(this.repertory.getAbsolutePath() + "/"  + name, listToString(tags));
 		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.IMAGETAGS, name));
 	}
@@ -174,7 +181,6 @@ public class Model extends Observable
 	{
 		this.selected = name;
 		this.selectedImage = img;
-		System.out.println("CHANGED MADAFAKA");
 		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.SELECTED));
 	}
@@ -262,12 +268,10 @@ public class Model extends Observable
 	{
 		try
 		{
-			System.out.println(this.selected);
 			selectedImage = ImageIO.read(new File(repertory.getAbsolutePath() + '/' + this.selected));
 		}
 		catch(IOException e)
 		{
-			System.out.println("LOAD IMAGE MODEL");
 			System.err.println(e.getMessage());
 		}
 	}
@@ -286,6 +290,22 @@ public class Model extends Observable
 			else
 				result = result + ';' + (list.get(i));
 		}
+		return result;
+	}
+
+	public List<String> stringToList(String tags)
+	{
+		if(tags == null)
+			return null;
+
+		List<String> result = new LinkedList<String>();
+		String[] tagstab = tags.split(";");
+		int size = tagstab.length;
+		for(int i = 0; i < size; ++i)
+		{
+			result.add(tagstab[i]);
+		}
+
 		return result;
 	}
 }

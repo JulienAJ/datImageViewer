@@ -90,7 +90,6 @@ public class ImagePanel extends JPanel implements Observer
 		
 		if(changes.getType() == ChangeType.SELECTED)
 		{
-			System.out.println("SELECTED CHANGED (IMG PANEL)");
 			if(m.getSelected() == null)
 				this.setVisible(false);
 			else
@@ -99,7 +98,6 @@ public class ImagePanel extends JPanel implements Observer
 				imageLabel = new JLabel(new ImageIcon(image));
 				repaint();
 				name.setText(m.getSelected());
-				System.out.println("NEW SELECTION: " + m.getSelected());
 				this.setVisible(true);
 			}
 		}

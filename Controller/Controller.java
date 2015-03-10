@@ -77,7 +77,22 @@ public class Controller implements ActionListener
 		}
 
 		else if(e.getSource() == v.getTagsButton())
-		{}
+		{
+			String old = m.getTagsArea(m.getRepertoryPath() + m.getSelected());
+			String newTags = (String)JOptionPane.showInputDialog(
+					v,
+					"Add, remove or edit tags\n" +
+					"Use ';' as a separator",
+					"Tags",
+					JOptionPane.PLAIN_MESSAGE,
+					null,
+					null,
+					old);
+			if(newTags != null && !old.equals(newTags))
+			{
+				m.setTags(m.getSelected(), m.stringToList(newTags));
+			}
+		}
 
 		// Top Bar
 		else if(e.getSource() == v.getSearchButton())

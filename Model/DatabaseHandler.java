@@ -15,19 +15,19 @@ public class DatabaseHandler
 	private static String databaseFile = "jdbc:sqlite:tags.db";
 	private static Connection con = null;
 
-	private static Connection getConnection()
+	private static void initConnection()
 	{
 		if(null == con)
 		{
 			try
 			{
 				Class.forName("org.sqlite.JDBC");
-				con = DriverManager.getConnection("jdbc:sqlite:tags.db");
+				con = DriverManager.getConnection(databaseFile);
 
 				Statement statement = con.createStatement();
 				statement.setQueryTimeout(10);
 
-				statement.executeUpdate("create table if not exists Tags (path text primary key, tags text)");
+				statement.executeUpdate("create table if not exists " + tableName + " (path text primary key, tags text)");
 			}
 			catch(Exception e)
 			{
@@ -35,7 +35,6 @@ public class DatabaseHandler
 				closeConnection();
 			}
 		}
-		return con;
 	}
 
 	private static void closeConnection()
@@ -43,7 +42,9 @@ public class DatabaseHandler
 		try
 		{
 			if(con != null)
+			{
 				con.close();
+			}
 		}
 		catch(SQLException e)
 		{
@@ -51,19 +52,20 @@ public class DatabaseHandler
 		}
 	}
 
-	public static List<String> getTags(String path)
+	public static String getTags(String path)
 	{
 		List<String> tagsList = null;
 		String tags = null;
 		try
 		{
-			Connection connection = getConnection();
-			PreparedStatement request = connection.prepareStatement("select tags from Tags where path = \"" + path + "\"");
+			initConnection();
+
+			PreparedStatement request = con.prepareStatement("select tags from Tags where path = \"" + path + "\"");
 			request.setQueryTimeout(10);
 			ResultSet result = request.executeQuery();
 
-			if(result.next())
-				tags = result.getString("tags");
+			// MAYBE CHECK IF NOT EMPTY
+			tags = result.getString("tags");
 
 			closeConnection();
 		}
@@ -75,26 +77,16 @@ public class DatabaseHandler
 		if(tags == null)
 			return null;
 
-		String[] tagsTab = tags.split(";");
-		tagsList = new ArrayList<String>();
-		for(String tag : tagsTab)
-			tagsList.add(tag);
-
-		return tagsList;
+		return tags;
 	}
 
-	public static void setTags(String path, List<String> tagsList)
+	public static void setTags(String path, String tagsList)
 	{
-		String tagsString = "";
-
-		int size = tagsList.size();
-		for(int i = 0; i < size; ++i)
-			tagsString += (tagsList.get(i) + ';');
 		try
 		{
-			Connection connection = getConnection();
-			PreparedStatement statement = connection.prepareStatement("insert or replace into Tags (path, tags) values(\""
-					+ path + "\", \"" + tagsString + "\")");
+			initConnection();
+			PreparedStatement statement = con.prepareStatement("insert or replace into " + tableName + " (path, tags) values(\""
+					+ path + "\", \"" + tagsList + "\")");
 			statement.setQueryTimeout(10);
 			statement.executeUpdate();
 
@@ -108,12 +100,12 @@ public class DatabaseHandler
 
 	public static boolean changePath(String oldPath, String newPath)
 	{
-		List<String> tagsList = getTags(oldPath);
+		String tagsList = getTags(oldPath);
 		boolean okay = false;
 		try
 		{
-			Connection connection = getConnection();
-			PreparedStatement statement = connection.prepareStatement("delete from Tags where path = \""+ oldPath + "\"");
+			initConnection();
+			PreparedStatement statement = con.prepareStatement("delete from " + tableName + " where path = \""+ oldPath + "\"");
 			statement.setQueryTimeout(10);
 			statement.executeUpdate();
 
