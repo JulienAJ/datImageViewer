@@ -22,7 +22,14 @@ public class Controller implements ActionListener
 	{
 		// MainMenu
 		if(e.getSource() == v.getChangeRepertoryItem())
-			v.displayChangeRepertory();
+		{
+			JFileChooser chooser = new JFileChooser();
+			chooser = new JFileChooser();
+			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			int returnVal = chooser.showOpenDialog(v);
+			if(returnVal == JFileChooser.APPROVE_OPTION)
+				m.setRepertory(chooser.getSelectedFile());
+		}
 
 		else if(e.getSource() == v.getBigDisplayItem())
 			m.setSize(DisplaySize.BIG);
@@ -70,7 +77,7 @@ public class Controller implements ActionListener
 		}
 
 		else if(e.getSource() == v.getTagsButton())
-			v.displayTagFrame();
+		{}
 
 		// Top Bar
 		else if(e.getSource() == v.getSearchButton())
@@ -87,18 +94,6 @@ public class Controller implements ActionListener
 			m.previousImage();
 
 		else if(e.getSource() == v.getClose())
-			v.closeImagePanel();
-
-		// Browse Frame
-		else if (e.getSource() == v.getChooser())
-			m.setRepertory(v.getPathChooser());
-
-		// Rename Frame
-
-		else if(e.getSource() == v.getValidateRenameFrame())
-			m.setName(m.getSelected(), v.getNewNameRenameFrame());
-
-		else if(e.getSource() == v.getCancelRenameFrame())
-			v.hideRenameFrame();
+			v.hideImagePanel();
 	}
 }

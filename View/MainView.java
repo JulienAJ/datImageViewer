@@ -43,16 +43,6 @@ public class MainView extends JFrame
 		setup();
 	}
 
-	public void displayChangeRepertory()
-	{
-		// BrowseFrame
-	}
-
-	public void displayRename()
-	{
-		//RenameFrame
-	}
-
 	// MainMenu
 	public JMenuItem getChangeRepertoryItem() { return mainMenu.getChangeRepertoryItem(); }
 	public JRadioButtonMenuItem getBigDisplayItem() { return mainMenu.getBigDisplayItem(); }
@@ -80,54 +70,8 @@ public class MainView extends JFrame
 	public JButton getNext() { return this.imagePanel.getNext(); }
 	public JButton getPrevious() { return this.imagePanel.getPrevious(); }
 	public JButton getClose() {	return this.imagePanel.getClose(); }
-	
-	//BrowseFrame
-	public JFileChooser getChooser()
-	{
-		if(browseFrame == null)
-			return null;
-
-		return this.browseFrame.chooser;
-	}
-
-	public File getPathChooser()
-	{
-		if(browseFrame == null)
-			return null;
-
-		return this.browseFrame.getPath();
-	}
-
-	//RenameFrame
-	public String getNewNameRenameFrame()
-	{
-		if(renameFrame == null)
-			return null;
-
-		return renameFrame.getNewName();
-	}
-
-	public JButton getValidateRenameFrame()
-	{
-		if(renameFrame == null)
-			return null;
-
-		return this.renameFrame.getValidate();
-	}
-	
-	public JButton getCancelRenameFrame()
-	{
-		if(renameFrame == null)
-			return null;
-
-		return this.renameFrame.getCancel();
-	}
-
-	// TO DO
-	
-	public void displayTagFrame() {}
-	public void hideRenameFrame() {}
-	public void closeImagePanel() {}
+	public void hideImagePanel() { this.imagePanel.setVisible(false); }
+	public void showImagePanel() { this.imagePanel.setVisible(true); }
 
 	public void addListener(ActionListener l)
 	{
@@ -233,10 +177,4 @@ public class MainView extends JFrame
 		this.setSize(1201, 801);
 		this.setSize(1200, 800);
 	}
-
-	/*public static void main(String[] args)
-	{
-		new MainView();
-	}*/
-
 }
