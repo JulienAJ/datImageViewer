@@ -275,6 +275,8 @@ public class Model extends Observable
 	public String listToString(List<String> list)
 	{
 		String result = null;
+		if(list == null)
+			return null;
 		int size = list.size();
 		for(int i = 0; i < size; ++i)
 		{
