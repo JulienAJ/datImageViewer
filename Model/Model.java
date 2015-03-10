@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Set;
 import javax.imageio.ImageIO;
 import CommonTypes.*;
 
@@ -27,7 +28,7 @@ public class Model extends Observable
 	{
 		language = Locale.FRENCH;
 		displaySize = DisplaySize.BIG;
-		repertory = new File("/");
+		repertory = new File("/home/julien/img/");
 		setImageList();
 		results = null;
 		//selected = null;
@@ -126,7 +127,7 @@ public class Model extends Observable
 		List<String> temp = imageList.get(old);
 		imageList.remove(old);
 		imageList.put(newN, temp);
-		String repertoryPath = repertory.getAbsolutePath();
+		String repertoryPath = repertory.getAbsolutePath() + "/";
 		File file = new File(repertoryPath + old);
 		file.renameTo(new File(repertoryPath + newN));
 		DatabaseHandler.changePath(repertoryPath + old, repertoryPath + newN);
@@ -173,6 +174,7 @@ public class Model extends Observable
 	{
 		this.selected = name;
 		this.selectedImage = img;
+		System.out.println("CHANGED MADAFAKA");
 		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.SELECTED));
 	}
@@ -208,16 +210,18 @@ public class Model extends Observable
 
 	public void nextImage()
 	{
-		String[] keys = (String[])(imageList.keySet().toArray());
+		Set<String> keySet = imageList.keySet();
+		String[] keys = (keySet.toArray(new String[keySet.size()]));
 		int size = keys.length;
+		String repertoryPath = repertory.getAbsolutePath() + '/';
 		for(int i = 0; i < size; ++i)
 		{
-			if(keys[i].equals(this.selected))
+			if(keys[i].equals(repertoryPath + this.selected))
 			{
 				if(i == (size - 1))
-					selected = keys[0];
+					selected = basename(keys[0]);
 				else
-					selected = keys[i + 1];
+					selected = basename(keys[i + 1]);
 				break;
 			}
 		}
@@ -228,16 +232,18 @@ public class Model extends Observable
 
 	public void previousImage()
 	{
-		String[] keys = (String[])(imageList.keySet().toArray());
+		Set<String> keySet = imageList.keySet();
+		String[] keys = (keySet.toArray(new String[keySet.size()]));
 		int size = keys.length;
+		String repertoryPath = repertory.getAbsolutePath() + '/';
 		for(int i = 0; i < size; ++i)
 		{
-			if(keys[i].equals(this.selected))
+			if(keys[i].equals(repertoryPath + this.selected))
 			{
 				if(i == 0)
-					selected = keys[size - 1];
+					selected = basename(keys[size - 1]);
 				else
-					selected = keys[i - 1];
+					selected = basename(keys[i - 1]);
 				break;
 			}
 		}
@@ -246,11 +252,18 @@ public class Model extends Observable
 		notifyObservers(new ChangeClass(ChangeType.SELECTED));
 	}
 
+	public String basename(String path)
+	{
+		String[] complete = path.split("/");
+		return complete[complete.length - 1];
+	}
+
 	private void loadImage()
 	{
 		try
 		{
-			selectedImage = ImageIO.read(new File(this.repertory.getAbsolutePath() + '/' + this.selected));
+			System.out.println(this.selected);
+			selectedImage = ImageIO.read(new File(repertory.getAbsolutePath() + '/' + this.selected));
 		}
 		catch(IOException e)
 		{

@@ -26,7 +26,6 @@ public class ImagePanel extends JPanel implements Observer
 		super();
 		this.setBorder(BorderFactory.createTitledBorder("Images"));
 		this.setLayout(new BorderLayout());
-		//this.setLayout(new GridBagLayout());
 		image = m.getSelectedImage();
 		imageLabel = new JLabel(new ImageIcon(image));
 		previous = new JButton("<");
@@ -35,33 +34,20 @@ public class ImagePanel extends JPanel implements Observer
 		name = new JLabel();
 		name.setText(m.getSelected());
 		//this.setVisible(false);
-		/*GridBagConstraints gbc = new GridBagConstraints();
-		
-		gbc.gridx = 1;
-		gbc.gridy = 2;
-		this.add(name, gbc);
-		
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		this.add(previous, gbc);
 
-		gbc.gridx = 2;
-		gbc.gridy = 1;
-		this.add(next, gbc);
-		
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		this.add(close, gbc);
-		
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		gbc.fill = GridBagConstraints.BOTH;
-		this.add(imageLabel, gbc);
-	*/	
 		this.add(name, BorderLayout.SOUTH);
-		this.add(previous, BorderLayout.WEST);
-		this.add(next, BorderLayout.EAST);
-		this.add(close, BorderLayout.NORTH);
+		JPanel left = new JPanel(new GridBagLayout());
+		left.add(previous);
+		this.add(left, BorderLayout.WEST);
+		JPanel right = new JPanel(new GridBagLayout());
+		right.add(next);
+		this.add(right, BorderLayout.EAST);
+		JPanel top = new JPanel(new GridBagLayout());
+		GridBagConstraints gc = new GridBagConstraints();
+		gc.weightx = 1;
+		gc.anchor = GridBagConstraints.WEST;
+		top.add(close, gc);
+		this.add(top, BorderLayout.NORTH);
 		//this.add(imageLabel, BorderLayout.CENTER);
 		
 		m.addObserver(this);
@@ -104,13 +90,16 @@ public class ImagePanel extends JPanel implements Observer
 		
 		if(changes.getType() == ChangeType.SELECTED)
 		{
+			System.out.println("SELECTED CHANGED (IMG PANEL)");
 			if(m.getSelected() == null)
 				this.setVisible(false);
 			else
 			{
 				image = m.getSelectedImage();
 				imageLabel = new JLabel(new ImageIcon(image));
+				repaint();
 				name.setText(m.getSelected());
+				System.out.println("NEW SELECTION: " + m.getSelected());
 				this.setVisible(true);
 			}
 		}

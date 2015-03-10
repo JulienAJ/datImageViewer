@@ -50,14 +50,16 @@ public class Controller implements ActionListener
 		else if(e.getSource() == v.getRenameButton())
 		{
 			String old = m.getSelected();
-			m.setName(old, (String)JOptionPane.showInputDialog(
+			String newN = (String)JOptionPane.showInputDialog(
 					v,
 					"Choose a new name\n",
 					"Rename",
 					JOptionPane.PLAIN_MESSAGE,
 					null,
 					null,
-					old));
+					old);
+			if(newN != null && !old.equals(newN))
+				m.setName(old, newN);
 		}
 
 		else if(e.getSource() == v.getTagsButton())
