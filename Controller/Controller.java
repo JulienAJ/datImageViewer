@@ -44,7 +44,14 @@ public class Controller implements ActionListener
 
 		// Repertory Panel
 		else if(e.getSource() == v.getBrowseButton())
-			v.displayChangeRepertory();
+		{
+			JFileChooser chooser = new JFileChooser();
+			chooser = new JFileChooser();
+			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			int returnVal = chooser.showOpenDialog(v);
+			if(returnVal == JFileChooser.APPROVE_OPTION)
+				m.setRepertory(chooser.getSelectedFile());
+		}
 			
 		// Image Data Panel
 		else if(e.getSource() == v.getRenameButton())
