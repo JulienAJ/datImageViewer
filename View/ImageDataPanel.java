@@ -111,7 +111,9 @@ public class ImageDataPanel extends JPanel implements Observer
 		Model m = (Model)o;
 		ChangeClass changes = (ChangeClass)obj;
 
-		if(changes.getType() == ChangeType.SELECTED || changes.getType() == ChangeType.IMAGENAME)
+		if(changes.getType() == ChangeType.SELECTED
+		|| changes.getType() == ChangeType.IMAGENAME
+		|| changes.getType() == ChangeType.IMAGETAGS)
 		{
 			// HANDLE TAGS CHANGE
 			String selected = m.getSelected();
