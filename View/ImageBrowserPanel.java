@@ -57,6 +57,7 @@ public class ImageBrowserPanel extends JPanel implements Observer
 
 		if(changes.getType() == ChangeType.REPERTORY
 				|| changes.getType() == ChangeType.IMAGETAGS
+				|| changes.getType() == ChangeType.DISPLAYSIZE
 				|| changes.getType() == ChangeType.IMAGENAME)
 		{
 			this.path = m.getRepertory();
