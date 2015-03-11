@@ -12,11 +12,13 @@ import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
+import java.util.ResourceBundle;
 import javax.imageio.ImageIO;
 import CommonTypes.*;
 
 public class Model extends Observable
 {
+	ResourceBundle rb;
 	Locale language;
 	DisplaySize displaySize;
 	File repertory;
@@ -29,7 +31,7 @@ public class Model extends Observable
 	{
 		language = Locale.FRENCH;
 		displaySize = DisplaySize.BIG;
-		repertory = new File("/home/julien/img/");
+		repertory = new File("/");
 		setImageList();
 		results = null;
 		//selected = null;
@@ -46,7 +48,7 @@ public class Model extends Observable
 		if(this.language == Locale.ENGLISH)
 			return "en";
 		if(this.language == Locale.CHINESE)
-			return "ru";
+			return "ch";
 
 		return "fr";
 	}
@@ -57,9 +59,10 @@ public class Model extends Observable
 			this.language = Locale.FRENCH;
 		if(lang.equals("en"))
 			this.language = Locale.ENGLISH;
-		if(lang.equals("ru"))
+		if(lang.equals("ch"))
 			this.language = Locale.CHINESE;
 
+		rb = ResourceBundle.getBundle("Ressources.strings", this.language);
 		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.LANGUAGE));
 	}
