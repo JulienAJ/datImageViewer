@@ -40,7 +40,7 @@ public class ImageBrowserPanel extends JPanel implements Observer
 		createImages();
 
 		scroll = new JScrollPane(iconList);
-		scroll.setPreferredSize(new Dimension(300, 300));
+		scroll.setPreferredSize(new Dimension(500, 500));
 
 		setLayout(new BorderLayout());
 		add(scroll, BorderLayout.CENTER);
@@ -54,7 +54,9 @@ public class ImageBrowserPanel extends JPanel implements Observer
 		Model m = (Model)o;
 		ChangeClass changes = (ChangeClass)arg;
 
-		if(changes.getType() == ChangeType.REPERTORY)
+		if(changes.getType() == ChangeType.REPERTORY
+				|| changes.getType() == ChangeType.IMAGETAGS
+				|| changes.getType() == ChangeType.IMAGENAME)
 		{
 			this.path = m.getRepertory();
 			createImages();
@@ -81,7 +83,8 @@ public class ImageBrowserPanel extends JPanel implements Observer
 		public Component getListCellRendererComponent(JList<? extends Thumbnail> list, Thumbnail value, int index, boolean isSelected, boolean cellHasFocus)
 		{
 			ImageIcon image = value.getImage();
-			if (image != null) {
+			if (image != null)
+			{
 				setPreferredSize(new Dimension(image.getIconWidth(), image.getIconHeight() + 20));
 
 				setText(value.getName());
@@ -91,11 +94,13 @@ public class ImageBrowserPanel extends JPanel implements Observer
 				setIcon(value.getImage());
 				setHorizontalAlignment(JLabel.CENTER);
 
-				if (isSelected) {
+				if (isSelected)
+				{
 					setBackground(list.getSelectionBackground());
 					setForeground(list.getSelectionForeground());
 				}
-				else {
+				else
+				{
 					setBackground(list.getBackground());
 					setForeground(list.getForeground());
 				}

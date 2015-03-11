@@ -6,8 +6,8 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 public class DatabaseHandler
 {
@@ -54,7 +54,6 @@ public class DatabaseHandler
 
 	public static String getTags(String path)
 	{
-		List<String> tagsList = null;
 		String tags = null;
 		try
 		{
@@ -124,5 +123,36 @@ public class DatabaseHandler
 			return true;
 		}
 		return false;
+	}
+
+	public static Map<String, String> search(String searchKey)
+	{
+		Map<String, String> resultsMap = new HashMap<String, String>();
+		String name = null;
+		String tags = null;
+		try
+		{
+			initConnection();
+
+			PreparedStatement request = con.prepareStatement("select * from Tags where tags = \"*" + searchKey + "*\"");
+			request.setQueryTimeout(10);
+			ResultSet result = request.executeQuery();
+
+			do
+			{
+				name = result.getString("path");
+				tags = result.getString("tags");	
+				resultsMap.put(name, tags);
+
+			} while(result.next());
+
+			closeConnection();
+		}
+		catch(Exception e)
+		{
+			System.err.println(e.getMessage());
+		}
+
+		return resultsMap;
 	}
 }

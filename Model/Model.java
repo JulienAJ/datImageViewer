@@ -194,20 +194,32 @@ public class Model extends Observable
 	}
 
 	// Actions
-	public void search(String searchKey)
+	public void search(String searchKey, boolean dirSearch)
 	{
 		results = new HashMap<String, List<String> >();
-		for(String key : imageList.keySet())
+
+		if(dirSearch)
 		{
-			List<String> list = imageList.get(key);
-			int size = list.size();
-			for(int i = 0; i < size; ++i)
+			for(String key : imageList.keySet())
 			{
-				if(list.get(i).equals(searchKey))
+				List<String> list = imageList.get(key);
+				int size = list.size();
+				for(int i = 0; i < size; ++i)
 				{
-					results.put(key, list);
-					break;
+					if(list.get(i).equals(searchKey))
+					{
+						results.put(key, list);
+						break;
+					}
 				}
+			}
+		}
+		else
+		{
+			Map<String, String> dbResults = DatabaseHandler.search(searchKey);
+			for(String key : dbResults.keySet())
+			{
+				results.put(key, stringToList(dbResults.get(key)));
 			}
 		}
 		setChanged();

@@ -96,7 +96,7 @@ public class Controller implements ActionListener
 
 		// Top Bar
 		else if(e.getSource() == v.getSearchButton())
-			m.search(v.getSearchKey());
+			m.search(v.getSearchKey(), false);
 
 		else if(e.getSource() == v.getDisplayBox())
 			m.setSize(v.getSelectedSize());

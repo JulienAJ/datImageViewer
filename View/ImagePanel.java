@@ -88,7 +88,8 @@ public class ImagePanel extends JPanel implements Observer
 		Model m = (Model)o;
 		ChangeClass changes = (ChangeClass)arg;
 		
-		if(changes.getType() == ChangeType.SELECTED)
+		if(changes.getType() == ChangeType.SELECTED
+				|| changes.getType() == ChangeType.IMAGENAME)
 		{
 			if(m.getSelected() == null)
 				this.setVisible(false);
