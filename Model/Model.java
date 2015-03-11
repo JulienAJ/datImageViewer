@@ -12,6 +12,7 @@ import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
+import java.util.ResourceBundle;
 import javax.imageio.ImageIO;
 import CommonTypes.*;
 
@@ -61,7 +62,7 @@ public class Model extends Observable
 		if(lang.equals("ch"))
 			this.language = Locale.CHINESE;
 
-		rb = RessourceBundle.getBundle("Ressources.strings", this.language);
+		rb = ResourceBundle.getBundle("Ressources.strings", this.language);
 		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.LANGUAGE));
 	}
