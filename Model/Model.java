@@ -61,7 +61,7 @@ public class Model extends Observable
 		if(lang.equals("ch"))
 			this.language = Locale.CHINESE;
 
-		rb = RessourceBundle.getBundle("Ressource.strings", this.language);
+		rb = RessourceBundle.getBundle("Ressources.strings", this.language);
 		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.LANGUAGE));
 	}
