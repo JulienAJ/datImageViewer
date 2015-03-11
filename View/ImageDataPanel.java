@@ -117,7 +117,6 @@ public class ImageDataPanel extends JPanel implements Observer
 		{
 			// HANDLE TAGS CHANGE
 			String selected = m.getSelected();
-			setupList(m);
 			if(selected == null)
 			{
 				imageName.setVisible(false);
@@ -130,7 +129,7 @@ public class ImageDataPanel extends JPanel implements Observer
 			else
 			{
 				imageName.setText(selected);
-				//tags.setListData((String[])(m.getTags(selected).toArray())); 
+				setupList(m);
 				imageName.setVisible(true);
 				rename.setVisible(true);
 				tags.setVisible(true);
