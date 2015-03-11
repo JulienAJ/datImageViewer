@@ -29,6 +29,7 @@ public class ImageBrowserPanel extends JPanel implements Observer
 	public ImageBrowserPanel(Model m)
 	{
 		super();
+		this.m = m;
 		iconListModel = new DefaultListModel<Thumbnail>();
 		iconList = new JList<Thumbnail>(iconListModel);
 		iconList.setCellRenderer(new iconListCellRenderer());
@@ -69,6 +70,7 @@ public class ImageBrowserPanel extends JPanel implements Observer
 			return;
 
 		new imageLoader().execute();
+		//scroll.updateUI();
 	}
 
 	private class iconListCellRenderer extends JLabel implements ListCellRenderer<Thumbnail>
@@ -156,14 +158,12 @@ public class ImageBrowserPanel extends JPanel implements Observer
 				{
 					try
 					{
-						Thumbnail t = new Thumbnail(f.getAbsolutePath(), 100, 100);
+						Thumbnail t = new Thumbnail(f.getAbsolutePath(), m.getSize());
 						publish(t);
 					}
 					catch(Exception e)
 					{
 						System.err.println(e);
-						System.out.println("DO IN BACKGROUND");
-						// publish damaged image icon?
 					}
 				}
 			}
@@ -177,7 +177,7 @@ public class ImageBrowserPanel extends JPanel implements Observer
 			if (!isCancelled()) {
 				for (Thumbnail t : chunks) {
 					iconListModel.addElement(t);
-					//if (Path.isSelected(t.getName()))
+					if (t.getName().equals(m.getRepertoryPath() + m.getSelected()))
 						iconList.setSelectedValue(t, true);
 				}
 			}

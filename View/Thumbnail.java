@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import CommonTypes.DisplaySize;
 
 public class Thumbnail
 {
@@ -15,8 +16,25 @@ public class Thumbnail
 	private String name;
 	private String path;
 
-	public Thumbnail(String path, int maxWidth, int maxHeight) throws Exception
+	//public Thumbnail(String path, int maxWidth, int maxHeight) throws Exception
+	public Thumbnail(String path, DisplaySize size) throws Exception
 	{
+		// DEFAULT IS BIG
+		int maxWidth = 300;
+		int maxHeight = 300;
+
+		if(size == DisplaySize.MEDIUM)
+		{
+			maxWidth = 200;
+			maxHeight = 200;
+		}
+
+		else if(size == DisplaySize.SMALL)
+		{
+			maxWidth = 100;
+			maxHeight = 100;
+		}
+
 		this.path = path;
 		Path p = Paths.get(path);
 		name = p.getFileName().toString();
