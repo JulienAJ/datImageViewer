@@ -153,7 +153,7 @@ public class MainView extends JFrame
 		//gbc.gridwidth = 4;
 		//gbc.gridheight= 3;
 		gbc.ipadx = 0;
-		gbc.ipady = 150;
+		gbc.ipady = 260;
 		mainPanel.add(imagePanel, gbc);
 
 		//ImageBrowserPanel
@@ -166,7 +166,7 @@ public class MainView extends JFrame
 		gbc.gridwidth = 1;
 		gbc.gridheight= 1;
 		gbc.ipadx = 890;
-		gbc.ipady = 150;
+		gbc.ipady = 140;
 		mainPanel.add(imageBrowserPanel, gbc);
 
 		// MainPanel

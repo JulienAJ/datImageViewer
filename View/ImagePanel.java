@@ -39,17 +39,27 @@ public class ImagePanel extends JPanel implements Observer
 
 		this.add(name, BorderLayout.SOUTH);
 		JPanel left = new JPanel(new GridBagLayout());
-		left.add(previous);
+		GridBagConstraints gc = new GridBagConstraints();
+		gc.gridx = 0;
+		gc.gridy = 0;
+		left.add(close, gc);
+		gc.gridx = 0;
+		gc.gridy = 1;
+		gc.weighty = 3.0;
+		left.add(previous,gc);
 		this.add(left, BorderLayout.WEST);
+		
 		JPanel right = new JPanel(new GridBagLayout());
 		right.add(next);
 		this.add(right, BorderLayout.EAST);
-		JPanel top = new JPanel(new GridBagLayout());
-		GridBagConstraints gc = new GridBagConstraints();
-		gc.weightx = 1;
+		
+		//JPanel top = new JPanel(new GridBagLayout());
+		//GridBagConstraints gc = new GridBagConstraints();
+		/*gc.weightx = 1;
 		gc.anchor = GridBagConstraints.WEST;
 		top.add(close, gc);
-		this.add(top, BorderLayout.NORTH);
+		this.add(top, BorderLayout.NORTH);*/
+		
 		//this.add(imageLabel, BorderLayout.CENTER);
 		
 		m.addObserver(this);
@@ -60,14 +70,15 @@ public class ImagePanel extends JPanel implements Observer
 		super.paintComponent(g);
 		if(image != null)
 		{
-			int x, y, width, height, maxWidth, maxHeight;
+			int x, y, width, height, maxWidth, maxHeight, scale;
 			maxWidth = getWidth();
 			maxHeight = getHeight();
 			width = image.getWidth();
 			height = image.getHeight();
+			scale = width/height;
 			x = maxWidth / 4; // On place l'image au milieu
-			y = 45;
-			g.drawImage(image, x, y, 500, 400, this);
+			y = 7;
+			g.drawImage(image, x, y, x*2, maxHeight, this);
 		}
 	}
 
