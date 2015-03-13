@@ -172,9 +172,9 @@ public class Model extends Observable
 
 	public void setTags(String name, List<String> tags)
 	{
-		imageList.remove(name);
-		imageList.put(name, tags);
-		DatabaseHandler.setTags(this.repertory.getAbsolutePath() + "/"  + name, listToString(tags));
+		imageList.remove(getRepertoryPath() + name);
+		imageList.put(getRepertoryPath() + name, tags);
+		DatabaseHandler.setTags(getRepertoryPath() + name, listToString(tags));
 		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.IMAGETAGS, name));
 	}
