@@ -44,6 +44,7 @@ public class DatabaseHandler
 			if(con != null)
 			{
 				con.close();
+				con = null;
 			}
 		}
 		catch(SQLException e)
@@ -59,14 +60,12 @@ public class DatabaseHandler
 		{
 			initConnection();
 
-			PreparedStatement request = con.prepareStatement("select tags from Tags where path = \"" + path + "\"");
+			PreparedStatement request = con.prepareStatement("select tags from " + tableName + " where path=?");
+			request.setString(1, path);
 			request.setQueryTimeout(10);
 			ResultSet result = request.executeQuery();
 
-			// MAYBE CHECK IF NOT EMPTY
 			tags = result.getString("tags");
-
-			closeConnection();
 		}
 		catch(Exception e)
 		{
@@ -84,12 +83,11 @@ public class DatabaseHandler
 		try
 		{
 			initConnection();
-			PreparedStatement statement = con.prepareStatement("insert or replace into " + tableName + " (path, tags) values(\""
-					+ path + "\", \"" + tagsList + "\")");
+			PreparedStatement statement = con.prepareStatement("insert or replace into " + tableName + " (path, tags) values(?, ?)");
+			statement.setString(1, path);
+			statement.setString(2, tagsList);
 			statement.setQueryTimeout(10);
 			statement.executeUpdate();
-
-			closeConnection();
 		}
 		catch(Exception e)
 		{
@@ -104,17 +102,16 @@ public class DatabaseHandler
 		try
 		{
 			initConnection();
-			PreparedStatement statement = con.prepareStatement("delete from " + tableName + " where path = \""+ oldPath + "\"");
+			PreparedStatement statement = con.prepareStatement("delete from " + tableName + " where path=?");
 			statement.setQueryTimeout(10);
 			statement.executeUpdate();
 
-			closeConnection();
 			okay = true;
 		}
 		catch(Exception e)
 		{
 			System.err.println(e.getMessage());
-			return false;
+			okay = false;
 		}
 
 		if(okay)
@@ -122,6 +119,7 @@ public class DatabaseHandler
 			setTags(newPath, tagsList);
 			return true;
 		}
+		setTags(oldPath, tagsList);
 		return false;
 	}
 
@@ -134,19 +132,18 @@ public class DatabaseHandler
 		{
 			initConnection();
 
-			PreparedStatement request = con.prepareStatement("select * from Tags where tags = \"*" + searchKey + "*\"");
+			PreparedStatement request = con.prepareStatement("select * from Tags where tags=?");
+			request.setString(1, '%' + searchKey + '%');
 			request.setQueryTimeout(10);
 			ResultSet result = request.executeQuery();
 
 			do
 			{
 				name = result.getString("path");
-				tags = result.getString("tags");	
+				tags = result.getString("tags");
 				resultsMap.put(name, tags);
 
 			} while(result.next());
-
-			closeConnection();
 		}
 		catch(Exception e)
 		{

@@ -59,7 +59,7 @@ public class Controller implements ActionListener
 			if(returnVal == JFileChooser.APPROVE_OPTION)
 				m.setRepertory(chooser.getSelectedFile());
 		}
-			
+
 		// Image Data Panel
 		else if(e.getSource() == v.getRenameButton())
 		{

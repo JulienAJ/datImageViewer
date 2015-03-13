@@ -71,7 +71,6 @@ public class ImageBrowserPanel extends JPanel implements Observer
 			return;
 
 		new imageLoader().execute();
-		//scroll.updateUI();
 	}
 
 	private class iconListCellRenderer extends JLabel implements ListCellRenderer<Thumbnail>
@@ -86,7 +85,7 @@ public class ImageBrowserPanel extends JPanel implements Observer
 		public Component getListCellRendererComponent(JList<? extends Thumbnail> list, Thumbnail value, int index, boolean isSelected, boolean cellHasFocus)
 		{
 			ImageIcon image = value.getImage();
-			if (image != null)
+			if(image != null)
 			{
 				setPreferredSize(new Dimension(image.getIconWidth(), image.getIconHeight() + 20));
 
@@ -97,7 +96,7 @@ public class ImageBrowserPanel extends JPanel implements Observer
 				setIcon(value.getImage());
 				setHorizontalAlignment(JLabel.CENTER);
 
-				if (isSelected)
+				if(isSelected)
 				{
 					setBackground(list.getSelectionBackground());
 					setForeground(list.getSelectionForeground());
