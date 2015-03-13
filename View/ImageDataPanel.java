@@ -24,15 +24,15 @@ public class ImageDataPanel extends JPanel implements Observer
 		imageName = new JTextField();
 		imageName.setEditable(false);
 
-		rename = new JButton("Renommer");
+		rename = new JButton(m.getString("renameButton"));
 		tags = new JList<String>();
 		setupList(m);
 		tags.setVisibleRowCount(10);
 		tags.setFixedCellHeight(15);
 		tags.setFixedCellWidth(100);
-		editTags = new JButton("Modifier");
-		noSelection = new JLabel("Aucune Image selectionnée");
-		this.setBorder(BorderFactory.createTitledBorder("Données"));
+		editTags = new JButton(m.getString("modifyButton"));
+		noSelection = new JLabel(m.getString("noImage"));
+		this.setBorder(BorderFactory.createTitledBorder(m.getString("data")));
 		this.setLayout(new GridBagLayout());
 
 		String selected = m.getSelected();

@@ -21,7 +21,7 @@ public class RepertoryPanel extends JPanel implements Observer
 		pathField.setEditable(false);
 		browseButton = new JButton("...");
 
-		this.setBorder(BorderFactory.createTitledBorder("Répertoire"));
+		this.setBorder(BorderFactory.createTitledBorder(m.getString("repertory")));
 		this.add(pathField);
 		this.add(browseButton);
 

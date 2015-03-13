@@ -46,7 +46,7 @@ public class Controller implements ActionListener
 		else if(e.getSource() == v.getEnglishItem())
 			m.setLanguage("en");
 
-		else if(e.getSource() == v.getRussianItem())
+		else if(e.getSource() == v.getChineseItem())
 			m.setLanguage("ru");
 
 		// Repertory Panel

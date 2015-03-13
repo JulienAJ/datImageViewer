@@ -24,7 +24,7 @@ public class ImagePanel extends JPanel implements Observer
 	public ImagePanel(Model m)
 	{
 		super();
-		this.setBorder(BorderFactory.createTitledBorder("Images"));
+		this.setBorder(BorderFactory.createTitledBorder(m.getString("images")));
 		this.setLayout(new BorderLayout());
 		image = m.getSelectedImage();
 		imageLabel = new JLabel(new ImageIcon(image));
@@ -63,9 +63,9 @@ public class ImagePanel extends JPanel implements Observer
 			maxHeight = getHeight();
 			width = image.getWidth();
 			height = image.getHeight();
-			 x = maxWidth / 4; // On place l'image au milieu
-			 y = 45;
-			 g.drawImage(image, x, y, 500, 400, this);
+			x = maxWidth / 4; // On place l'image au milieu
+			y = 45;
+			g.drawImage(image, x, y, 500, 400, this);
 		}
 	}
 

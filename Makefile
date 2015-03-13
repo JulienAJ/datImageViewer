@@ -5,6 +5,7 @@ VIEWDIR=View/
 CONTROLDIR=Controller/
 COMMONDIR=CommonTypes/
 CLASSDIR=bin/
+RESSOURCEDIR=ressources/
 SQLITEJAR=sqlite-jdbc-3.8.7.jar
 NAME=DatImageViewer
 
@@ -26,7 +27,7 @@ View: $(VIEWDIR)MainView.java $(VIEWDIR)MainMenu.java $(VIEWDIR)ImageDataPanel.j
 	$(JAVAC) -d $(CLASSDIR) $^
 
 run:
-	$(JAVA) -classpath $(SQLITEJAR):$(CLASSDIR) $(NAME)
+	$(JAVA) -classpath $(SQLITEJAR):$(CLASSDIR):$(RESSOURCEDIR) $(NAME)
 
 clean:
 	@rm -fr $(CLASSDIR)*

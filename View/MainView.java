@@ -50,7 +50,7 @@ public class MainView extends JFrame
 	public JRadioButtonMenuItem getSmallDisplayItem() { return mainMenu.getSmallDisplayItem(); }
 	public JRadioButtonMenuItem getFrenchItem() { return mainMenu.getFrenchItem(); }
 	public JRadioButtonMenuItem getEnglishItem() { return mainMenu.getEnglishItem(); }
-	public JRadioButtonMenuItem getRussianItem() { return mainMenu.getRussianItem(); }
+	public JRadioButtonMenuItem getChineseItem() { return mainMenu.getChineseItem(); }
 
 	// RepertoryPanel
 	public JButton getBrowseButton() { return this.repertoryPanel.getBrowseButton(); }

@@ -24,26 +24,27 @@ public class MainMenu extends JMenuBar implements Observer
 
 	JRadioButtonMenuItem frenchItem;
 	JRadioButtonMenuItem englishItem;
-	JRadioButtonMenuItem russianItem;
+	JRadioButtonMenuItem chineseItem;
 
 	public MainMenu(Model m)
 	{
 		super();
+		m.setLanguage(m.getLanguage());
 		// Repertory
-		repertoryMenu = new JMenu("Répertoire");
+		repertoryMenu = new JMenu(m.getString("repertory"));
 
-		changeRepertoryItem = new JMenuItem("Changer de répertoire");
+		changeRepertoryItem = new JMenuItem(m.getString("change"));
 
 		repertoryMenu.add(changeRepertoryItem);
 
 		// Display
 		displayMenu = new JMenu("Affichage");
 
-		bigDisplayItem = new JRadioButtonMenuItem("Grand");
+		bigDisplayItem = new JRadioButtonMenuItem(m.getString("big"));
 		bigDisplayItem.setSelected(true);
-		mediumDisplayItem = new JRadioButtonMenuItem("Moyen");
+		mediumDisplayItem = new JRadioButtonMenuItem(m.getString("medium"));
 		mediumDisplayItem.setSelected(false);
-		smallDisplayItem = new JRadioButtonMenuItem("Petit");
+		smallDisplayItem = new JRadioButtonMenuItem(m.getString("small"));
 		smallDisplayItem.setSelected(false);
 
 		displayButtonGroup = new ButtonGroup();
@@ -56,23 +57,23 @@ public class MainMenu extends JMenuBar implements Observer
 		displayMenu.add(smallDisplayItem);
 
 		// Languages
-		languagesMenu = new JMenu("Langues");
+		languagesMenu = new JMenu(m.getString("languages"));
 
 		frenchItem = new JRadioButtonMenuItem("Français");
 		frenchItem.setSelected(true);
 		englishItem = new JRadioButtonMenuItem("English");
 		englishItem.setSelected(false);
-		russianItem = new JRadioButtonMenuItem("русский");
-		russianItem.setSelected(false);
+		chineseItem = new JRadioButtonMenuItem("中国");
+		chineseItem.setSelected(false);
 
 		ButtonGroup languagesButtonGroup = new ButtonGroup();
 		languagesButtonGroup.add(frenchItem);
 		languagesButtonGroup.add(englishItem);
-		languagesButtonGroup.add(russianItem);
+		languagesButtonGroup.add(chineseItem);
 
 		languagesMenu.add(frenchItem);
 		languagesMenu.add(englishItem);
-		languagesMenu.add(russianItem);
+		languagesMenu.add(chineseItem);
 
 		// Main Menu
 		this.add(repertoryMenu);
@@ -90,7 +91,7 @@ public class MainMenu extends JMenuBar implements Observer
 
 	public JRadioButtonMenuItem getFrenchItem(){ return this.frenchItem; }
 	public JRadioButtonMenuItem getEnglishItem(){ return this.englishItem; }
-	public JRadioButtonMenuItem getRussianItem(){ return this.russianItem; }
+	public JRadioButtonMenuItem getChineseItem(){ return this.chineseItem; }
 
 	public void addListener(ActionListener l)
 	{
@@ -102,7 +103,7 @@ public class MainMenu extends JMenuBar implements Observer
 
 		this.frenchItem.addActionListener(l);
 		this.englishItem.addActionListener(l);
-		this.russianItem.addActionListener(l);
+		this.chineseItem.addActionListener(l);
 	}
 
 	@Override
@@ -117,19 +118,22 @@ public class MainMenu extends JMenuBar implements Observer
 			{
 				frenchItem.setSelected(true);
 				englishItem.setSelected(false);
-				russianItem.setSelected(false);
+				chineseItem.setSelected(false);
+				m.setLanguage(m.getLanguage());
 			}
 			else if(lang.equals("english"))
 			{
 				frenchItem.setSelected(false);
 				englishItem.setSelected(true);
-				russianItem.setSelected(false);
+				chineseItem.setSelected(false);
+				m.setLanguage(m.getLanguage());
 			}
-			else if(lang.equals("russian"))
+			else if(lang.equals("chinese"))
 			{
 				frenchItem.setSelected(false);
 				englishItem.setSelected(false);
-				russianItem.setSelected(true);
+				chineseItem.setSelected(true);
+				m.setLanguage(m.getLanguage());
 			}
 		}
 		if(changes.getType() == ChangeType.DISPLAYSIZE)

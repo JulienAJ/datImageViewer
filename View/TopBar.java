@@ -26,17 +26,17 @@ public class TopBar extends JPanel implements Observer
 		super();
 		displayBox = new JComboBox<String>();
 		searchField = new JTextField(15);
-		searchButton = new JButton("Rechercher");
-		this.setBorder(BorderFactory.createTitledBorder("TRUC"));
+		searchButton = new JButton(m.getString("search"));
+		this.setBorder(BorderFactory.createTitledBorder(m.getString("edit")));
 		this.setLayout(new GridBagLayout());
 
 		JPanel searchPanel = new JPanel();
 		searchPanel.setLayout(new GridBagLayout());
 
 		// DISPLAY MENU
-		displayBig = "Grand";
-		displayMedium = "Moyen";
-		displaySmall = "Petit";
+		displayBig = m.getString("big");;
+		displayMedium = m.getString("medium");
+		displaySmall = m.getString("small");
 
 		displayBox.addItem(displayBig);
 		displayBox.addItem(displayMedium);
