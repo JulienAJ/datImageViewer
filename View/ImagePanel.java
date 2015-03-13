@@ -102,6 +102,10 @@ public class ImagePanel extends JPanel implements Observer
 				this.setVisible(true);
 			}
 		}
+		else if(changes.getType() == ChangeType.LANGUAGE)
+		{
+			this.setBorder(BorderFactory.createTitledBorder(m.getString("images")));
+		}
 	}
 }
 

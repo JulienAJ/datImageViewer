@@ -82,12 +82,15 @@ public class TopBar extends JPanel implements Observer
 	public DisplaySize getSelectedSize()
 	{
 		String selected = (String)this.displayBox.getSelectedItem();
-		if(selected.equals(displayBig))
-			return DisplaySize.BIG;
-		else if(selected.equals(displayMedium))
-			return DisplaySize.MEDIUM;
-		else if(selected.equals(displaySmall))
-			return DisplaySize.SMALL;
+		if(selected != null)
+		{
+			if(selected.equals(displayBig))
+				return DisplaySize.BIG;
+			else if(selected.equals(displayMedium))
+				return DisplaySize.MEDIUM;
+			else if(selected.equals(displaySmall))
+				return DisplaySize.SMALL;
+		}
 		return DisplaySize.BIG;
 	}
 
@@ -118,6 +121,19 @@ public class TopBar extends JPanel implements Observer
 
 			else if(newSize == DisplaySize.SMALL)
 				this.displayBox.setSelectedItem(displaySmall);
+		}
+		else if(changes.getType() == ChangeType.LANGUAGE)
+		{
+			displayBig = m.getString("big");
+			displayMedium = m.getString("medium");
+			displaySmall = m.getString("small");
+			searchButton.setText(m.getString("search"));
+			this.setBorder(BorderFactory.createTitledBorder(m.getString("edit")));
+			displayBox.removeAllItems();
+			//displayBox.getItemAt(1).setText(m.getString("big"));
+			displayBox.addItem(displayBig);
+			displayBox.addItem(displayMedium);
+			displayBox.addItem(displaySmall);
 		}
 	}
 }

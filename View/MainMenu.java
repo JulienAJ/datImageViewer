@@ -38,7 +38,7 @@ public class MainMenu extends JMenuBar implements Observer
 		repertoryMenu.add(changeRepertoryItem);
 
 		// Display
-		displayMenu = new JMenu("Affichage");
+		displayMenu = new JMenu(m.getString("display"));
 
 		bigDisplayItem = new JRadioButtonMenuItem(m.getString("big"));
 		bigDisplayItem.setSelected(true);
@@ -119,21 +119,18 @@ public class MainMenu extends JMenuBar implements Observer
 				frenchItem.setSelected(true);
 				englishItem.setSelected(false);
 				chineseItem.setSelected(false);
-				m.setLanguage("fr");
 			}
 			else if(lang.equals("english"))
 			{
 				frenchItem.setSelected(false);
 				englishItem.setSelected(true);
 				chineseItem.setSelected(false);
-				m.setLanguage("en");
 			}
 			else if(lang.equals("chinese"))
 			{
 				frenchItem.setSelected(false);
 				englishItem.setSelected(false);
 				chineseItem.setSelected(true);
-				m.setLanguage("ch");
 			}
 		}
 		if(changes.getType() == ChangeType.DISPLAYSIZE)
@@ -157,6 +154,16 @@ public class MainMenu extends JMenuBar implements Observer
 				mediumDisplayItem.setSelected(false);
 				smallDisplayItem.setSelected(true);
 			}
+
+			repertoryMenu.setText(m.getString("repertory"));
+			changeRepertoryItem.setText(m.getString("change"));
+			
+			displayMenu.setText(m.getString("display"));
+			bigDisplayItem.setText(m.getString("big"));
+			mediumDisplayItem.setText(m.getString("medium"));
+			smallDisplayItem.setText(m.getString("small"));
+			
+			languagesMenu.setText(m.getString("languages"));
 		}
 	}
 }

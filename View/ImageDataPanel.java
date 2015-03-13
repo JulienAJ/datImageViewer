@@ -137,5 +137,12 @@ public class ImageDataPanel extends JPanel implements Observer
 				noSelection.setVisible(false);
 			}
 		}
+		else if(changes.getType() == ChangeType.LANGUAGE)
+		{
+			rename.setText(m.getString("renameButton"));
+			editTags.setText(m.getString("modifyButton"));
+			noSelection.setText(m.getString("noImage"));
+			this.setBorder(BorderFactory.createTitledBorder(m.getString("data")));
+		}
 	}
 }
