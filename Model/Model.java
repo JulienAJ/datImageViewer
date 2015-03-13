@@ -31,7 +31,7 @@ public class Model extends Observable
 	{
 		language = Locale.FRENCH;
 		displaySize = DisplaySize.BIG;
-		repertory = new File("/");
+		repertory = new File("/home/julien/img");
 		setImageList();
 		results = null;
 		//selected = null;
@@ -96,7 +96,9 @@ public class Model extends Observable
 
 	public String getRepertoryPath()
 	{
-		return repertory.getAbsolutePath() + '/';
+		if(!repertory.getAbsolutePath().equals("/"))
+			return repertory.getAbsolutePath() + '/';
+		return repertory.getAbsolutePath();
 	}
 
 	public void setRepertory(File rep)

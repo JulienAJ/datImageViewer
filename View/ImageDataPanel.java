@@ -26,7 +26,6 @@ public class ImageDataPanel extends JPanel implements Observer
 
 		rename = new JButton(m.getString("renameButton"));
 		tags = new JList<String>();
-		setupList(m);
 		tags.setVisibleRowCount(10);
 		tags.setFixedCellHeight(15);
 		tags.setFixedCellWidth(100);
@@ -47,10 +46,11 @@ public class ImageDataPanel extends JPanel implements Observer
 		else
 		{
 			imageName.setText(selected);
-			java.util.List<String> tempList = m.getTags(selected);
-			if(tempList != null)
-				tags.setListData((String[])(tempList.toArray()));
-			//tags.setListData((String[])(m.getTags(selected).toArray())); 
+			//java.util.List<String> tempList = m.getTags(selected);
+			//if(tempList != null)
+			//	tags.setListData((String[])(tempList.toArray()));
+			//tags.setListData((String[])(m.getTags(selected).toArray()));
+			setupList(m);
 			imageName.setVisible(true);
 			rename.setVisible(true);
 			tags.setVisible(true);
@@ -117,7 +117,6 @@ public class ImageDataPanel extends JPanel implements Observer
 		{
 			// HANDLE TAGS CHANGE
 			String selected = m.getSelected();
-			System.out.println("IN UPDATE IMAGE DATA PANEL");
 			if(selected == null)
 			{
 				imageName.setVisible(false);
@@ -131,7 +130,6 @@ public class ImageDataPanel extends JPanel implements Observer
 			{
 				imageName.setText(selected);
 				setupList(m);
-				System.out.println(m.getTagsArea(selected));
 				imageName.setVisible(true);
 				rename.setVisible(true);
 				tags.setVisible(true);

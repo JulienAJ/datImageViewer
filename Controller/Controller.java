@@ -22,14 +22,7 @@ public class Controller implements ActionListener
 	{
 		// MainMenu
 		if(e.getSource() == v.getChangeRepertoryItem())
-		{
-			JFileChooser chooser = new JFileChooser();
-			chooser = new JFileChooser();
-			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			int returnVal = chooser.showOpenDialog(v);
-			if(returnVal == JFileChooser.APPROVE_OPTION)
-				m.setRepertory(chooser.getSelectedFile());
-		}
+			changeRep();
 
 		else if(e.getSource() == v.getBigDisplayItem())
 			m.setSize(DisplaySize.BIG);
@@ -51,15 +44,8 @@ public class Controller implements ActionListener
 
 		// Repertory Panel
 		else if(e.getSource() == v.getBrowseButton())
-		{
-			JFileChooser chooser = new JFileChooser();
-			chooser = new JFileChooser();
-			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			int returnVal = chooser.showOpenDialog(v);
-			if(returnVal == JFileChooser.APPROVE_OPTION)
-				m.setRepertory(chooser.getSelectedFile());
-		}
-			
+			changeRep();
+
 		// Image Data Panel
 		else if(e.getSource() == v.getRenameButton())
 		{
@@ -110,5 +96,19 @@ public class Controller implements ActionListener
 
 		else if(e.getSource() == v.getClose())
 			v.hideImagePanel();
+	}
+
+	private void changeRep()
+	{
+		JFileChooser chooser = new JFileChooser();
+		chooser = new JFileChooser();
+		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		int returnVal = chooser.showOpenDialog(v);
+		if(returnVal == JFileChooser.APPROVE_OPTION)
+		{
+			m.setRepertory(chooser.getSelectedFile());
+			m.setSelected(null, null);
+			v.hideImagePanel();
+		}
 	}
 }
