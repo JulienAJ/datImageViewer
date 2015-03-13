@@ -31,11 +31,11 @@ public class Model extends Observable
 	{
 		language = Locale.FRENCH;
 		displaySize = DisplaySize.BIG;
-		repertory = new File("/");
+		repertory = new File(System.getProperty("user.home"));
 		setImageList();
 		results = null;
-		//selected = null;
-		selected = "img.jpg";
+		selected = null;
+		//selected = "img.jpg";
 		selectedImage = null;
 		loadImage();
 	}

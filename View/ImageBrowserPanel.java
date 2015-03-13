@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import Model.Model;
 import CommonTypes.*;
 import java.io.*;
+import javax.swing.event.ListSelectionListener;
 
 public class ImageBrowserPanel extends JPanel implements Observer
 {
@@ -47,6 +48,13 @@ public class ImageBrowserPanel extends JPanel implements Observer
 		add(scroll, BorderLayout.CENTER);
 
 		m.addObserver(this);
+	}
+
+	public JList<Thumbnail> getList() { return this.iconList; }
+
+	public void addListener(ListSelectionListener l)
+	{
+		iconList.addListSelectionListener(l);
 	}
 
 	@Override
