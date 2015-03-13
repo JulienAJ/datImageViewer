@@ -67,10 +67,14 @@ public class Model extends Observable
 		notifyObservers(new ChangeClass(ChangeType.LANGUAGE));
 	}
 
-	public String getString(String key) {
-		try {
+	public String getString(String key)
+	{
+		try
+		{
 			return new String(rb.getString(key).getBytes("ISO-8859-1"), "UTF-8");
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			return "Error";
 		}
 	}
@@ -144,14 +148,14 @@ public class Model extends Observable
 	// Name
 	public void setName(String old, String newN)
 	{
-		List<String> temp = imageList.get(old);
-		imageList.remove(old);
-		imageList.put(newN, temp);
-		String repertoryPath = repertory.getAbsolutePath() + "/";
-		File file = new File(repertoryPath + old);
-		file.renameTo(new File(repertoryPath + newN));
-		DatabaseHandler.changePath(repertoryPath + old, repertoryPath + newN);
+		List<String> temp = imageList.get(getRepertoryPath() + old);
+		imageList.remove(getRepertoryPath() + old);
+		imageList.put(getRepertoryPath() + newN, temp);
+		File file = new File(getRepertoryPath() + old);
+		file.renameTo(new File(getRepertoryPath() + newN));
+		DatabaseHandler.changePath(getRepertoryPath() + old, getRepertoryPath() + newN);
 		setSelected(newN);
+
 		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.IMAGENAME, old));
 	}
@@ -172,9 +176,9 @@ public class Model extends Observable
 
 	public void setTags(String name, List<String> tags)
 	{
-		imageList.remove(name);
-		imageList.put(name, tags);
-		DatabaseHandler.setTags(this.repertory.getAbsolutePath() + "/"  + name, listToString(tags));
+		imageList.remove(getRepertoryPath() + name);
+		imageList.put(getRepertoryPath() + name, tags);
+		DatabaseHandler.setTags(getRepertoryPath() + name, listToString(tags));
 		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.IMAGETAGS, name));
 	}
