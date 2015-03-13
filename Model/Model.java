@@ -67,10 +67,14 @@ public class Model extends Observable
 		notifyObservers(new ChangeClass(ChangeType.LANGUAGE));
 	}
 
-	public String getString(String key) {
-		try {
+	public String getString(String key)
+	{
+		try
+		{
 			return new String(rb.getString(key).getBytes("ISO-8859-1"), "UTF-8");
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			return "Error";
 		}
 	}
