@@ -103,6 +103,7 @@ public class DatabaseHandler
 		{
 			initConnection();
 			PreparedStatement statement = con.prepareStatement("delete from " + tableName + " where path=?");
+			statement.setString(1, oldPath);
 			statement.setQueryTimeout(10);
 			statement.executeUpdate();
 

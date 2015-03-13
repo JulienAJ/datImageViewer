@@ -59,7 +59,9 @@ public class Controller implements ActionListener
 					null,
 					old);
 			if(newN != null && !old.equals(newN))
+			{
 				m.setName(old, newN);
+			}
 		}
 
 		else if(e.getSource() == v.getTagsButton())
