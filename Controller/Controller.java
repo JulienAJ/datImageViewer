@@ -5,8 +5,10 @@ import CommonTypes.*;
 import View.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
-public class Controller implements ActionListener
+public class Controller implements ActionListener, ListSelectionListener
 {
 	private Model m;
 	private MainView v;
@@ -16,8 +18,18 @@ public class Controller implements ActionListener
 		this.m = m;
 		this.v = v;
 		v.addListener(this);
+		v.addListListener(this);
 	}
 
+	@Override
+	public void valueChanged(ListSelectionEvent e)
+	{
+		Thumbnail t = v.getImageList().getSelectedValue();
+		if(t != null)
+			m.setSelected(t.getName());
+	}
+
+	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		// MainMenu

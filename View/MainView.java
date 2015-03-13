@@ -7,6 +7,7 @@ import View.*;
 import CommonTypes.*;
 import Model.Model;
 import java.awt.event.ActionListener;
+import javax.swing.event.ListSelectionListener;
 
 public class MainView extends JFrame
 {
@@ -36,6 +37,7 @@ public class MainView extends JFrame
 		this.imageDataPanel = new ImageDataPanel(m);
 		this.topBar = new TopBar(m);
 		this.imagePanel = new ImagePanel(m);
+		imagePanel.setVisible(false);
 		this.imageBrowserPanel = new ImageBrowserPanel(m);
 		setup();
 	}
@@ -70,6 +72,9 @@ public class MainView extends JFrame
 	public void hideImagePanel() { this.imagePanel.setVisible(false); }
 	public void showImagePanel() { this.imagePanel.setVisible(true); }
 
+	//ImageBroserPanel
+	public JList<Thumbnail> getImageList() { return this.imageBrowserPanel.getList(); }
+
 	public void addListener(ActionListener l)
 	{
 		imagePanel.addListener(l);
@@ -77,7 +82,11 @@ public class MainView extends JFrame
 		repertoryPanel.addListener(l);
 		imageDataPanel.addListener(l);
 		topBar.addListener(l);
-		// TO DO ADD LISTENER TO IMG BROWSER PANEL
+	}
+
+	public void addListListener(ListSelectionListener l)
+	{
+		imageBrowserPanel.addListener(l);
 	}
 	
 	// Add and Constraint

@@ -27,7 +27,9 @@ public class ImagePanel extends JPanel implements Observer
 		this.setBorder(BorderFactory.createTitledBorder(m.getString("images")));
 		this.setLayout(new BorderLayout());
 		image = m.getSelectedImage();
-		imageLabel = new JLabel(new ImageIcon(image));
+		if(image != null)
+			imageLabel = new JLabel(new ImageIcon(image));
+
 		previous = new JButton("<");
 		next = new JButton(">");
 		close = new JButton("X");

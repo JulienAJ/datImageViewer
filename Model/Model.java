@@ -31,11 +31,11 @@ public class Model extends Observable
 	{
 		language = Locale.FRENCH;
 		displaySize = DisplaySize.BIG;
-		repertory = new File("/Users/Massimo");
+		repertory = new File(System.getProperty("user.home"));
 		setImageList();
 		results = null;
-		//selected = null;
-		selected = "img.jpg";
+		selected = null;
+		//selected = "img.jpg";
 		selectedImage = null;
 		loadImage();
 	}
@@ -248,10 +248,9 @@ public class Model extends Observable
 		Set<String> keySet = imageList.keySet();
 		String[] keys = (keySet.toArray(new String[keySet.size()]));
 		int size = keys.length;
-		String repertoryPath = repertory.getAbsolutePath() + '/';
 		for(int i = 0; i < size; ++i)
 		{
-			if(keys[i].equals(repertoryPath + this.selected))
+			if(keys[i].equals(getRepertoryPath() + this.selected))
 			{
 				if(i == (size - 1))
 					selected = basename(keys[0]);
@@ -273,7 +272,7 @@ public class Model extends Observable
 		String repertoryPath = repertory.getAbsolutePath() + '/';
 		for(int i = 0; i < size; ++i)
 		{
-			if(keys[i].equals(repertoryPath + this.selected))
+			if(keys[i].equals(getRepertoryPath() + this.selected))
 			{
 				if(i == 0)
 					selected = basename(keys[size - 1]);

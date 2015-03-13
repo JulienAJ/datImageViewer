@@ -16,7 +16,6 @@ public class Thumbnail
 	private String name;
 	private String path;
 
-	//public Thumbnail(String path, int maxWidth, int maxHeight) throws Exception
 	public Thumbnail(String path, DisplaySize size) throws Exception
 	{
 		// DEFAULT IS BIG
@@ -61,11 +60,13 @@ public class Thumbnail
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name)
+	{
 		this.name = name;
 	}
 
-	public String getPath() {
+	public String getPath()
+	{
 		return path;
 	}
 
