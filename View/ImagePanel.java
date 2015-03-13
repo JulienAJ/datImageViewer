@@ -78,7 +78,16 @@ public class ImagePanel extends JPanel implements Observer
 			scale = width/height;
 			x = maxWidth / 4; // On place l'image au milieu
 			y = 7;
-			g.drawImage(image, x, y, x*2, maxHeight, this);
+			if (x*2 > width || maxHeight > height)
+			{
+				x = maxWidth /4 + width;
+				y = maxHeight /4;
+				g.drawImage(image, x, y, width, height, this);
+			}
+			else
+			{
+				g.drawImage(image, x, y, x*2, maxHeight, this);
+			}
 		}
 	}
 
