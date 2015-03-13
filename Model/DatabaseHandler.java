@@ -37,7 +37,7 @@ public class DatabaseHandler
 		}
 	}
 
-	private static void closeConnection()
+	public static void closeConnection()
 	{
 		try
 		{

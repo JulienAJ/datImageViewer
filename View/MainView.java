@@ -18,9 +18,6 @@ public class MainView extends JFrame
 	TopBar topBar;
 	ImageDataPanel imageDataPanel;
 	ImagePanel imagePanel;
-	BrowseFrame browseFrame;
-	RenameFrame renameFrame;
-	TagsFrame tagsFrame;
 	ImageBrowserPanel imageBrowserPanel;
 
 	public MainView(Model m)
@@ -75,15 +72,6 @@ public class MainView extends JFrame
 
 	public void addListener(ActionListener l)
 	{
-		if(browseFrame != null)
-			browseFrame.addListener(l);
-
-		if(renameFrame != null)
-			renameFrame.addListener(l);
-
-		if(tagsFrame != null)
-			tagsFrame.addListener(l);
-
 		imagePanel.addListener(l);
 		mainMenu.addListener(l);
 		repertoryPanel.addListener(l);

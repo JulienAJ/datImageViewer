@@ -1,5 +1,6 @@
 package View;
 import java.awt.*;
+import Model.DatabaseHandler;
 import java.awt.event.*;
 
 
@@ -7,6 +8,7 @@ public class MyWindowListener implements WindowListener
 {
 	public void windowClosing(WindowEvent e)
 	{
+		DatabaseHandler.closeConnection();
 		System.exit(0);
 	}
 
