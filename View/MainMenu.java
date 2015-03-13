@@ -119,21 +119,21 @@ public class MainMenu extends JMenuBar implements Observer
 				frenchItem.setSelected(true);
 				englishItem.setSelected(false);
 				chineseItem.setSelected(false);
-				m.setLanguage(m.getLanguage());
+				m.setLanguage("fr");
 			}
 			else if(lang.equals("english"))
 			{
 				frenchItem.setSelected(false);
 				englishItem.setSelected(true);
 				chineseItem.setSelected(false);
-				m.setLanguage(m.getLanguage());
+				m.setLanguage("en");
 			}
 			else if(lang.equals("chinese"))
 			{
 				frenchItem.setSelected(false);
 				englishItem.setSelected(false);
 				chineseItem.setSelected(true);
-				m.setLanguage(m.getLanguage());
+				m.setLanguage("ch");
 			}
 		}
 		if(changes.getType() == ChangeType.DISPLAYSIZE)

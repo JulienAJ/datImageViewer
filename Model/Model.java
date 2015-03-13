@@ -31,7 +31,7 @@ public class Model extends Observable
 	{
 		language = Locale.FRENCH;
 		displaySize = DisplaySize.BIG;
-		repertory = new File("/home/julien/img");
+		repertory = new File("/Users/Massimo");
 		setImageList();
 		results = null;
 		//selected = null;

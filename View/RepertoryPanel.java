@@ -46,5 +46,9 @@ public class RepertoryPanel extends JPanel implements Observer
 		{
 			pathField.setText(m.getRepertory().getAbsolutePath());
 		}
+		else if(changes.getType() == ChangeType.LANGUAGE)
+		{
+			this.setBorder(BorderFactory.createTitledBorder(m.getString("repertory")));
+		}
 	}
 }
