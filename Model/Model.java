@@ -71,7 +71,7 @@ public class Model extends Observable
 	{
 		try
 		{
-			return new String(rb.getString(key).getBytes("ISO-8859-1"), "UTF8");
+			return new String(rb.getString(key).getBytes("ISO-8859-1"), "UTF-8");
 		}
 		catch (Exception e)
 		{

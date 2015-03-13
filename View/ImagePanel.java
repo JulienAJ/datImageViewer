@@ -80,7 +80,7 @@ public class ImagePanel extends JPanel implements Observer
 			y = 7;
 			if (x*2 > width || maxHeight > height)
 			{
-				x = maxWidth /4 + width;
+				x = maxWidth /2 - width/2;
 				y = maxHeight /4;
 				g.drawImage(image, x, y, width, height, this);
 			}
