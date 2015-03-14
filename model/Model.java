@@ -122,6 +122,8 @@ public class Model extends Observable
 	{
 		if(imageList == null)
 			imageList = new HashMap<String, List<String> >();
+		else
+			imageList.clear();
 		File[] files = repertory.listFiles();
 		for(File file : files)
 		{

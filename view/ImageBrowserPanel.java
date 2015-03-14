@@ -64,7 +64,6 @@ public class ImageBrowserPanel extends JPanel implements Observer
 	@Override
 	public void update(Observable o, Object arg)
 	{
-		System.out.println("UPDATE IMAGE LIST");
 		Model m = (Model)o;
 		ChangeType change = (ChangeType)arg;
 
@@ -166,6 +165,8 @@ public class ImageBrowserPanel extends JPanel implements Observer
 		{
 			if(loadImageWorker != null)
 				loadImageWorker.cancel(true);
+
+			loadImageWorker = this;
 
 			int i = 0;
 			files = new File[map.size()];
