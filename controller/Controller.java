@@ -86,7 +86,7 @@ public class Controller implements ActionListener, ListSelectionListener
 
 		else if(e.getSource() == v.getTagsButton())
 		{
-			String old = m.getTagsArea(m.getSelected());
+			String old = Util.listToString(m.getTags(m.getSelected()));
 			String newTags = (String)JOptionPane.showInputDialog(
 					v,
 					"Add, remove or edit tags\n" +
@@ -130,6 +130,7 @@ public class Controller implements ActionListener, ListSelectionListener
 		{
 			m.setRepertory(chooser.getSelectedFile());
 			m.setSelected(null, null);
+			m.setSearch(false);
 			v.hideImagePanel();
 		}
 	}

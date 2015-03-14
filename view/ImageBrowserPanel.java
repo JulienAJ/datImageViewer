@@ -87,9 +87,9 @@ public class ImageBrowserPanel extends JPanel implements Observer
 			return;
 
 		if(m.isSearch())
-			new imageLoader(m.getSearchResults(), m.getRepertoryPath()).execute();
+			new imageLoader(m.getSearchResults(), Util.getPathFromFile(m.getRepertory())).execute();
 		else
-			new imageLoader(m.getImageMap(), m.getRepertoryPath()).execute();
+			new imageLoader(m.getImageMap(), Util.getPathFromFile(m.getRepertory())).execute();
 	}
 
 	private class iconListCellRenderer extends JLabel implements ListCellRenderer<Thumbnail>

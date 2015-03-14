@@ -28,7 +28,6 @@ public class Model extends Observable
 	String selected;
 	BufferedImage selectedImage;
 	boolean isSearch;
-	boolean isDirSearch;
 
 	public Model()
 	{
@@ -41,7 +40,6 @@ public class Model extends Observable
 		selected = null;
 		selectedImage = null;
 		isSearch = false;
-		isDirSearch = false;
 		loadImage();
 	}
 
@@ -104,18 +102,12 @@ public class Model extends Observable
 		return repertory;
 	}
 
-	public String getRepertoryPath()
-	{
-		if(!repertory.getAbsolutePath().equals(System.getProperty("file.separator")))
-			return repertory.getAbsolutePath() + System.getProperty("file.separator");
-		return repertory.getAbsolutePath();
-	}
-
 	public void setRepertory(File rep)
 	{
 		this.repertory = rep;
-		isSearch = false;
+
 		setImageList();
+
 		setChanged();
 		notifyObservers(ChangeType.REPERTORY);
 	}
@@ -171,14 +163,6 @@ public class Model extends Observable
 		return imageList.get(name);
 	}
 
-	public String getTagsArea(String name)
-	{
-		if(imageList == null || imageList.get(name) == null)
-			return "";
-
-		return Util.listToString(imageList.get(name));
-	}
-
 	public void setTags(String name, List<String> tags)
 	{
 		imageList.remove(name);
@@ -219,7 +203,6 @@ public class Model extends Observable
 	public void search(String searchKey, boolean dirSearch)
 	{
 		results = new HashMap<String, List<String> >();
-		this.isDirSearch = dirSearch;
 		if(dirSearch)
 		{
 			for(String key : imageList.keySet())

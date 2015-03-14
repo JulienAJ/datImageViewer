@@ -61,18 +61,13 @@ public class Util
 
 	public static String repFromImg(String imagePath)
 	{
-		//String img = basename(imagePath);
-		//String[] dirs = imagePath.split(System.getProperty("file.separator"));
-		//String ret = ;
-		//for(String dir : dirs)
-		//{
-		//	if(!dir.equals(img))
-		//	{
-		//		ret += dir;
-		//		ret += System.getProperty("file.separator");
-		//	}
-		//}
-		//return ret;
 		return imagePath.replace(basename(imagePath), "");
+	}
+
+	public static String getPathFromFile(File file)
+	{
+		if(!file.getAbsolutePath().equals(System.getProperty("file.separator")))
+			return file.getAbsolutePath() + System.getProperty("file.separator");
+		return file.getAbsolutePath();
 	}
 }
