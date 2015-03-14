@@ -108,10 +108,10 @@ public class ImagePanel extends JPanel implements Observer
 	public void update(Observable o, Object arg)
 	{
 		Model m = (Model)o;
-		ChangeClass changes = (ChangeClass)arg;
+		ChangeType change = (ChangeType)arg;
 		
-		if(changes.getType() == ChangeType.SELECTED
-				|| changes.getType() == ChangeType.IMAGENAME)
+		if(change == ChangeType.SELECTED
+				|| change == ChangeType.IMAGENAME)
 		{
 			if(m.getSelected() == null)
 				this.setVisible(false);
@@ -124,7 +124,7 @@ public class ImagePanel extends JPanel implements Observer
 				this.setVisible(true);
 			}
 		}
-		else if(changes.getType() == ChangeType.LANGUAGE)
+		else if(change == ChangeType.LANGUAGE)
 		{
 			this.setBorder(BorderFactory.createTitledBorder(m.getString("images")));
 		}

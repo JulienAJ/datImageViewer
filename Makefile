@@ -14,7 +14,7 @@ all : Controller Model View Common Util $(NAME)
 $(NAME): $(NAME).java
 	$(JAVAC) -d $(CLASSDIR) $^
 
-Common: $(COMMONDIR)DisplaySize.java $(COMMONDIR)ChangeClass.java $(COMMONDIR)ChangeType.java
+Common: $(COMMONDIR)DisplaySize.java $(COMMONDIR)ChangeType.java
 	$(JAVAC) -d $(CLASSDIR) $^
 
 Util: $(UTILDIR)Util.java

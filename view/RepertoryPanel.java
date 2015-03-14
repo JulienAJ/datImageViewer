@@ -39,14 +39,14 @@ public class RepertoryPanel extends JPanel implements Observer
 	@Override
 	public void update(Observable o, Object obj)
 	{
-		ChangeClass changes = (ChangeClass)obj;
+		ChangeType change = (ChangeType)obj;
 		Model m = (Model)o;
 
-		if(changes.getType() == ChangeType.REPERTORY)
+		if(change == ChangeType.REPERTORY)
 		{
 			pathField.setText(m.getRepertory().getAbsolutePath());
 		}
-		else if(changes.getType() == ChangeType.LANGUAGE)
+		else if(change == ChangeType.LANGUAGE)
 		{
 			this.setBorder(BorderFactory.createTitledBorder(m.getString("repertory")));
 		}

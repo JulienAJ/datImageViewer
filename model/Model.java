@@ -27,6 +27,7 @@ public class Model extends Observable
 	Map<String, List<String> > results;
 	String selected;
 	BufferedImage selectedImage;
+	boolean isSearching;
 
 	public Model()
 	{
@@ -64,7 +65,7 @@ public class Model extends Observable
 
 		rb = ResourceBundle.getBundle("ressources.strings", this.language);
 		setChanged();
-		notifyObservers(new ChangeClass(ChangeType.LANGUAGE));
+		notifyObservers(ChangeType.LANGUAGE);
 	}
 
 	public String getString(String key)
@@ -90,7 +91,7 @@ public class Model extends Observable
 	{
 		this.displaySize = size;
 		setChanged();
-		notifyObservers(new ChangeClass(ChangeType.DISPLAYSIZE));
+		notifyObservers(ChangeType.DISPLAYSIZE);
 	}
 
 	// Repertory
@@ -111,7 +112,7 @@ public class Model extends Observable
 		this.repertory = rep;
 		setImageList();
 		setChanged();
-		notifyObservers(new ChangeClass(ChangeType.REPERTORY));
+		notifyObservers(ChangeType.REPERTORY);
 	}
 
 	// Image List
@@ -144,7 +145,7 @@ public class Model extends Observable
 		setSelected(newN);
 
 		setChanged();
-		notifyObservers(new ChangeClass(ChangeType.IMAGENAME, old));
+		notifyObservers(ChangeType.IMAGENAME);
 	}
 
 	// Tags
@@ -167,7 +168,7 @@ public class Model extends Observable
 		imageList.put(getRepertoryPath() + name, tags);
 		DatabaseHandler.setTags(getRepertoryPath() + name, Util.listToString(tags));
 		setChanged();
-		notifyObservers(new ChangeClass(ChangeType.IMAGETAGS, name));
+		notifyObservers(ChangeType.IMAGETAGS);
 	}
 
 	// Selected
@@ -186,7 +187,7 @@ public class Model extends Observable
 		this.selected = name;
 		this.selectedImage = img;
 		setChanged();
-		notifyObservers(new ChangeClass(ChangeType.SELECTED));
+		notifyObservers(ChangeType.SELECTED);
 	}
 
 	public void setSelected(String name)
@@ -194,7 +195,7 @@ public class Model extends Observable
 		this.selected = name;
 		loadImage();
 		setChanged();
-		notifyObservers(new ChangeClass(ChangeType.SELECTED));
+		notifyObservers(ChangeType.SELECTED);
 	}
 
 	// Actions
@@ -227,7 +228,7 @@ public class Model extends Observable
 			}
 		}
 		setChanged();
-		notifyObservers(new ChangeClass(ChangeType.SEARCH));
+		notifyObservers(ChangeType.SEARCH);
 	}
 
 	public void nextImage()
@@ -248,7 +249,7 @@ public class Model extends Observable
 		}
 		loadImage();
 		setChanged();
-		notifyObservers(new ChangeClass(ChangeType.SELECTED));
+		notifyObservers(ChangeType.SELECTED);
 	}
 
 	public void previousImage()
@@ -270,7 +271,7 @@ public class Model extends Observable
 		}
 		loadImage();
 		setChanged();
-		notifyObservers(new ChangeClass(ChangeType.SELECTED));
+		notifyObservers(ChangeType.SELECTED);
 	}
 
 	private void loadImage()

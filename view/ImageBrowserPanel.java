@@ -62,11 +62,11 @@ public class ImageBrowserPanel extends JPanel implements Observer
 	public void update(Observable o, Object arg)
 	{
 		Model m = (Model)o;
-		ChangeClass changes = (ChangeClass)arg;
+		ChangeType change = (ChangeType)arg;
 
-		if(changes.getType() == ChangeType.REPERTORY
-				|| changes.getType() == ChangeType.DISPLAYSIZE
-				|| changes.getType() == ChangeType.IMAGENAME)
+		if(change == ChangeType.REPERTORY
+				|| change == ChangeType.DISPLAYSIZE
+				|| change == ChangeType.IMAGENAME)
 		{
 			this.path = m.getRepertory();
 			createImages();

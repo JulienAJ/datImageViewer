@@ -109,9 +109,9 @@ public class MainMenu extends JMenuBar implements Observer
 	@Override
 	public void update(Observable o, Object arg)
 	{
-		ChangeClass changes = (ChangeClass)arg;
+		ChangeType change = (ChangeType)arg;
 		Model m = (Model)o;
-		if(changes.getType() == ChangeType.LANGUAGE)
+		if(change == ChangeType.LANGUAGE)
 		{
 			String lang = m.getLanguage();
 			if(lang.equals("french"))
@@ -133,7 +133,7 @@ public class MainMenu extends JMenuBar implements Observer
 				chineseItem.setSelected(true);
 			}
 		}
-		if(changes.getType() == ChangeType.DISPLAYSIZE)
+		if(change == ChangeType.DISPLAYSIZE)
 		{
 			DisplaySize size = m.getSize();
 			if(size == DisplaySize.BIG)

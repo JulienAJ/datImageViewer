@@ -107,10 +107,10 @@ public class TopBar extends JPanel implements Observer
 
 	public void update(Observable o, Object arg)
 	{
-		ChangeClass changes = (ChangeClass)arg;
+		ChangeType change = (ChangeType)arg;
 		Model m = (Model)o;
 
-		if(changes.getType() == ChangeType.DISPLAYSIZE)
+		if(change == ChangeType.DISPLAYSIZE)
 		{
 			DisplaySize newSize = m.getSize();
 			if(newSize == DisplaySize.BIG)
@@ -122,7 +122,7 @@ public class TopBar extends JPanel implements Observer
 			else if(newSize == DisplaySize.SMALL)
 				this.displayBox.setSelectedItem(displaySmall);
 		}
-		else if(changes.getType() == ChangeType.LANGUAGE)
+		else if(change == ChangeType.LANGUAGE)
 		{
 			displayBig = m.getString("big");
 			displayMedium = m.getString("medium");
@@ -130,7 +130,6 @@ public class TopBar extends JPanel implements Observer
 			searchButton.setText(m.getString("search"));
 			this.setBorder(BorderFactory.createTitledBorder(m.getString("edit")));
 			displayBox.removeAllItems();
-			//displayBox.getItemAt(1).setText(m.getString("big"));
 			displayBox.addItem(displayBig);
 			displayBox.addItem(displayMedium);
 			displayBox.addItem(displaySmall);

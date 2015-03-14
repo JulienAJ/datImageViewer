@@ -109,11 +109,11 @@ public class ImageDataPanel extends JPanel implements Observer
 	public void update(Observable o, Object obj)
 	{
 		Model m = (Model)o;
-		ChangeClass changes = (ChangeClass)obj;
+		ChangeType change = (ChangeType)obj;
 
-		if(changes.getType() == ChangeType.SELECTED
-		|| changes.getType() == ChangeType.IMAGENAME
-		|| changes.getType() == ChangeType.IMAGETAGS)
+		if(change == ChangeType.SELECTED
+				|| change == ChangeType.IMAGENAME
+				|| change == ChangeType.IMAGETAGS)
 		{
 			// HANDLE TAGS CHANGE
 			String selected = m.getSelected();
@@ -137,7 +137,7 @@ public class ImageDataPanel extends JPanel implements Observer
 				noSelection.setVisible(false);
 			}
 		}
-		else if(changes.getType() == ChangeType.LANGUAGE)
+		else if(change == ChangeType.LANGUAGE)
 		{
 			rename.setText(m.getString("renameButton"));
 			editTags.setText(m.getString("modifyButton"));
