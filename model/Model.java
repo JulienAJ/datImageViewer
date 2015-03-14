@@ -245,7 +245,11 @@ public class Model extends Observable
 
 	public void nextImage()
 	{
-		Set<String> keySet = imageList.keySet();
+		Set<String> keySet;
+		if(isSearch)
+			keySet = results.keySet();
+		else
+			keySet = imageList.keySet();
 		String[] keys = (keySet.toArray(new String[keySet.size()]));
 		int size = keys.length;
 		for(int i = 0; i < size; ++i)
@@ -266,7 +270,11 @@ public class Model extends Observable
 
 	public void previousImage()
 	{
-		Set<String> keySet = imageList.keySet();
+		Set<String> keySet;
+		if(isSearch)
+			keySet = results.keySet();
+		else
+			keySet = imageList.keySet();
 		String[] keys = (keySet.toArray(new String[keySet.size()]));
 		int size = keys.length;
 		String repertoryPath = repertory.getAbsolutePath() + '/';
