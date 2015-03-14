@@ -1,9 +1,9 @@
-JAVAC=javac
+JAVAC=javac -Xlint
 JAVA=java
-MODELDIR=Model/
-VIEWDIR=View/
-CONTROLDIR=Controller/
-COMMONDIR=CommonTypes/
+MODELDIR=model/
+VIEWDIR=view/
+CONTROLDIR=controller/
+COMMONDIR=commonTypes/
 CLASSDIR=bin/
 SQLITEJAR=sqlite-jdbc-3.8.7.jar
 NAME=DatImageViewer

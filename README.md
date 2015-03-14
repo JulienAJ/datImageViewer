@@ -1,6 +1,7 @@
 # datImageViewer
 TO DO:
 - search,
-- manage Events on imageBrowserPanel
 - languages
-- debug
+
+ISSUES:
+- language changes resets display size to big

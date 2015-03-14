@@ -1,4 +1,4 @@
-package View;
+package view;
 import javax.swing.*;
 import java.util.List;
 import java.awt.FlowLayout;
@@ -7,8 +7,8 @@ import java.util.Observable;
 import java.util.Observer;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
-import Model.Model;
-import CommonTypes.*;
+import model.Model;
+import commonTypes.*;
 import java.io.*;
 import javax.swing.event.ListSelectionListener;
 
@@ -64,7 +64,6 @@ public class ImageBrowserPanel extends JPanel implements Observer
 		ChangeClass changes = (ChangeClass)arg;
 
 		if(changes.getType() == ChangeType.REPERTORY
-				|| changes.getType() == ChangeType.IMAGETAGS
 				|| changes.getType() == ChangeType.DISPLAYSIZE
 				|| changes.getType() == ChangeType.IMAGENAME)
 		{

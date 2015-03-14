@@ -1,7 +1,7 @@
-package View;
+package view;
 
-import Model.Model;
-import CommonTypes.*;
+import model.Model;
+import commonTypes.*;
 import javax.swing.*;
 import java.util.Observer;
 import java.awt.*;

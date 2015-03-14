@@ -1,9 +1,9 @@
-package View;
+package view;
 import javax.swing.*;
 import java.util.*;
-import Model.Model;
+import model.Model;
 import java.awt.event.*;
-import CommonTypes.*;
+import commonTypes.*;
 
 public class MainMenu extends JMenuBar implements Observer
 {

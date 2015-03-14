@@ -1,6 +1,6 @@
-import Model.*;
-import View.*;
-import Controller.*;
+import model.*;
+import view.*;
+import controller.*;
 
 public class DatImageViewer
 {

@@ -1,11 +1,10 @@
-package View;
+package view;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import View.*;
-import CommonTypes.*;
-import Model.Model;
+import commonTypes.*;
+import model.Model;
 import java.awt.event.ActionListener;
 import javax.swing.event.ListSelectionListener;
 

@@ -1,4 +1,4 @@
-package CommonTypes;
+package commonTypes;
 
 public class ChangeClass
 {

@@ -1,4 +1,5 @@
-package CommonTypes;
+package commonTypes;
+
 public enum DisplaySize
 {
 	SMALL,

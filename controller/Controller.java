@@ -1,8 +1,8 @@
-package Controller;
+package controller;
 
-import Model.Model;
-import CommonTypes.*;
-import View.*;
+import model.Model;
+import commonTypes.*;
+import view.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;

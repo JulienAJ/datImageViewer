@@ -1,8 +1,8 @@
-package View;
+package view;
 import javax.swing.*;
 import java.util.*;
-import CommonTypes.*;
-import Model.Model;
+import commonTypes.*;
+import model.Model;
 import java.awt.event.*;
 import java.awt.*;
 

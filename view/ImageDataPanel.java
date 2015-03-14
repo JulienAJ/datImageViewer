@@ -1,10 +1,10 @@
-package View;
+package view;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
-import Model.Model;
-import CommonTypes.*;
+import model.Model;
+import commonTypes.*;
 
 public class ImageDataPanel extends JPanel implements Observer
 {

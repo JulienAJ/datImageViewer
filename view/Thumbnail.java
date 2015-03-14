@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import javax.swing.ImageIcon;
 import javax.imageio.ImageIO;
@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import CommonTypes.DisplaySize;
+import commonTypes.DisplaySize;
 
 public class Thumbnail
 {

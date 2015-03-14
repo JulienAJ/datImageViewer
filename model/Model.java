@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -14,7 +14,7 @@ import java.util.Observer;
 import java.util.Set;
 import java.util.ResourceBundle;
 import javax.imageio.ImageIO;
-import CommonTypes.*;
+import commonTypes.*;
 
 public class Model extends Observable
 {
@@ -294,9 +294,12 @@ public class Model extends Observable
 
 	private void loadImage()
 	{
+		if(selected == null)
+			return;
+
 		try
 		{
-			selectedImage = ImageIO.read(new File(repertory.getAbsolutePath() + '/' + this.selected));
+			selectedImage = ImageIO.read(new File(getRepertoryPath() + this.selected));
 		}
 		catch(IOException e)
 		{

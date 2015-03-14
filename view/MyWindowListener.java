@@ -1,6 +1,6 @@
-package View;
+package view;
 import java.awt.*;
-import Model.DatabaseHandler;
+import model.DatabaseHandler;
 import java.awt.event.*;
 
 
