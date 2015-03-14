@@ -27,7 +27,7 @@ public class Model extends Observable
 	Map<String, List<String> > results;
 	String selected;
 	BufferedImage selectedImage;
-	boolean isSearching;
+	boolean isSearch;
 
 	public Model()
 	{
@@ -133,6 +133,16 @@ public class Model extends Observable
 		}
 	}
 
+	public Map<String, List<String> > getImageMap()
+	{
+		return this.imageList;
+	}
+
+	public Map<String, List<String> > getSearchResults()
+	{
+		return this.results;
+	}
+
 	// Name
 	public void setName(String old, String newN)
 	{
@@ -227,6 +237,8 @@ public class Model extends Observable
 				results.put(key, Util.stringToList(dbResults.get(key)));
 			}
 		}
+		this.isSearch = true;
+		setSelected(null);
 		setChanged();
 		notifyObservers(ChangeType.SEARCH);
 	}
@@ -289,4 +301,8 @@ public class Model extends Observable
 		}
 	}
 
+	// searchStatus
+	
+	public boolean isSearch() { return this.isSearch; }
+	public void setSearch(boolean s) { this.isSearch = s; }
 }

@@ -5,6 +5,9 @@ import java.awt.FlowLayout;
 import java.awt.Component;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Map;
+import java.util.List;
+import java.util.Set;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 import model.Model;
@@ -71,14 +74,22 @@ public class ImageBrowserPanel extends JPanel implements Observer
 			this.path = m.getRepertory();
 			createImages();
 		}
+
+		else if(change == ChangeType.SEARCH)
+		{
+			createImages();
+		}
 	}
 
 	public void createImages()
 	{
-		if (path == null)
+		if (path == null && !m.isSearch())
 			return;
 
-		new imageLoader().execute();
+		if(m.isSearch())
+			new imageLoader(m.getSearchResults(), m.getRepertoryPath()).execute();
+		else
+			new imageLoader(m.getImageMap(), m.getRepertoryPath()).execute();
 	}
 
 	private class iconListCellRenderer extends JLabel implements ListCellRenderer<Thumbnail>
@@ -124,7 +135,7 @@ public class ImageBrowserPanel extends JPanel implements Observer
 	{
 		private File[] files;
 
-		public imageLoader()
+		/*public imageLoader()
 		{
 			if (loadImageWorker != null)
 				loadImageWorker.cancel(true);
@@ -148,6 +159,20 @@ public class ImageBrowserPanel extends JPanel implements Observer
 				files[i] = new File(paths.get(i));
 
 			//results.clear();
+		}*/
+
+		public imageLoader(Map<String, List<String> > map, String repertory)
+		{
+			if(loadImageWorker != null)
+				loadImageWorker.cancel(true);
+
+			int i = 0;
+			files = new File[map.size()];
+			for(String key : map.keySet())
+			{
+				files[i] = new File(key);
+				++i;
+			}
 		}
 
 		@Override

@@ -97,7 +97,7 @@ public class Controller implements ActionListener, ListSelectionListener
 
 		// Top Bar
 		else if(e.getSource() == v.getSearchButton())
-			m.search(v.getSearchKey(), false);
+			m.search(v.getSearchKey(), true);
 
 		else if(e.getSource() == v.getDisplayBox())
 			m.setSize(v.getSelectedSize());
