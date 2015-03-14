@@ -32,6 +32,7 @@ public class Model extends Observable
 	public Model()
 	{
 		language = Locale.FRENCH;
+		rb = ResourceBundle.getBundle("ressources.strings", this.language);
 		displaySize = DisplaySize.BIG;
 		repertory = new File(System.getProperty("user.home"));
 		setImageList();
@@ -110,6 +111,7 @@ public class Model extends Observable
 	public void setRepertory(File rep)
 	{
 		this.repertory = rep;
+		isSearch = false;
 		setImageList();
 		setChanged();
 		notifyObservers(ChangeType.REPERTORY);
@@ -120,6 +122,8 @@ public class Model extends Observable
 	{
 		if(imageList == null)
 			imageList = new HashMap<String, List<String> >();
+		else
+			imageList.clear();
 		File[] files = repertory.listFiles();
 		for(File file : files)
 		{
@@ -218,13 +222,16 @@ public class Model extends Observable
 			for(String key : imageList.keySet())
 			{
 				List<String> list = imageList.get(key);
-				int size = list.size();
-				for(int i = 0; i < size; ++i)
+				if(list != null)
 				{
-					if(list.get(i).equals(searchKey))
+					int size = list.size();
+					for(int i = 0; i < size; ++i)
 					{
-						results.put(key, list);
-						break;
+						if(list.get(i).equals(searchKey))
+						{
+							results.put(key, list);
+							break;
+						}
 					}
 				}
 			}
@@ -310,7 +317,7 @@ public class Model extends Observable
 	}
 
 	// searchStatus
-	
+
 	public boolean isSearch() { return this.isSearch; }
 	public void setSearch(boolean s) { this.isSearch = s; }
 }

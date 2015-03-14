@@ -67,15 +67,15 @@ public class ImageBrowserPanel extends JPanel implements Observer
 		Model m = (Model)o;
 		ChangeType change = (ChangeType)arg;
 
-		if(change == ChangeType.REPERTORY
-				|| change == ChangeType.DISPLAYSIZE
-				|| change == ChangeType.IMAGENAME)
+		if(change == ChangeType.REPERTORY)
 		{
 			this.path = m.getRepertory();
 			createImages();
 		}
 
-		else if(change == ChangeType.SEARCH)
+		else if(change == ChangeType.SEARCH
+				|| change == ChangeType.DISPLAYSIZE
+				|| change == ChangeType.IMAGENAME)
 		{
 			createImages();
 		}
@@ -165,6 +165,8 @@ public class ImageBrowserPanel extends JPanel implements Observer
 		{
 			if(loadImageWorker != null)
 				loadImageWorker.cancel(true);
+
+			loadImageWorker = this;
 
 			int i = 0;
 			files = new File[map.size()];

@@ -29,7 +29,7 @@ public class MainMenu extends JMenuBar implements Observer
 	public MainMenu(Model m)
 	{
 		super();
-		m.setLanguage(m.getLanguage());
+
 		// Repertory
 		repertoryMenu = new JMenu(m.getString("repertory"));
 
@@ -132,8 +132,18 @@ public class MainMenu extends JMenuBar implements Observer
 				englishItem.setSelected(false);
 				chineseItem.setSelected(true);
 			}
+
+			repertoryMenu.setText(m.getString("repertory"));
+			changeRepertoryItem.setText(m.getString("change"));
+			
+			displayMenu.setText(m.getString("display"));
+			bigDisplayItem.setText(m.getString("big"));
+			mediumDisplayItem.setText(m.getString("medium"));
+			smallDisplayItem.setText(m.getString("small"));
+			
+			languagesMenu.setText(m.getString("languages"));
 		}
-		if(change == ChangeType.DISPLAYSIZE)
+		else if(change == ChangeType.DISPLAYSIZE)
 		{
 			DisplaySize size = m.getSize();
 			if(size == DisplaySize.BIG)
@@ -154,16 +164,6 @@ public class MainMenu extends JMenuBar implements Observer
 				mediumDisplayItem.setSelected(false);
 				smallDisplayItem.setSelected(true);
 			}
-
-			repertoryMenu.setText(m.getString("repertory"));
-			changeRepertoryItem.setText(m.getString("change"));
-			
-			displayMenu.setText(m.getString("display"));
-			bigDisplayItem.setText(m.getString("big"));
-			mediumDisplayItem.setText(m.getString("medium"));
-			smallDisplayItem.setText(m.getString("small"));
-			
-			languagesMenu.setText(m.getString("languages"));
 		}
 	}
 }
