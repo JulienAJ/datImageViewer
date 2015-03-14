@@ -32,6 +32,7 @@ public class Model extends Observable
 	public Model()
 	{
 		language = Locale.FRENCH;
+		rb = ResourceBundle.getBundle("ressources.strings", this.language);
 		displaySize = DisplaySize.BIG;
 		repertory = new File(System.getProperty("user.home"));
 		setImageList();
@@ -310,7 +311,7 @@ public class Model extends Observable
 	}
 
 	// searchStatus
-	
+
 	public boolean isSearch() { return this.isSearch; }
 	public void setSearch(boolean s) { this.isSearch = s; }
 }

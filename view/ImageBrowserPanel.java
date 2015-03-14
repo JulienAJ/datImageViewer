@@ -64,18 +64,19 @@ public class ImageBrowserPanel extends JPanel implements Observer
 	@Override
 	public void update(Observable o, Object arg)
 	{
+		System.out.println("UPDATE IMAGE LIST");
 		Model m = (Model)o;
 		ChangeType change = (ChangeType)arg;
 
-		if(change == ChangeType.REPERTORY
-				|| change == ChangeType.DISPLAYSIZE
-				|| change == ChangeType.IMAGENAME)
+		if(change == ChangeType.REPERTORY)
 		{
 			this.path = m.getRepertory();
 			createImages();
 		}
 
-		else if(change == ChangeType.SEARCH)
+		else if(change == ChangeType.SEARCH
+				|| change == ChangeType.DISPLAYSIZE
+				|| change == ChangeType.IMAGENAME)
 		{
 			createImages();
 		}

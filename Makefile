@@ -1,4 +1,4 @@
-JAVAC=javac -Xlint
+JAVAC=javac
 JAVA=java
 MODELDIR=model/
 VIEWDIR=view/
