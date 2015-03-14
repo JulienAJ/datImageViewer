@@ -4,16 +4,20 @@ MODELDIR=model/
 VIEWDIR=view/
 CONTROLDIR=controller/
 COMMONDIR=commonTypes/
+UTILDIR=util/
 CLASSDIR=bin/
 SQLITEJAR=sqlite-jdbc-3.8.7.jar
 NAME=DatImageViewer
 
-all : Controller Model View Common $(NAME)
+all : Controller Model View Common Util $(NAME)
 
 $(NAME): $(NAME).java
 	$(JAVAC) -d $(CLASSDIR) $^
 
 Common: $(COMMONDIR)DisplaySize.java $(COMMONDIR)ChangeClass.java $(COMMONDIR)ChangeType.java
+	$(JAVAC) -d $(CLASSDIR) $^
+
+Util: $(UTILDIR)Util.java
 	$(JAVAC) -d $(CLASSDIR) $^
 
 Model: $(MODELDIR)Model.java $(MODELDIR)DatabaseHandler.java

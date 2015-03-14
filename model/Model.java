@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.ResourceBundle;
 import javax.imageio.ImageIO;
 import commonTypes.*;
+import util.Util;
 
 public class Model extends Observable
 {
@@ -35,7 +36,6 @@ public class Model extends Observable
 		setImageList();
 		results = null;
 		selected = null;
-		//selected = "img.jpg";
 		selectedImage = null;
 		loadImage();
 	}
@@ -75,6 +75,7 @@ public class Model extends Observable
 		}
 		catch (Exception e)
 		{
+			System.err.println(e.getMessage());
 			return "Error";
 		}
 	}
@@ -121,28 +122,14 @@ public class Model extends Observable
 		File[] files = repertory.listFiles();
 		for(File file : files)
 		{
-			if(isImage(file))
+			if(Util.isImage(file))
 			{
 				String imagePath = file.getAbsolutePath();
 				String tagsString = DatabaseHandler.getTags(imagePath);
-				List<String> tags = stringToList(tagsString);
+				List<String> tags = Util.stringToList(tagsString);
 				imageList.put(imagePath, tags);
 			}
 		}
-	}
-
-	public static boolean isImage(File f)
-	{
-		String fpath = f.getAbsolutePath();
-		int dot = fpath.lastIndexOf('.');
-		String extension = fpath.substring(dot + 1).toLowerCase();
-		if(extension.equals("jpg") || extension.equals("jpeg")
-				|| extension.equals("gif") || extension.equals("bmp")
-				|| extension.equals("png"))
-		{
-			return true;
-		}
-		return false;
 	}
 
 	// Name
@@ -171,14 +158,14 @@ public class Model extends Observable
 		if(imageList == null || imageList.get(name) == null)
 			return "";
 
-		return listToString(imageList.get(name));
+		return Util.listToString(imageList.get(name));
 	}
 
 	public void setTags(String name, List<String> tags)
 	{
 		imageList.remove(getRepertoryPath() + name);
 		imageList.put(getRepertoryPath() + name, tags);
-		DatabaseHandler.setTags(getRepertoryPath() + name, listToString(tags));
+		DatabaseHandler.setTags(getRepertoryPath() + name, Util.listToString(tags));
 		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.IMAGETAGS, name));
 	}
@@ -236,7 +223,7 @@ public class Model extends Observable
 			Map<String, String> dbResults = DatabaseHandler.search(searchKey);
 			for(String key : dbResults.keySet())
 			{
-				results.put(key, stringToList(dbResults.get(key)));
+				results.put(key, Util.stringToList(dbResults.get(key)));
 			}
 		}
 		setChanged();
@@ -253,9 +240,9 @@ public class Model extends Observable
 			if(keys[i].equals(getRepertoryPath() + this.selected))
 			{
 				if(i == (size - 1))
-					selected = basename(keys[0]);
+					selected = Util.basename(keys[0]);
 				else
-					selected = basename(keys[i + 1]);
+					selected = Util.basename(keys[i + 1]);
 				break;
 			}
 		}
@@ -275,21 +262,15 @@ public class Model extends Observable
 			if(keys[i].equals(getRepertoryPath() + this.selected))
 			{
 				if(i == 0)
-					selected = basename(keys[size - 1]);
+					selected = Util.basename(keys[size - 1]);
 				else
-					selected = basename(keys[i - 1]);
+					selected = Util.basename(keys[i - 1]);
 				break;
 			}
 		}
 		loadImage();
 		setChanged();
 		notifyObservers(new ChangeClass(ChangeType.SELECTED));
-	}
-
-	public String basename(String path)
-	{
-		String[] complete = path.split("/");
-		return complete[complete.length - 1];
 	}
 
 	private void loadImage()
@@ -307,36 +288,4 @@ public class Model extends Observable
 		}
 	}
 
-	public String listToString(List<String> list)
-	{
-		String result = null;
-		if(list == null)
-			return null;
-		int size = list.size();
-		for(int i = 0; i < size; ++i)
-		{
-			if(result == null)
-				result = list.get(i);
-
-			else
-				result = result + ';' + (list.get(i));
-		}
-		return result;
-	}
-
-	public List<String> stringToList(String tags)
-	{
-		if(tags == null)
-			return null;
-
-		List<String> result = new LinkedList<String>();
-		String[] tagstab = tags.split(";");
-		int size = tagstab.length;
-		for(int i = 0; i < size; ++i)
-		{
-			result.add(tagstab[i]);
-		}
-
-		return result;
-	}
 }

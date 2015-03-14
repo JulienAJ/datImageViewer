@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.BorderLayout;
 import model.Model;
 import commonTypes.*;
+import util.Util;
 import java.io.*;
 import javax.swing.event.ListSelectionListener;
 
@@ -161,7 +162,7 @@ public class ImageBrowserPanel extends JPanel implements Observer
 				if (isCancelled())
 					return null;
 
-				if(Model.isImage(f))
+				if(Util.isImage(f))
 				{
 					try
 					{

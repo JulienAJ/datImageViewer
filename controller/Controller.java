@@ -3,6 +3,7 @@ package controller;
 import model.Model;
 import commonTypes.*;
 import view.*;
+import util.Util;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;
@@ -90,7 +91,7 @@ public class Controller implements ActionListener, ListSelectionListener
 					old);
 			if(newTags != null && !old.equals(newTags))
 			{
-				m.setTags(m.getSelected(), m.stringToList(newTags));
+				m.setTags(m.getSelected(), Util.stringToList(newTags));
 			}
 		}
 
