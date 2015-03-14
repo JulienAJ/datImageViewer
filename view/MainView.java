@@ -38,7 +38,7 @@ public class MainView extends JFrame
 		this.imagePanel = new ImagePanel(m);
 		imagePanel.setVisible(false);
 		this.imageBrowserPanel = new ImageBrowserPanel(m);
-		setup();
+		//setup();
 	}
 
 	// MainMenu
