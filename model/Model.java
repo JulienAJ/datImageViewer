@@ -111,6 +111,7 @@ public class Model extends Observable
 	public void setRepertory(File rep)
 	{
 		this.repertory = rep;
+		isSearch = false;
 		setImageList();
 		setChanged();
 		notifyObservers(ChangeType.REPERTORY);
@@ -219,13 +220,16 @@ public class Model extends Observable
 			for(String key : imageList.keySet())
 			{
 				List<String> list = imageList.get(key);
-				int size = list.size();
-				for(int i = 0; i < size; ++i)
+				if(list != null)
 				{
-					if(list.get(i).equals(searchKey))
+					int size = list.size();
+					for(int i = 0; i < size; ++i)
 					{
-						results.put(key, list);
-						break;
+						if(list.get(i).equals(searchKey))
+						{
+							results.put(key, list);
+							break;
+						}
 					}
 				}
 			}

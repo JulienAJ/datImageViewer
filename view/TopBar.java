@@ -58,9 +58,9 @@ public class TopBar extends JPanel implements Observer
 
 		searchBox.addItem(repertorySearch);
 		searchBox.addItem(databaseSearch);
-		
+
 		searchBox.setSelectedItem(databaseSearch);
-		
+
 		// DISPLAY
 		GridBagConstraints gc = new GridBagConstraints();
 		gc.anchor = GridBagConstraints.WEST;
@@ -102,6 +102,19 @@ public class TopBar extends JPanel implements Observer
 	}
 
 	public JComboBox<String> getDisplayBox() { return this.displayBox; }
+
+	public JComboBox<String> getSearchBox() { return this.searchBox; }
+
+	public boolean repertoryIsSelected()
+	{
+		String selected = (String)this.searchBox.getSelectedItem();
+		if(selected != null)
+		{
+			if(selected.equals(repertorySearch))
+				return true;
+		}
+		return false;
+	}
 
 	public DisplaySize getSelectedSize()
 	{
