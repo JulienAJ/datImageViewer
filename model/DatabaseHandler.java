@@ -133,18 +133,18 @@ public class DatabaseHandler
 		{
 			initConnection();
 
-			PreparedStatement request = con.prepareStatement("select * from Tags where tags=?");
+			PreparedStatement request = con.prepareStatement("select * from " + tableName + " where tags LIKE ?");
 			request.setString(1, '%' + searchKey + '%');
 			request.setQueryTimeout(10);
 			ResultSet result = request.executeQuery();
 
-			do
+			while(result.next())
 			{
 				name = result.getString("path");
 				tags = result.getString("tags");
 				resultsMap.put(name, tags);
+			}
 
-			} while(result.next());
 		}
 		catch(Exception e)
 		{

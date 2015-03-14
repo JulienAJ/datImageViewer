@@ -27,7 +27,9 @@ public class Controller implements ActionListener, ListSelectionListener
 	{
 		Thumbnail t = v.getImageList().getSelectedValue();
 		if(t != null)
-			m.setSelected(t.getName());
+		{
+			m.setSelected(t.getPath());
+		}
 	}
 
 	@Override
@@ -62,7 +64,7 @@ public class Controller implements ActionListener, ListSelectionListener
 		// Image Data Panel
 		else if(e.getSource() == v.getRenameButton())
 		{
-			String old = m.getSelected();
+			String old = Util.basename(m.getSelected());
 			String newN = (String)JOptionPane.showInputDialog(
 					v,
 					"Choose a new name\n",
@@ -71,15 +73,20 @@ public class Controller implements ActionListener, ListSelectionListener
 					null,
 					null,
 					old);
-			if(newN != null && !old.equals(newN))
+			if(newN != null)
 			{
-				m.setName(old, newN);
+				newN = Util.basename(newN);
+				if(!old.equals(newN))
+				{
+					String path = Util.repFromImg(m.getSelected());
+					m.setName(path + old, path + newN);
+				}
 			}
 		}
 
 		else if(e.getSource() == v.getTagsButton())
 		{
-			String old = m.getTagsArea(m.getRepertoryPath() + m.getSelected());
+			String old = m.getTagsArea(m.getSelected());
 			String newTags = (String)JOptionPane.showInputDialog(
 					v,
 					"Add, remove or edit tags\n" +

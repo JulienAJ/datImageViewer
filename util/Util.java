@@ -58,4 +58,21 @@ public class Util
 
 		return result;
 	}
+
+	public static String repFromImg(String imagePath)
+	{
+		//String img = basename(imagePath);
+		//String[] dirs = imagePath.split(System.getProperty("file.separator"));
+		//String ret = ;
+		//for(String dir : dirs)
+		//{
+		//	if(!dir.equals(img))
+		//	{
+		//		ret += dir;
+		//		ret += System.getProperty("file.separator");
+		//	}
+		//}
+		//return ret;
+		return imagePath.replace(basename(imagePath), "");
+	}
 }
