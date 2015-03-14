@@ -13,6 +13,7 @@ public class TopBar extends JPanel implements Observer
 	private static final long serialVersionUID = -8063842433285660804L;
 
 	JComboBox<String> displayBox;
+	JComboBox<String> searchBox;
 	JTextField searchField;
 	JButton searchButton;
 
@@ -20,15 +21,22 @@ public class TopBar extends JPanel implements Observer
 	String displayMedium;
 	String displaySmall;
 
+	String repertorySearch;
+	String databaseSearch;
+
 	public TopBar(Model m)
 	{
 		// SETUP
 		super();
+		//display
 		displayBox = new JComboBox<String>();
 		searchField = new JTextField(15);
 		searchButton = new JButton(m.getString("search"));
 		this.setBorder(BorderFactory.createTitledBorder(m.getString("edit")));
 		this.setLayout(new GridBagLayout());
+
+		//search
+		searchBox = new JComboBox<String>();
 
 		JPanel searchPanel = new JPanel();
 		searchPanel.setLayout(new GridBagLayout());
@@ -44,6 +52,15 @@ public class TopBar extends JPanel implements Observer
 
 		displayBox.setSelectedItem(displayBig);
 
+		//SEARCH MENU
+		repertorySearch = m.getString("repertory");
+		databaseSearch = m.getString("database");
+
+		searchBox.addItem(repertorySearch);
+		searchBox.addItem(databaseSearch);
+		
+		searchBox.setSelectedItem(databaseSearch);
+		
 		// DISPLAY
 		GridBagConstraints gc = new GridBagConstraints();
 		gc.anchor = GridBagConstraints.WEST;
@@ -54,10 +71,17 @@ public class TopBar extends JPanel implements Observer
 
 		gc.anchor = GridBagConstraints.EAST;
 		gc.weightx = 1.0;
-		gc.gridx = 1;
+		gc.gridx = 2;
 		gc.gridy = 0;
 		gc.gridwidth = 1;
 		searchPanel.add(searchButton, gc);
+
+		gc.anchor = GridBagConstraints.EAST;
+		gc.weightx = 1.0;
+		gc.gridx = 1;
+		gc.gridy = 0;
+		gc.gridwidth = 1;
+		searchPanel.add(searchBox, gc);
 
 		gc.anchor = GridBagConstraints.EAST;
 		gc.weightx = 1.0;
@@ -124,15 +148,22 @@ public class TopBar extends JPanel implements Observer
 		}
 		else if(change == ChangeType.LANGUAGE)
 		{
+			//display
 			displayBig = m.getString("big");
 			displayMedium = m.getString("medium");
 			displaySmall = m.getString("small");
-			searchButton.setText(m.getString("search"));
-			this.setBorder(BorderFactory.createTitledBorder(m.getString("edit")));
 			displayBox.removeAllItems();
 			displayBox.addItem(displayBig);
 			displayBox.addItem(displayMedium);
 			displayBox.addItem(displaySmall);
+			//search
+			repertorySearch = m.getString("repertory");
+			databaseSearch = m.getString("database");
+			searchBox.removeAllItems();
+			searchBox.addItem(repertorySearch);
+			searchBox.addItem(databaseSearch);
+			searchButton.setText(m.getString("search"));
+			this.setBorder(BorderFactory.createTitledBorder(m.getString("edit")));
 		}
 	}
 }
