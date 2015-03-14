@@ -5,18 +5,19 @@ import java.awt.event.*;
 import java.util.*;
 import model.Model;
 import commonTypes.*;
+import util.Util;
 
 public class ImageDataPanel extends JPanel implements Observer
 {
 	private static final long serialVersionUID = -5739904207491916450L;
 
-	JTextField imageName;
-	JButton rename;
-	JList<String> tags;
-	DefaultListModel<String> tagsModel;
-	JScrollPane tagPane;
-	JButton editTags;
-	JLabel noSelection;
+	private JTextField imageName;
+	private JButton rename;
+	private JList<String> tags;
+	private DefaultListModel<String> tagsModel;
+	private JScrollPane tagPane;
+	private JButton editTags;
+	private JLabel noSelection;
 
 	public ImageDataPanel(Model m)
 	{
@@ -45,11 +46,8 @@ public class ImageDataPanel extends JPanel implements Observer
 		}
 		else
 		{
+			selected = Util.basename(selected);
 			imageName.setText(selected);
-			//java.util.List<String> tempList = m.getTags(selected);
-			//if(tempList != null)
-			//	tags.setListData((String[])(tempList.toArray()));
-			//tags.setListData((String[])(m.getTags(selected).toArray()));
 			setupList(m);
 			imageName.setVisible(true);
 			rename.setVisible(true);
@@ -94,7 +92,7 @@ public class ImageDataPanel extends JPanel implements Observer
 	private void setupList(Model m)
 	{
 		tagsModel = new DefaultListModel<String>();
-		java.util.List<String> list = m.getTags(m.getRepertoryPath() + m.getSelected());
+		java.util.List<String> list = m.getTags(m.getSelected());
 		if(tags == null)
 			tags = new JList<String>();
 
@@ -115,7 +113,6 @@ public class ImageDataPanel extends JPanel implements Observer
 				|| change == ChangeType.IMAGENAME
 				|| change == ChangeType.IMAGETAGS)
 		{
-			// HANDLE TAGS CHANGE
 			String selected = m.getSelected();
 			if(selected == null)
 			{
@@ -128,6 +125,7 @@ public class ImageDataPanel extends JPanel implements Observer
 
 			else
 			{
+				selected = Util.basename(selected);
 				imageName.setText(selected);
 				setupList(m);
 				imageName.setVisible(true);

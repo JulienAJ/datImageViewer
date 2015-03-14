@@ -58,4 +58,16 @@ public class Util
 
 		return result;
 	}
+
+	public static String repFromImg(String imagePath)
+	{
+		return imagePath.replace(basename(imagePath), "");
+	}
+
+	public static String getPathFromFile(File file)
+	{
+		if(!file.getAbsolutePath().equals(System.getProperty("file.separator")))
+			return file.getAbsolutePath() + System.getProperty("file.separator");
+		return file.getAbsolutePath();
+	}
 }

@@ -87,9 +87,9 @@ public class ImageBrowserPanel extends JPanel implements Observer
 			return;
 
 		if(m.isSearch())
-			new imageLoader(m.getSearchResults(), m.getRepertoryPath()).execute();
+			new imageLoader(m.getSearchResults(), Util.getPathFromFile(m.getRepertory())).execute();
 		else
-			new imageLoader(m.getImageMap(), m.getRepertoryPath()).execute();
+			new imageLoader(m.getImageMap(), Util.getPathFromFile(m.getRepertory())).execute();
 	}
 
 	private class iconListCellRenderer extends JLabel implements ListCellRenderer<Thumbnail>
@@ -134,32 +134,6 @@ public class ImageBrowserPanel extends JPanel implements Observer
 	private class imageLoader extends SwingWorker<Void, Thumbnail>
 	{
 		private File[] files;
-
-		/*public imageLoader()
-		{
-			if (loadImageWorker != null)
-				loadImageWorker.cancel(true);
-
-			loadImageWorker = this;
-
-			File folder = path;
-			files = folder.listFiles();
-		}
-
-		public imageLoader(List<String> paths)
-		{
-			if (loadImageWorker != null)
-				loadImageWorker.cancel(true);
-
-			loadImageWorker = this;
-
-			int size = paths.size();
-			files = new File[size];
-			for (int i = 0; i < size; i++)
-				files[i] = new File(paths.get(i));
-
-			//results.clear();
-		}*/
 
 		public imageLoader(Map<String, List<String> > map, String repertory)
 		{
@@ -212,7 +186,7 @@ public class ImageBrowserPanel extends JPanel implements Observer
 			if (!isCancelled()) {
 				for (Thumbnail t : chunks) {
 					iconListModel.addElement(t);
-					if (t.getName().equals(m.getRepertoryPath() + m.getSelected()))
+					if (t.getName().equals(m.getSelected()))
 						iconList.setSelectedValue(t, true);
 				}
 			}

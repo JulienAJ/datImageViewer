@@ -39,6 +39,7 @@ public class Model extends Observable
 		results = null;
 		selected = null;
 		selectedImage = null;
+		isSearch = false;
 		loadImage();
 	}
 
@@ -101,18 +102,12 @@ public class Model extends Observable
 		return repertory;
 	}
 
-	public String getRepertoryPath()
-	{
-		if(!repertory.getAbsolutePath().equals("/"))
-			return repertory.getAbsolutePath() + '/';
-		return repertory.getAbsolutePath();
-	}
-
 	public void setRepertory(File rep)
 	{
 		this.repertory = rep;
-		isSearch = false;
+
 		setImageList();
+
 		setChanged();
 		notifyObservers(ChangeType.REPERTORY);
 	}
@@ -150,12 +145,12 @@ public class Model extends Observable
 	// Name
 	public void setName(String old, String newN)
 	{
-		List<String> temp = imageList.get(getRepertoryPath() + old);
-		imageList.remove(getRepertoryPath() + old);
-		imageList.put(getRepertoryPath() + newN, temp);
-		File file = new File(getRepertoryPath() + old);
-		file.renameTo(new File(getRepertoryPath() + newN));
-		DatabaseHandler.changePath(getRepertoryPath() + old, getRepertoryPath() + newN);
+		List<String> temp = imageList.get(old);
+		imageList.remove(old);
+		imageList.put(newN, temp);
+		File file = new File(old);
+		file.renameTo(new File(newN));
+		DatabaseHandler.changePath(old, newN);
 		setSelected(newN);
 
 		setChanged();
@@ -168,19 +163,11 @@ public class Model extends Observable
 		return imageList.get(name);
 	}
 
-	public String getTagsArea(String name)
-	{
-		if(imageList == null || imageList.get(name) == null)
-			return "";
-
-		return Util.listToString(imageList.get(name));
-	}
-
 	public void setTags(String name, List<String> tags)
 	{
-		imageList.remove(getRepertoryPath() + name);
-		imageList.put(getRepertoryPath() + name, tags);
-		DatabaseHandler.setTags(getRepertoryPath() + name, Util.listToString(tags));
+		imageList.remove(name);
+		imageList.put(name, tags);
+		DatabaseHandler.setTags(name, Util.listToString(tags));
 		setChanged();
 		notifyObservers(ChangeType.IMAGETAGS);
 	}
@@ -216,7 +203,6 @@ public class Model extends Observable
 	public void search(String searchKey, boolean dirSearch)
 	{
 		results = new HashMap<String, List<String> >();
-
 		if(dirSearch)
 		{
 			for(String key : imageList.keySet())
@@ -261,18 +247,15 @@ public class Model extends Observable
 		int size = keys.length;
 		for(int i = 0; i < size; ++i)
 		{
-			if(keys[i].equals(getRepertoryPath() + this.selected))
+			if(keys[i].equals(this.selected))
 			{
 				if(i == (size - 1))
-					selected = Util.basename(keys[0]);
+					setSelected(keys[0]);
 				else
-					selected = Util.basename(keys[i + 1]);
+					setSelected(keys[i + 1]);
 				break;
 			}
 		}
-		loadImage();
-		setChanged();
-		notifyObservers(ChangeType.SELECTED);
 	}
 
 	public void previousImage()
@@ -284,21 +267,17 @@ public class Model extends Observable
 			keySet = imageList.keySet();
 		String[] keys = (keySet.toArray(new String[keySet.size()]));
 		int size = keys.length;
-		String repertoryPath = repertory.getAbsolutePath() + '/';
 		for(int i = 0; i < size; ++i)
 		{
-			if(keys[i].equals(getRepertoryPath() + this.selected))
+			if(keys[i].equals(this.selected))
 			{
 				if(i == 0)
-					selected = Util.basename(keys[size - 1]);
+					setSelected(keys[size - 1]);
 				else
-					selected = Util.basename(keys[i - 1]);
+					setSelected(keys[i - 1]);
 				break;
 			}
 		}
-		loadImage();
-		setChanged();
-		notifyObservers(ChangeType.SELECTED);
 	}
 
 	private void loadImage()
@@ -308,7 +287,7 @@ public class Model extends Observable
 
 		try
 		{
-			selectedImage = ImageIO.read(new File(getRepertoryPath() + this.selected));
+			selectedImage = ImageIO.read(new File(this.selected));
 		}
 		catch(IOException e)
 		{
@@ -317,7 +296,6 @@ public class Model extends Observable
 	}
 
 	// searchStatus
-
 	public boolean isSearch() { return this.isSearch; }
 	public void setSearch(boolean s) { this.isSearch = s; }
 }
