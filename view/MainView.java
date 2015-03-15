@@ -112,7 +112,7 @@ public class MainView extends JFrame
 		gbc.gridwidth = 1;
 		gbc.gridheight= 1;
 		gbc.ipadx = 140;
-		gbc.ipady = 25;
+		gbc.ipady = 35;
 		mainPanel.add(repertoryPanel,gbc);
 
 		//ImageDataPanel
@@ -125,7 +125,7 @@ public class MainView extends JFrame
 		gbc.gridwidth = 1;
 		gbc.gridheight= 3;
 		gbc.ipadx = 47;
-		gbc.ipady = 540;
+		gbc.ipady = 490;
 		mainPanel.add(imageDataPanel,gbc);
 
 		//TopBar
@@ -142,7 +142,7 @@ public class MainView extends JFrame
 
 		//ImagePanel
 		gbc.anchor = GridBagConstraints.NORTH;
-		gbc.fill = GridBagConstraints.BOTH;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 1;
 		gbc.gridy = 1;
 		gbc.weightx = 1.0;

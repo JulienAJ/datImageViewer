@@ -51,9 +51,9 @@ public class Model extends Observable
 		if(this.language == Locale.ENGLISH)
 			return "en";
 		if(this.language == Locale.CHINESE)
-			return "ch";
+			return "zh";
 
-		return "ch";
+		return "zh";
 	}
 
 	public void setLanguage(String lang)
@@ -62,7 +62,7 @@ public class Model extends Observable
 			this.language = Locale.FRENCH;
 		if(lang.equals("en"))
 			this.language = Locale.ENGLISH;
-		if(lang.equals("ch"))
+		if(lang.equals("zh"))
 			this.language = Locale.CHINESE;
 
 		rb = ResourceBundle.getBundle("ressources.strings", this.language);
