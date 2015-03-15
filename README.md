@@ -5,3 +5,4 @@ TO DO:
 - add button to quit search mode
 - cleanup imports
 - report (UML + observer-observable exchanges with changeType + prototypes...)
+- jar archive
