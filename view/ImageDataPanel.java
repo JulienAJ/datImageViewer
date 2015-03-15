@@ -18,6 +18,7 @@ public class ImageDataPanel extends JPanel implements Observer
 	private JScrollPane tagPane;
 	private JButton editTags;
 	private JLabel noSelection;
+	private JLabel noTag;
 
 	public ImageDataPanel(Model m)
 	{
@@ -32,6 +33,7 @@ public class ImageDataPanel extends JPanel implements Observer
 		tags.setFixedCellWidth(100);
 		editTags = new JButton(m.getString("modifyButton"));
 		noSelection = new JLabel(m.getString("noImage"));
+		noTag= new JLabel(m.getString("noTag"));
 		this.setBorder(BorderFactory.createTitledBorder(m.getString("data")));
 		this.setLayout(new GridBagLayout());
 
@@ -42,6 +44,7 @@ public class ImageDataPanel extends JPanel implements Observer
 			rename.setVisible(false);
 			tags.setVisible(false);
 			editTags.setVisible(false);
+			noTag.setVisible(false);
 			noSelection.setVisible(true);
 		}
 		else
@@ -54,6 +57,11 @@ public class ImageDataPanel extends JPanel implements Observer
 			tags.setVisible(true);
 			editTags.setVisible(true);
 			noSelection.setVisible(false);
+			if (tags.isSelectionEmpty())
+			{
+				noTag.setVisible(true);
+				tags.setVisible(false);
+			}
 		}
 
 		GridBagConstraints gc = new GridBagConstraints();
@@ -68,6 +76,9 @@ public class ImageDataPanel extends JPanel implements Observer
 		gc.gridx = 0;
 		gc.gridy = 2;
 		this.add(tags, gc);
+		gc.gridx = 0;
+		gc.gridy = 2;
+		this.add(noTag, gc);
 		gc.gridx = 0;
 		gc.gridy = 3;
 		this.add(editTags, gc);
@@ -140,6 +151,7 @@ public class ImageDataPanel extends JPanel implements Observer
 			rename.setText(m.getString("renameButton"));
 			editTags.setText(m.getString("modifyButton"));
 			noSelection.setText(m.getString("noImage"));
+			noTag.setText(m.getString("noTag"));
 			this.setBorder(BorderFactory.createTitledBorder(m.getString("data")));
 		}
 	}
