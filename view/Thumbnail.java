@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import commonTypes.DisplaySize;
+import util.Util;
 
 public class Thumbnail
 {
@@ -16,7 +17,7 @@ public class Thumbnail
 	private String name;
 	private String path;
 
-	public Thumbnail(String path, DisplaySize size) throws Exception
+	public Thumbnail(String path, DisplaySize size)
 	{
 		// DEFAULT IS BIG
 		int maxWidth = 300;
@@ -36,23 +37,30 @@ public class Thumbnail
 
 		this.path = path;
 		Path p = Paths.get(path);
-		name = p.getFileName().toString();
+		name = Util.basename(path);
 
-		original = ImageIO.read(new File(path));
-		if (original == null)
-			throw new Exception(path + ": this file seems to be damaged.");
+		try
+		{
+			original = ImageIO.read(new File(path));
+		}
+		catch(Exception e)
+		{
+			System.err.println(e.getMessage());
+		}
+		if (original != null)
+		{
+			int imgWidth = original.getWidth();
+			int imgHeight = original.getHeight();
 
-		int imgWidth = original.getWidth();
-		int imgHeight = original.getHeight();
+			double maxRatio = (double)maxWidth / maxHeight;
+			double imgRatio = (double)imgWidth / imgHeight;
+			double scale = (imgRatio > maxRatio) ?  (double)maxWidth / imgWidth : (double)maxHeight / imgHeight;
 
-		double maxRatio = (double)maxWidth / maxHeight;
-		double imgRatio = (double)imgWidth / imgHeight;
-		double scale = (imgRatio > maxRatio) ?  (double)maxWidth / imgWidth : (double)maxHeight / imgHeight;
+			int newWidth = (int)(imgWidth * scale);
+			int newHeight = (int)(imgHeight * scale);
 
-		int newWidth = (int)(imgWidth * scale);
-		int newHeight = (int)(imgHeight * scale);
-
-		image = new ImageIcon(original.getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_FAST));
+			image = new ImageIcon(original.getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_FAST));
+		}
 	}
 
 	public String getName()
@@ -73,11 +81,6 @@ public class Thumbnail
 	public ImageIcon getImage()
 	{
 		return image;
-	}
-
-	public BufferedImage getOriginalImage()
-	{
-		return original;
 	}
 }
 
