@@ -26,7 +26,7 @@ Model: $(MODELDIR)Model.java $(MODELDIR)DatabaseHandler.java
 Controller: $(CONTROLDIR)Controller.java
 	$(JAVAC) -d $(CLASSDIR) $^
 
-View: $(VIEWDIR)MainView.java $(VIEWDIR)MainMenu.java $(VIEWDIR)ImageDataPanel.java $(VIEWDIR)RepertoryPanel.java $(VIEWDIR)ImageBrowserPanel.java $(VIEWDIR)ImagePanel.java $(VIEWDIR)TopBar.java $(VIEWDIR)MyWindowListener.java $(VIEWDIR)IconListCellRenderer.java $(VIEWDIR)Thumbnail.java
+View: $(VIEWDIR)MainView.java $(VIEWDIR)MainMenu.java $(VIEWDIR)ImageDataPanel.java $(VIEWDIR)RepertoryPanel.java $(VIEWDIR)ImageBrowserPanel.java $(VIEWDIR)ImagePanel.java $(VIEWDIR)TopBar.java $(VIEWDIR)MyWindowListener.java $(VIEWDIR)ThumbListCellRenderer.java $(VIEWDIR)Thumbnail.java
 	$(JAVAC) -d $(CLASSDIR) $^
 
 run:
