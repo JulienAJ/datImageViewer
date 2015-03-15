@@ -37,7 +37,7 @@ public class ImageBrowserPanel extends JPanel implements Observer
 		this.m = m;
 		iconListModel = new DefaultListModel<Thumbnail>();
 		iconList = new JList<Thumbnail>(iconListModel);
-		iconList.setCellRenderer(new iconListCellRenderer());
+		iconList.setCellRenderer(new IconListCellRenderer());
 		iconList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		iconList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		iconList.setVisibleRowCount(-1);
@@ -81,61 +81,30 @@ public class ImageBrowserPanel extends JPanel implements Observer
 		}
 	}
 
+	public void clearListModel()
+	{
+		iconListModel.clear();
+	}
+
 	public void createImages()
 	{
 		if (path == null && !m.isSearch())
 			return;
 
+		if(loadImageWorker != null)
+			loadImageWorker.cancel(true);
+
 		if(m.isSearch())
-			new imageLoader(m.getSearchResults(), Util.getPathFromFile(m.getRepertory())).execute();
+			new ImageLoader(m.getSearchResults(), Util.getPathFromFile(m.getRepertory())).execute();
 		else
-			new imageLoader(m.getImageMap(), Util.getPathFromFile(m.getRepertory())).execute();
+			new ImageLoader(m.getImageMap(), Util.getPathFromFile(m.getRepertory())).execute();
 	}
 
-	private class iconListCellRenderer extends JLabel implements ListCellRenderer<Thumbnail>
-	{
-		private static final long serialVersionUID = -3419410645297544425L;
-
-		public iconListCellRenderer()
-		{
-			setOpaque(true);
-		}
-
-		public Component getListCellRendererComponent(JList<? extends Thumbnail> list, Thumbnail value, int index, boolean isSelected, boolean cellHasFocus)
-		{
-			ImageIcon image = value.getImage();
-			if(image != null)
-			{
-				setPreferredSize(new Dimension(image.getIconWidth(), image.getIconHeight() + 20));
-
-				setText(value.getName());
-				setVerticalTextPosition(JLabel.BOTTOM);
-				setHorizontalTextPosition(JLabel.CENTER);
-
-				setIcon(value.getImage());
-				setHorizontalAlignment(JLabel.CENTER);
-
-				if(isSelected)
-				{
-					setBackground(list.getSelectionBackground());
-					setForeground(list.getSelectionForeground());
-				}
-				else
-				{
-					setBackground(list.getBackground());
-					setForeground(list.getForeground());
-				}
-			}
-
-			return this;
-		}
-	}
-
-	private class imageLoader extends SwingWorker<Void, Thumbnail>
+	private class ImageLoader extends SwingWorker<Void, Thumbnail>
 	{
 		private File[] files;
 
-		public imageLoader(Map<String, List<String> > map, String repertory)
+		public ImageLoader(Map<String, List<String> > map, String repertory)
 		{
 			if(loadImageWorker != null)
 				loadImageWorker.cancel(true);
@@ -183,8 +152,10 @@ public class ImageBrowserPanel extends JPanel implements Observer
 		@Override
 		protected void process(List<Thumbnail> chunks)
 		{
-			if (!isCancelled()) {
-				for (Thumbnail t : chunks) {
+			if (!isCancelled())
+			{
+				for (Thumbnail t : chunks)
+				{
 					iconListModel.addElement(t);
 					if (t.getName().equals(m.getSelected()))
 						iconList.setSelectedValue(t, true);
