@@ -53,7 +53,7 @@ public class Model extends Observable
 		if(this.language == Locale.CHINESE)
 			return "ch";
 
-		return "fr";
+		return "ch";
 	}
 
 	public void setLanguage(String lang)
@@ -203,37 +203,57 @@ public class Model extends Observable
 	public void search(String searchKey, boolean dirSearch)
 	{
 		results = new HashMap<String, List<String> >();
-		if(dirSearch)
+		if(searchKey.equals(""))
 		{
 			for(String key : imageList.keySet())
 			{
+
 				List<String> list = imageList.get(key);
 				if(list != null)
 				{
 					int size = list.size();
 					for(int i = 0; i < size; ++i)
 					{
-						if(list.get(i).equals(searchKey))
-						{
 							results.put(key, list);
 							break;
-						}
 					}
 				}
 			}
 		}
 		else
 		{
-			Map<String, String> dbResults = DatabaseHandler.search(searchKey);
-			for(String key : dbResults.keySet())
+			if(dirSearch)
 			{
-				results.put(key, Util.stringToList(dbResults.get(key)));
+				for(String key : imageList.keySet())
+				{
+					List<String> list = imageList.get(key);
+					if(list != null)
+					{
+						int size = list.size();
+						for(int i = 0; i < size; ++i)
+						{
+							if(list.get(i).equals(searchKey))
+							{
+								results.put(key, list);
+								break;
+							}
+						}
+					}
+				}
 			}
+			else
+			{
+				Map<String, String> dbResults = DatabaseHandler.search(searchKey);
+				for(String key : dbResults.keySet())
+				{
+					results.put(key, Util.stringToList(dbResults.get(key)));
+				}
+			}
+			this.isSearch = true;
+			setSelected(null);
+			setChanged();
+			notifyObservers(ChangeType.SEARCH);
 		}
-		this.isSearch = true;
-		setSelected(null);
-		setChanged();
-		notifyObservers(ChangeType.SEARCH);
 	}
 
 	public void nextImage()

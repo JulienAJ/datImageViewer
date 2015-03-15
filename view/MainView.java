@@ -59,6 +59,7 @@ public class MainView extends JFrame
 
 	//TopBar
 	public JButton getSearchButton() { return this.topBar.getSearchButton(); }
+	public JButton getCloseSearch() { return this.topBar.getCloseSearch(); }
 	public JComboBox<String> getDisplayBox() { return this.topBar.getDisplayBox(); }
 	public DisplaySize getSelectedSize() { return this.topBar.getSelectedSize(); }
 	public boolean repertorySearch() { return this.topBar.repertoryIsSelected(); }

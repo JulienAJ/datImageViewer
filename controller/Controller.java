@@ -109,6 +109,9 @@ public class Controller implements ActionListener, ListSelectionListener
 		else if(e.getSource() == v.getDisplayBox())
 			m.setSize(v.getSelectedSize());
 
+		else if(e.getSource() == v.getCloseSearch())
+			m.search("", true);
+
 		// Image Panel
 		else if(e.getSource() == v.getNext())
 			m.nextImage();

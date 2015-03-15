@@ -16,6 +16,7 @@ public class TopBar extends JPanel implements Observer
 	JComboBox<String> searchBox;
 	JTextField searchField;
 	JButton searchButton;
+	private JButton closeSearch;
 
 	String displayBig;
 	String displayMedium;
@@ -28,6 +29,9 @@ public class TopBar extends JPanel implements Observer
 	{
 		// SETUP
 		super();
+		//close
+		closeSearch = new JButton("X");
+		
 		//display
 		displayBox = new JComboBox<String>();
 		searchField = new JTextField(15);
@@ -71,26 +75,33 @@ public class TopBar extends JPanel implements Observer
 
 		gc.anchor = GridBagConstraints.EAST;
 		gc.weightx = 1.0;
-		gc.gridx = 2;
+		gc.gridx = 3;
 		gc.gridy = 0;
 		gc.gridwidth = 1;
 		searchPanel.add(searchButton, gc);
 
 		gc.anchor = GridBagConstraints.EAST;
 		gc.weightx = 1.0;
-		gc.gridx = 1;
+		gc.gridx = 2;
 		gc.gridy = 0;
 		gc.gridwidth = 1;
 		searchPanel.add(searchBox, gc);
 
 		gc.anchor = GridBagConstraints.EAST;
 		gc.weightx = 1.0;
-		gc.gridx = 0;
+		gc.gridx = 1;
 		gc.gridy = 0;
 		gc.gridwidth = 1;
 		//gc.gridx = GridBagConstraints.RELATIVE;
 		searchPanel.add(searchField, gc);
 
+		gc.anchor = GridBagConstraints.EAST;
+		gc.weightx = 1.0;
+		gc.gridx = 0;
+		gc.gridy = 0;
+		gc.gridwidth = 1;
+		searchPanel.add(closeSearch, gc);
+		
 		gc.anchor = GridBagConstraints.EAST;
 		gc.weightx = 2.0;
 		gc.gridx = 0;
@@ -134,6 +145,8 @@ public class TopBar extends JPanel implements Observer
 	public String getSearchKey() { return this.searchField.getText(); }
 
 	public JButton getSearchButton() { return this.searchButton; }
+	
+	public JButton getCloseSearch() { return this.closeSearch; }
 
 	public void addListener(ActionListener l)
 	{
