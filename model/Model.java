@@ -317,5 +317,10 @@ public class Model extends Observable
 
 	// searchStatus
 	public boolean isSearch() { return this.isSearch; }
-	public void setSearch(boolean s) { this.isSearch = s; }
+	public void setSearch(boolean s)
+	{
+		this.isSearch = s;
+		setChanged();
+		notifyObservers(ChangeType.REPERTORY);
+	}
 }

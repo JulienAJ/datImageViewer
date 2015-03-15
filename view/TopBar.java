@@ -31,6 +31,7 @@ public class TopBar extends JPanel implements Observer
 		super();
 		//close
 		closeSearch = new JButton("X");
+		closeSearch.setVisible(false);
 		
 		//display
 		displayBox = new JComboBox<String>();
@@ -153,6 +154,7 @@ public class TopBar extends JPanel implements Observer
 		this.displayBox.addActionListener(l);
 		this.searchField.addActionListener(l);
 		this.searchButton.addActionListener(l);
+		this.closeSearch.addActionListener(l);
 	}
 
 	public void update(Observable o, Object arg)
@@ -191,5 +193,10 @@ public class TopBar extends JPanel implements Observer
 			searchButton.setText(m.getString("search"));
 			this.setBorder(BorderFactory.createTitledBorder(m.getString("edit")));
 		}
+		else if(change == ChangeType.SEARCH)
+			closeSearch.setVisible(true);
+
+		else if(change == ChangeType.REPERTORY)
+			closeSearch.setVisible(false);
 	}
 }
