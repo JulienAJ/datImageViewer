@@ -28,8 +28,8 @@ public class ImageDataPanel extends JPanel implements Observer
 
 		rename = new JButton(m.getString("renameButton"));
 		tags = new JList<String>();
-		tags.setVisibleRowCount(10);
-		tags.setFixedCellHeight(15);
+		tags.setVisibleRowCount(7);
+		tags.setFixedCellHeight(13);
 		tags.setFixedCellWidth(100);
 		editTags = new JButton(m.getString("modifyButton"));
 		noSelection = new JLabel(m.getString("noImage"));
