@@ -127,6 +127,8 @@ public class Controller implements ActionListener, ListSelectionListener
 	{
 		JFileChooser chooser = new JFileChooser();
 		chooser = new JFileChooser();
+		chooser.setDialogTitle(m.getString("fileChooser"));
+		chooser.setApproveButtonText(m.getString("approve"));
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		int returnVal = chooser.showOpenDialog(v);
 		if(returnVal == JFileChooser.APPROVE_OPTION)
