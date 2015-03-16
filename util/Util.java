@@ -3,6 +3,7 @@ package util;
 import java.io.File;
 import java.util.List;
 import java.util.LinkedList;
+import java.util.regex.Pattern;
 
 public class Util
 {
@@ -22,7 +23,8 @@ public class Util
 
 	public static String basename(String path)
 	{
-		String[] complete = path.split(System.getProperty("file.separator"));
+		String pattern = Pattern.quote(System.getProperty("file.separator"));
+		String[] complete = path.split(pattern);
 		return complete[complete.length - 1];
 	}
 
