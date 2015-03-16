@@ -67,8 +67,8 @@ public class Controller implements ActionListener, ListSelectionListener
 			String old = Util.basename(m.getSelected());
 			String newN = (String)JOptionPane.showInputDialog(
 					v,
-					"Choose a new name\n",
-					"Rename",
+					m.getString("newName")+ "\n",
+					m.getString("renameButton"),
 					JOptionPane.PLAIN_MESSAGE,
 					null,
 					null,
@@ -89,9 +89,9 @@ public class Controller implements ActionListener, ListSelectionListener
 			String old = Util.listToString(m.getTags(m.getSelected()));
 			String newTags = (String)JOptionPane.showInputDialog(
 					v,
-					"Add, remove or edit tags\n" +
-					"Use ';' as a separator",
-					"Tags",
+					m.getString("addTag")+"\n" +
+					m.getString("separator"),
+					m.getString("tags"),
 					JOptionPane.PLAIN_MESSAGE,
 					null,
 					null,
