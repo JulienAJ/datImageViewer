@@ -118,8 +118,6 @@ public class ImagePanel extends JPanel implements Observer
 			else
 			{
 				image = m.getSelectedImage();
-				if(image == null)
-					System.out.println("NOPE");
 				imageLabel = new JLabel(new ImageIcon(image));
 				repaint();
 				name.setText(m.getSelected());
