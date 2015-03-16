@@ -96,7 +96,7 @@ public class Controller implements ActionListener, ListSelectionListener
 					null,
 					null,
 					old);
-			if(newTags != null && !newTags.equals(old))
+			if(newTags != null && (old == null || !newTags.equals(old)))
 			{
 				m.setTags(m.getSelected(), Util.stringToList(newTags));
 			}
