@@ -65,7 +65,8 @@ public class DatabaseHandler
 			request.setQueryTimeout(10);
 			ResultSet result = request.executeQuery();
 
-			tags = result.getString("tags");
+			if(result.next())
+				tags = result.getString("tags");
 		}
 		catch(Exception e)
 		{
